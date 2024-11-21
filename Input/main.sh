@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo hello
+echo hello 
 
 # Message de bienvenue
 echo "Hello"
