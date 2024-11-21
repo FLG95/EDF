@@ -7,4 +7,4 @@ deps/
 **/*/.exe
 *.o
 CMakeLists.txt
-**/c-wire_v25.dat
+**/Input/c-wire_v25.dat
