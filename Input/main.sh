@@ -1,19 +1,24 @@
 #!/bin/bash
 
-echo hello 
-
 # Message de bienvenue
 echo "Hello"
 
 # Chemin du fichier source C
-fichier="../CodeC/main.c"
+main="../CodeC/main.c"
+ref="c-wire_v00.dat"
 
 # Nom du fichier binaire généré
-binaire="./main"
+binaire="./exe"
+
+cp $ref ../tmp/data
 
 
 
-gcc "$fichier" -o "$binaire"
+gcc "$main" -o "$binaire"
+
 
 ./$binaire
+
+
+rm ../tmp/data
 

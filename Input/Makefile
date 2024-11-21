@@ -14,7 +14,7 @@ SRC = CodeC/main.c
 OBJ = $(SRC:.c=.o)
 
 # Executable
-TARGET = EXE
+TARGET = exe
 
 
 # Linking the executable
