@@ -8,3 +8,5 @@ deps/
 *.o
 CMakeLists.txt
 **/Input/c-wire_v25.dat
+**/c-wire_v25.dat
+**/**/c-wire_v25.dat
