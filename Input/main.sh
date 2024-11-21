@@ -20,7 +20,6 @@ gcc "$main" -o "$binaire"
 
 
 rm exe
-rm ../main
 rm -r ../tmp/*
 
 
