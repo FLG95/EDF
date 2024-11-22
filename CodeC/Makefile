@@ -8,7 +8,7 @@ LIBS = -lncursesw
 
 
 # Source files
-SRC = CodeC/main.c
+SRC = main.c
 
 # Object files
 OBJ = $(SRC:.c=.o)
@@ -23,11 +23,11 @@ $(TARGET): $(OBJ)
 
 # Default target
 all: $(TARGET)
-
+	./exe
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 # Clean target
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f $(OBJ) $(TARGET
