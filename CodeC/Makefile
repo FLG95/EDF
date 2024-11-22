@@ -8,7 +8,7 @@ LIBS = -lncurses
 
 
 # Source files
-SRC = main.c
+SRC = main.c creerAvl.c
 
 # Object files
 OBJ = $(SRC:.c=.o)
