@@ -1,16 +1,13 @@
+
+#ifndef CREER_AVL_H
+#define CREER_AVL_H
 #include <stdbool.h>
 
-typedef struct arbre {
-    int nb;
-    struct arbre* fd;
-    struct arbre* fg;
-    int equilibre;
-} arbre;
+#include "type_avl.h"
 
-typedef struct file {
-    arbre* actuel;
-    struct file* suivant;
-} file;
+
+
+
 
 int min(int a, int b);
 int max(int a, int b);
@@ -21,10 +18,8 @@ arbre* doubleRotationGauche(arbre* tete);
 arbre* doubleRotationDroite(arbre* tete);
 arbre* equilibrage(arbre* tete);
 arbre* inserer(arbre* tete, int a, int* h);
-file* creerFile(arbre* a);
-file* enfiler(file* f, arbre* tete);
-arbre* defiler(file** f);
-void parcoursLargeur(arbre* tete);
-void afficher(arbre* tete);
+
 int hauteur(arbre* tete);
 bool estAVL(arbre* tete);
+
+#endif //CREER_AVL
