@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "affichage.h"
+#include "include/affichage.h"
 
 void traiter(arbre* tete){
     if (tete != NULL){
