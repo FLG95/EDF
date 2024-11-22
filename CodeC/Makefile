@@ -8,7 +8,7 @@ LIBS = -lncurses
 
 
 # Source files
-SRC = main.c creerAvl.c
+SRC = main.c creerAvl.c parcours.c affichage.c
 
 # Object files
 OBJ = $(SRC:.c=.o)
@@ -30,4 +30,4 @@ all: $(TARGET)
 
 # Clean target
 clean:
-	rm -f $(OBJ) $(TARGET
+	rm -f $(OBJ) $(TARGET)
