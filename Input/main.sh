@@ -8,6 +8,7 @@ main="../CodeC/main.c"
 ref="c-wire_v00.dat"
 ref2="c-wire_v25.dat"
 dir_makefile="../CodeC"
+dir_origine="../Input"
 
 
 # Nom du fichier binaire généré
@@ -21,6 +22,7 @@ cd $dir_makefile
 make all
 
 rm exe
+cd $dir_origine
 rm -r ../tmp/*
 
 
