@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "parcours.h"
+#include "include/parcours.h"
 
 file* creerFile(arbre* a) {
     file* new = malloc(sizeof(file));
