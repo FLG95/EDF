@@ -20,9 +20,11 @@ cp $ref2 ../tmp/data/c-wire_v25_cpy.dat
 cd $dir_makefile
 
 make all
+make clean
 
-rm exe
 cd $dir_origine
 rm -r ../tmp/*
+
+
 
 
