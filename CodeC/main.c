@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-#include "creer_avl.h"
-#include "parcours.h"
-#include "type_avl.h"
-#include "affichage.h"
+#include "include/creer_avl.h"
+#include "include/parcours.h"
+#include "include/type_avl.h"
+#include "include/affichage.h"
 
 
 
