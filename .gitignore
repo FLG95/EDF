@@ -10,3 +10,6 @@ CMakeLists.txt
 **/Input/c-wire_v25.dat
 **/c-wire_v25.dat
 **/**/c-wire_v25.dat
+**/Input/c-wire_v00.dat
+**/c-wire_v00.dat
+**/**/c-wire_v00.dat
