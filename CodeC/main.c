@@ -11,17 +11,20 @@
 int main(int argc, char* argv[]){
 
 
-    return 0;
+    if (argc != 2){
+        exit(1);
+    }
+    FILE* fichier = fopen(argv[1], "r");
 
     int a = 0;
 
     arbre* tete = NULL;
-    int ph;
+    int ph = 0;
     int* h = &ph;
 
     for (int i = 1; i < 10; i++){
         tete = inserer(tete, i, h);
-        printf("%11d\n", i);
+        //printf("%11d\n", i);
     }
 
     parcoursInfixe(tete);
@@ -32,8 +35,12 @@ int main(int argc, char* argv[]){
     }
     freeAvl(tete);
 
-    printf("%s", argv[0]);
-
-
+    //printf("%s", argv[0]);
+    char buffer[1024]; // Tampon pour stocker chaque ligne
+    while (fgets(buffer, sizeof(buffer), fichier)) {
+        printf("%s", buffer);
+    }
+    printf("\n1\n");
+    fclose(fichier);
     return 0;
 }
