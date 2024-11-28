@@ -29,6 +29,15 @@ fi
 #Copie du fichier dans le dossier temporaire
 cp $1 ../tmp/data/c-wire_v00_cpy.dat
 
+case $2 in
+  "hvb")
+  echo hvb
+  if [ $2 == all ]; then
+    echo "impossible de faire hvb all"
+  elif [ $2 == indiv ]; then
+    echo "impossible defaire hvb indiv"
+  fi
+  ;;
 #extrait les données utiles dans un fichier temporaire dans le dossier temporaire
 awk -F ';' '$4 == 2' c-wire_v00.dat > ../tmp/temp.txt
 
