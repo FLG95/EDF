@@ -4,11 +4,11 @@ CC = gcc
 # Compiler flags
 CFLAGS = -std=c11 -Iinclude
 
-LIBS = -lncurses
+LIBS = -lncursesw
 
 
 # Source files
-SRC = main.c creerAvl.c parcours.c affichage.c
+SRC = main.c creerAvl.c parcours.c affichage.c creerDonnees.c
 
 # Object files
 OBJ = $(SRC:.c=.o)
