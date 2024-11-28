@@ -132,3 +132,13 @@ bool estAVL(arbre* tete) {
 
     return estAVL(tete->fg) && estAVL(tete->fd);
 }
+
+void freeAvl(arbre* tete){
+    if (tete == NULL){
+        return;
+    }
+    freeAvl(tete->fg);
+    freeAvl(tete->fd);
+
+    free(tete);
+}

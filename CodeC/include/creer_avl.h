@@ -18,6 +18,7 @@ arbre* doubleRotationGauche(arbre* tete);
 arbre* doubleRotationDroite(arbre* tete);
 arbre* equilibrage(arbre* tete);
 arbre* inserer(arbre* tete, int a, int* h);
+void freeAvl(arbre* tete);
 
 int hauteur(arbre* tete);
 bool estAVL(arbre* tete);
