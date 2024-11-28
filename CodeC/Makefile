@@ -4,7 +4,7 @@ CC = gcc
 # Compiler flags
 CFLAGS = -std=c11 -Iinclude
 
-LIBS = -lncursesw
+LIBS = -lncurses
 
 
 # Source files
@@ -16,6 +16,7 @@ OBJ = $(SRC:.c=.o)
 # Executable
 TARGET = exe
 
+FILE = input.txt
 
 # Linking the executable
 $(TARGET): $(OBJ)
@@ -23,7 +24,7 @@ $(TARGET): $(OBJ)
 
 # Default target
 all: $(TARGET)
-	./exe
+	./exe $(FILE)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
