@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Message de bienvenue
-echo "Hello"
 
 # Chemin du fichier source C
 main="../CodeC/main.c"
@@ -28,6 +26,45 @@ fi
 
 #Copie du fichier dans le dossier temporaire
 cp $1 ../tmp/data/c-wire_v00_cpy.dat
+
+case $2 in
+  "hvb")
+  echo hvb
+  if [ $3 == "all" ]; then
+    echo "impossible de faire hvb all"
+  elif [ $3 == "indiv" ]; then
+    echo "impossible defaire hvb indiv"
+  elif [ $3 == "comp" ]; then
+    #TRIER LE FICHIER AVEC LES DONNÉES VOULUES
+    echo "comp"
+  else
+    echo "ERREUR ARGUMENT"
+  fi
+  ;;
+
+
+  "hva")
+  echo "hva"
+  if [ $3 == "all" ]; then
+    eccho"impossible de faire hva all"
+  elif [ $3 == "indiv" ]; then
+    echo "impossible de faire hva indiv"
+  elif [ $3 == "comp" ]; then
+        #TRIER LE FICHIER AVEC LES DONNÉES voulues
+        echo "all"
+  else
+    echo "ERREUR ARGUMENT"
+  fi
+  ;;
+
+
+  "lv")
+  echo "lv"
+
+  ;;
+esac
+
+
 
 #extrait les données utiles dans un fichier temporaire dans le dossier temporaire
 awk -F ';' '$1 == 1' c-wire_v25.dat > ../tmp/temp.txt
