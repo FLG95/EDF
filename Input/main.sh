@@ -30,7 +30,7 @@ fi
 cp $1 ../tmp/data/c-wire_v00_cpy.dat
 
 #extrait les données utiles dans un fichier temporaire dans le dossier temporaire
-awk -F ';' '$4 == 2' c-wire_v00.dat > ../tmp/temp.txt
+awk -F ';' '$1 == 1' c-wire_v25.dat > ../tmp/temp.txt
 
 #lancement du code C avec le Makefile en passant le fichier en paramètre
 cd $dir_makefile || exit
