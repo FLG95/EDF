@@ -26,29 +26,17 @@ else
 fi
 
 
-
+#Copie du fichier dans le dossier temporaire
 cp $1 ../tmp/data/c-wire_v00_cpy.dat
 
+#extrait les données utiles dans un fichier temporaire dans le dossier temporaire
+awk -F ';' '$4 == 1 || $4 == 2' c-wire_v00.dat > ../tmp/temp.txt
 
-
-cat ../tmp/data/c-wire_v00_cpy.dat
-
-
-
-
-
-
-#lancement du code C avec le Makefile
+#lancement du code C avec le Makefile en passant le fichier en paramètre
 cd $dir_makefile || exit
-
-make all
+make all FILE=../Input/c-wire_v00.dat
 make clean
-
 cd $dir_origine || exit
 
-
-
-
 #suppression des fichiers et/ou dossiers du dossiers tmp
-rm -r ../tmp/*
-
+rmdir ../tmp/
