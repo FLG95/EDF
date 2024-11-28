@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "include/creer_avl.h"
 #include "include/parcours.h"
@@ -15,7 +16,7 @@ int main(int argc, char* argv[]){
     int ph;
     int* h = &ph;
 
-    for (int i = 1; i < 150000; i++){
+    for (int i = 1; i < 10; i++){
         tete = inserer(tete, i, h);
         printf("%11d\n", i);
     }
@@ -26,6 +27,6 @@ int main(int argc, char* argv[]){
     } else {
         printf("\nL'arbre n'est PAS un AVL.\n");
     }
+    freeAvl(tete);
     return 0;
-
 }
