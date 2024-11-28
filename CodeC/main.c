@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "include/creer_avl.h"
 #include "include/parcours.h"
 #include "include/type_avl.h"
 #include "include/affichage.h"
+#include "include/creerDonnees.h"
 
 
 
@@ -15,7 +17,9 @@ int main(int argc, char* argv[]){
         exit(1);
     }
     FILE* fichier = fopen(argv[1], "r");
-
+    if (fichier == NULL){
+        exit(1);
+    }
     int a = 0;
 
     arbre* tete = NULL;
@@ -35,12 +39,16 @@ int main(int argc, char* argv[]){
     }
     freeAvl(tete);
 
-    //printf("%s", argv[0]);
-    char buffer[1024]; // Tampon pour stocker chaque ligne
-    while (fgets(buffer, sizeof(buffer), fichier)) {
-        printf("%s", buffer);
+    FILE* out = fopen("../tmp/out.txt", "w");
+    if (out == NULL){
+        exit(1);
     }
+
+
     printf("\n1\n");
-    fclose(fichier);
+
+    ensembleDonne(fichier);
+
+
     return 0;
 }
