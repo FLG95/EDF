@@ -1,5 +1,6 @@
 #ifndef PARCOURS_H
 #define PARCOURS_H
+#include <stdio.h>
 
 #include "type_avl.h"
 #include "affichage.h"
