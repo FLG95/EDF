@@ -12,33 +12,35 @@
 
 int main(int argc, char* argv[]){
 
-
-    if (argc != 2){
-        exit(1);
-    }
-    FILE* fichier = fopen(argv[1], "r");
-    if (fichier == NULL){
-        exit(1);
-    }
-    int a = 0;
-
-    arbre* tete = NULL;
     int ph = 0;
     int* h = &ph;
 
+    if (argc != 2){
+        printf("not enough argument");
+        exit(1);
+    }
 
 
+    FILE* fichier = fopen(argv[1], "r");
+    if (fichier == NULL){
+        printf("argument 1 file is empty");
+        exit(1);
+    }
+    arbre* tete = NULL;
 
 
     FILE* out = fopen("../tmp/out.txt", "w");
     if (out == NULL){
+        printf("can't open file");
         exit(1);
     }
 
 
 
     tete = ensembleDonne(fichier, h);
+
     parcoursInfixe(tete);
+
     if (estAVL(tete)) {
         printf("\nL'arbre est un AVL.\n");
     } else {

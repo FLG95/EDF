@@ -2,10 +2,16 @@
 
 
 # Chemin du fichier source C
-main="../CodeC/main.c"
+
+#main="../CodeC/main.c"
+
+exe="./exe"
 dir_makefile="../CodeC"
 dir_origine="../Input"
 dir_tmp="../tmp"
+dir_data="../tmp/data"
+dir_graph="../graph"
+
 
 
 #vérifie si le dossier tmp existe
@@ -16,16 +22,24 @@ else
 fi
 
 
-# Nom du fichier binaire généré
-if [ -d ../tmp/data ]; then
-  rm ../tmp/data/*
+# vérifie si le dossier data existe
+if [ -d $dir_data ]; then
+  rm $dir_data/*
 else
-  mkdir ../tmp/data;
+  mkdir $dir_data;
+fi
+
+
+#vérifie si le dossier grahps existe
+if [ -d $dir_graph ]; then
+  rm $dir_graph/*
+else
+  mkdir $dir_graph;
 fi
 
 
 #Copie du fichier dans le dossier temporaire
-cp $1 ../tmp/data/c-wire_v00_cpy.dat
+#cp $1 ../tmp/data/c-wire_v00_cpy.dat
 
 case $2 in
   "hvb")
@@ -41,7 +55,6 @@ case $2 in
     echo "ERREUR ARGUMENT"
   fi
   ;;
-
 
   "hva")
   echo "hva"
@@ -67,13 +80,19 @@ esac
 
 
 #extrait les données utiles dans un fichier temporaire dans le dossier temporaire
-awk -F ';' '$1 == 1' c-wire_v25.dat > ../tmp/temp.txt
+awk -F ';' '$1 == 1' c-wire_v00.dat > ../tmp/temp.txt
 
-#lancement du code C avec le Makefile en passant le fichier en paramètre
-cd $dir_makefile || exit
-make all FILE=../tmp/temp.txt
-make clean
-cd $dir_origine || exit
+
+
+if [ -d $exe  ]; then # Si l'éxécutable éxiste on le lance directement
+  ./exe
+else  #Sinon lancement du code C avec le Makefile en passant le fichier en paramètre
+  cd $dir_makefile || exit
+  make all FILE=../tmp/temp.txt
+  make clean
+  cd $dir_origine || exit
+fi
+
 
 #suppression des fichiers et/ou dossiers du dossiers tmp
 rm -r ../tmp/data/
