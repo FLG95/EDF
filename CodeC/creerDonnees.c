@@ -42,13 +42,16 @@ arbre* ensembleDonne(FILE* fichier, int* h){
     /*if (out == NULL){
         exit(1);
     }*/
+
     char ligne2[256];
     donnees b;
     arbre* tete = NULL;
     int i = 0;
     while (fgets(ligne2, sizeof(ligne2), out) != NULL) {
-        sscanf(ligne2,"%d;%d;%d;%d;%d;%d;%d;%d;" ,
+        printf("%s", ligne2);
+        sscanf(ligne2, "%llu;%llu;%llu;%llu;%llu;%llu;%llu;%llu;",
                &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv, &b.entreprise, &b.particuliers, &b.production, &b.consommation);
+
         tete = inserer(tete, b, h);
         printf("%d\n", i);
         i++;
