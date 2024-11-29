@@ -1,28 +1,13 @@
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <time.h>
-#include <stdbool.h>
-#include <stdlib.h>
+
 
 #include "include/creer_avl.h"
+#include "include/fonction_utile.h"
 
-
-
-// Fonctions utilitaires
-int min(int a, int b) {
-    return (a < b) ? a : b;
-}
-
-int max(int a, int b) {
-    return (a > b) ? a : b;
-}
-
+//fonction pour créer un noeud dans l'arbre
 arbre* creer(donnees a) {
     arbre* new = malloc(sizeof(arbre));
     if (new == NULL) {
-        fprintf(stderr, "Erreur: allocation mémoire échouée.\n");
-        exit(EXIT_FAILURE);
+        exit(1);
     }
     new->a = a;
     new->fd = NULL;
@@ -31,53 +16,66 @@ arbre* creer(donnees a) {
     return new;
 }
 
-// Rotations
+//fonction pour faire une double rotation gauche dans l'arbre
 arbre* rotationGauche(arbre* tete) {
+    if (tete == NULL){
+        return 0;
+    }
     arbre* pivot = tete->fd;
     tete->fd = pivot->fg;
     pivot->fg = tete;
 
-    int eq_a = tete->equilibre;
-    int eq_p = pivot->equilibre;
-
-    tete->equilibre = eq_a - max(eq_p, 0) - 1;
-    pivot->equilibre = min(min(eq_a - 2, eq_a + eq_p - 2), eq_p - 1);
+    tete->equilibre = tete->equilibre - 1 - max(0, pivot->equilibre);
+    pivot->equilibre = pivot->equilibre - 1 + min(0, tete->equilibre);
 
     return pivot;
 }
 
+//fonction pour faire une rotation droite dans l'arbre
 arbre* rotationDroite(arbre* tete) {
+    if (tete == NULL){
+        exit(1);
+    }
     arbre* pivot = tete->fg;
     tete->fg = pivot->fd;
     pivot->fd = tete;
 
-    int eq_a = tete->equilibre;
-    int eq_p = pivot->equilibre;
-
-    tete->equilibre = eq_a - max(eq_p, 0) + 1;
-    pivot->equilibre = min(min(eq_a + 2, eq_a + eq_p + 2), eq_p + 1);
+    tete->equilibre = tete->equilibre + 1 - min(0, pivot->equilibre);
+    pivot->equilibre = pivot->equilibre + 1 + max(0, tete->equilibre);
 
     return pivot;
 }
 
+//fonction pour faire une double rotation gauche dans l'arbre
 arbre* doubleRotationGauche(arbre* tete) {
+    if (tete == NULL){
+        exit(1);
+    }
     tete->fd = rotationDroite(tete->fd);
     return rotationGauche(tete);
 }
 
+//fonction pour faire une double rotation droite dans l'arbre
 arbre* doubleRotationDroite(arbre* tete) {
+    if (tete == NULL){
+        exit(1);
+    }
     tete->fg = rotationGauche(tete->fg);
     return rotationDroite(tete);
 }
 
+//fonction pour équilibrer l'arbre
 arbre* equilibrage(arbre* tete) {
+    if (tete == NULL){
+        exit(1);
+    }
     if (tete->equilibre >= 2) {
         if (tete->fd != NULL && tete->fd->equilibre >= 0) {
             return rotationGauche(tete);
         } else {
             return doubleRotationGauche(tete);
         }
-    } else if (tete->equilibre < -2) {
+    } else if (tete->equilibre <= -2) {
         if (tete->fg != NULL && tete->fg->equilibre <= 0) {
             return rotationDroite(tete);
         } else {
@@ -87,21 +85,18 @@ arbre* equilibrage(arbre* tete) {
     return tete;
 }
 
-// Insertion dans l'arbre AVL
+//fonction pour insérer un élément dans l'arbre
 arbre* inserer(arbre* tete, donnees a, int* h) {
     if (tete == NULL) {
-        *h = 0;
+        *h = 1;
         return creer(a);
-    } else if (a.production > tete->a.production) {
-        tete->fd = inserer(tete->fd, a, h);
-    } else if (a.production <= tete->a.production) {
-        tete->fg =inserer(tete->fg, a, h);
-        *h = (*h)--;
-    } else {
-        *h = 0;
-        return tete;
     }
-
+    if (a.production < tete->a.production) {
+        tete->fg = inserer(tete->fg, a, h);
+        *h = -*h;
+    } else if (a.production >= tete->a.production) {
+        tete->fd = inserer(tete->fd, a, h);
+    }
     if (*h != 0) {
         tete->equilibre += *h;
         tete = equilibrage(tete);
@@ -114,31 +109,27 @@ arbre* inserer(arbre* tete, donnees a, int* h) {
     return tete;
 }
 
-// Parcours en largeur
-
-
+//fonction pour calculer la hauter de l'arbre
 int hauteur(arbre* tete) {
-    if (tete == NULL) return 0;
+    if (tete == NULL){
+        return 0;
+    }
     return 1 + max(hauteur(tete->fg), hauteur(tete->fd));
 }
+//fonction pour déterminer si l'arbre est bien un AVL
 bool estAVL(arbre* tete) {
-    if (tete == NULL) return true;
+    if (tete == NULL){
+        return true;
+    }
 
     int hauteurG = hauteur(tete->fg);
     int hauteurD = hauteur(tete->fd);
 
     int facteur = hauteurG - hauteurD;
-    if (facteur < -1 || facteur > 1) return false;
-
+    if (facteur < -1 || facteur > 1){
+        return false;
+    }
     return estAVL(tete->fg) && estAVL(tete->fd);
 }
 
-void freeAvl(arbre* tete){
-    if (tete == NULL){
-        return;
-    }
-    freeAvl(tete->fg);
-    freeAvl(tete->fd);
 
-    free(tete);
-}
