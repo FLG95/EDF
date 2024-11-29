@@ -1,5 +1,7 @@
 #ifndef TYPE_AVL
 #define TYPE_AVL
+
+#include <stdint.h>
 typedef struct donnees{
     uint64_t Powerplant;
     uint64_t hv_b;
