@@ -95,8 +95,8 @@ arbre* inserer(arbre* tete, donnees a, int* h) {
     } else if (a.production > tete->a.production) {
         tete->fd = inserer(tete->fd, a, h);
     } else if (a.production <= tete->a.production) {
-        tete->fg = inserer(tete->fg, a, h);
-        *h = -*h;
+        tete->fg =inserer(tete->fg, a, h);
+        *h = (*h)--;
     } else {
         *h = 0;
         return tete;
