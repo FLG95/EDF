@@ -11,13 +11,13 @@
 
 int min(int a, int b);
 int max(int a, int b);
-arbre* creer(int a);
+arbre* creer(donnees a);
 arbre* rotationGauche(arbre* tete);
 arbre* rotationDroite(arbre* tete);
 arbre* doubleRotationGauche(arbre* tete);
 arbre* doubleRotationDroite(arbre* tete);
 arbre* equilibrage(arbre* tete);
-arbre* inserer(arbre* tete, int a, int* h);
+arbre* inserer(arbre* tete, donnees a, int* h);
 void freeAvl(arbre* tete);
 
 int hauteur(arbre* tete);
