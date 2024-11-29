@@ -26,18 +26,9 @@ int main(int argc, char* argv[]){
     int ph = 0;
     int* h = &ph;
 
-    for (int i = 1; i < 10; i++){
-        tete = inserer(tete, i, h);
-        //printf("%11d\n", i);
-    }
 
-    parcoursInfixe(tete);
-    if (estAVL(tete)) {
-        printf("\nL'arbre est un AVL.\n");
-    } else {
-        printf("\nL'arbre n'est PAS un AVL.\n");
-    }
-    freeAvl(tete);
+
+
 
     FILE* out = fopen("../tmp/out.txt", "w");
     if (out == NULL){
@@ -45,9 +36,15 @@ int main(int argc, char* argv[]){
     }
 
 
-    printf("\n1\n");
 
-    ensembleDonne(fichier);
+    tete = ensembleDonne(fichier, h);
+    parcoursInfixe(tete);
+    if (estAVL(tete)) {
+        printf("\nL'arbre est un AVL.\n");
+    } else {
+        printf("\nL'arbre n'est PAS un AVL.\n");
+    }
+    freeAvl(tete);
 
 
     return 0;
