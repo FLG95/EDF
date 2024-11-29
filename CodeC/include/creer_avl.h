@@ -1,7 +1,9 @@
-
 #ifndef CREER_AVL_H
 #define CREER_AVL_H
+#include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #include "type_avl.h"
 
