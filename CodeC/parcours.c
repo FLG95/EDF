@@ -3,7 +3,7 @@
 
 #include "include/parcours.h"
 
-file* creerFile(arbre* a) {
+/*file* creerFile(arbre* a) {
     file* new = malloc(sizeof(file));
     if (new == NULL) {
         fprintf(stderr, "Erreur: allocation mémoire échouée pour la file.\n");
@@ -51,7 +51,7 @@ void parcoursLargeur(arbre* tete) {
     }
     printf("\n");
 }
-
+*/
 // Affichage en profondeur
 void parcoursInfixe(arbre* tete) {
     if (tete != NULL) {
