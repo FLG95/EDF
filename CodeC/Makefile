@@ -16,7 +16,7 @@ OBJ = $(SRC:.c=.o)
 # Executable
 TARGET = exe
 
-FILE = input.txt
+#FILE = input.txt
 
 # Linking the executable
 $(TARGET): $(OBJ)
