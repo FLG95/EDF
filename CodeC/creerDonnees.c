@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "include/type_avl.h"
 #include "include/creer_avl.h"
 
