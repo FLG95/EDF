@@ -11,20 +11,15 @@ typedef struct donnees{
     int production;
 } donnees;
 typedef struct arbre {
-    int nb;
+    donnees a;
     struct arbre* fd;
     struct arbre* fg;
     int equilibre;
 } arbre;
 typedef struct file {
-    donnees a;
+    int a;
     arbre* actuel;
     struct file* suivant;
 } file;
-typedef struct file2 {
-    donnees a;
-    struct file** actuel;
-    struct file* suivant;
-} file2;
 
 #endif //TYPE_AVL
