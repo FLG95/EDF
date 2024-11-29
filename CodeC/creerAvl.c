@@ -18,13 +18,13 @@ int max(int a, int b) {
     return (a > b) ? a : b;
 }
 
-arbre* creer(int a) {
+arbre* creer(donnees a) {
     arbre* new = malloc(sizeof(arbre));
     if (new == NULL) {
         fprintf(stderr, "Erreur: allocation mémoire échouée.\n");
         exit(EXIT_FAILURE);
     }
-    new->nb = a;
+    new->a = a;
     new->fd = NULL;
     new->fg = NULL;
     new->equilibre = 0;
@@ -88,13 +88,13 @@ arbre* equilibrage(arbre* tete) {
 }
 
 // Insertion dans l'arbre AVL
-arbre* inserer(arbre* tete, int a, int* h) {
+arbre* inserer(arbre* tete, donnees a, int* h) {
     if (tete == NULL) {
-        *h = 1;
+        *h = 0;
         return creer(a);
-    } else if (a > tete->nb) {
+    } else if (a.production > tete->a.production) {
         tete->fd = inserer(tete->fd, a, h);
-    } else if (a < tete->nb) {
+    } else if (a.production <= tete->a.production) {
         tete->fg = inserer(tete->fg, a, h);
         *h = -*h;
     } else {
