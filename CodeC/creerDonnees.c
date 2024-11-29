@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "include/type_avl.h"
+#include "include/creer_avl.h"
 
 FILE* transformerFichier(FILE* fichier){
     if (fichier == NULL){
@@ -32,37 +33,8 @@ FILE* transformerFichier(FILE* fichier){
     }
     return out;
 }
-file2* creerChainon(donnees b){
-    file2* tete = NULL;
-    tete = malloc(sizeof(file2));
-    if (tete == NULL){
-        exit(1);
-    }
-    tete->actuel = tete;
-    tete->suivant = NULL;
-    tete->a = b;
-    return tete;
-}
-file2* creation(file2* tete, donnees b){
-    if (tete == NULL){
-        return creerChainon(b);
-    } else {
-        file2* tmp2 = tete;
-        while (tmp2->suivant != NULL){
-            tmp2 = tmp2->suivant;
-        }
-        tmp2->suivant = creerChainon(b);
-    }
-    return tete;
-}
-void afficher(file2* tete){
-    while (tete != NULL){
-        printf("%d %d %d %d %d %d %d %d\n",
-               tete->a.Powerplant, tete->a.hv_b, tete->a.hv_a, tete->a.lv, tete->a.entreprise, tete->a.particuliers, tete->a.production, tete->a.consommation);
-        tete = tete->suivant;
-    }
-}
-void ensembleDonne(FILE* fichier){
+
+arbre* ensembleDonne(FILE* fichier, int* h){
     if (fichier == NULL){
         exit(1);
     }
@@ -72,17 +44,16 @@ void ensembleDonne(FILE* fichier){
     }*/
     char ligne2[256];
     donnees b;
-    file2* tete = NULL;
+    arbre* tete = NULL;
     int i = 0;
     while (fgets(ligne2, sizeof(ligne2), out) != NULL) {
         sscanf(ligne2,"%d;%d;%d;%d;%d;%d;%d;%d;" ,
                &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv, &b.entreprise, &b.particuliers, &b.production, &b.consommation);
-        tete = creation(tete, b);
-        i++;
+        tete = inserer(tete, b, h);
         printf("%d\n", i);
+        i++;
     }
-    afficher(tete);
-
-    printf("\n\n\n%d\n", i);
+    printf("\n\n\n\n");
     fclose (out);
+    return tete;
 }
