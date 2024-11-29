@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "include/affichage.h"
 
 void traiter(arbre* tete){
