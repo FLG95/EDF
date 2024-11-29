@@ -1,14 +1,14 @@
 #ifndef TYPE_AVL
 #define TYPE_AVL
 typedef struct donnees{
-    int Powerplant;
-    int hv_b;
-    int hv_a;
-    int lv;
-    int entreprise;
-    int particuliers;
-    int consommation;
-    int production;
+    uint64_t Powerplant;
+    uint64_t hv_b;
+    uint64_t hv_a;
+    uint64_t lv;
+    uint64_t entreprise;
+    uint64_t particuliers;
+    uint64_t consommation;
+    uint64_t production;
 } donnees;
 typedef struct arbre {
     donnees a;
