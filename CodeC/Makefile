@@ -8,7 +8,7 @@ LIBS = -lncursesw
 
 
 # Source files
-SRC = main.c creerAvl.c parcours.c affichage.c creerDonnees.c
+SRC = main.c #creerAvl.c parcours.c affichage.c creerDonnees.c
 
 # Object files
 OBJ = $(SRC:.c=.o)
@@ -24,7 +24,7 @@ $(TARGET): $(OBJ)
 
 # Default target
 all: $(TARGET)
-	./exe $(FILE)
+	if [ -n "$(FILE)" ]; then ./exe $(FILE); else echo "Erreur : aucun fichier spécifié."; fi
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<

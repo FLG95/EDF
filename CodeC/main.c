@@ -2,12 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+/*
 #include "include/creer_avl.h"
 #include "include/parcours.h"
 #include "include/type_avl.h"
 #include "include/affichage.h"
 #include "include/creerDonnees.h"
-
+#include "include/fonction_utile.h"
+*/
 
 
 int main(int argc, char* argv[]){
@@ -26,7 +29,7 @@ int main(int argc, char* argv[]){
         printf("argument 1 file is empty");
         exit(1);
     }
-    arbre* tete = NULL;
+    //arbre* tete = NULL;
 
 
     FILE* out = fopen("../tmp/out.txt", "w");
@@ -35,8 +38,7 @@ int main(int argc, char* argv[]){
         exit(1);
     }
 
-
-
+/*
     tete = ensembleDonne(fichier, h);
 
     parcoursInfixe(tete);
@@ -45,8 +47,15 @@ int main(int argc, char* argv[]){
         printf("\nL'arbre est un AVL.\n");
     } else {
         printf("\nL'arbre n'est PAS un AVL.\n");
+    }*/
+
+
+    int a = 0;
+    while ( a != 1){
+        scanf("%d", &a);
     }
-    freeAvl(tete);
+
+    //freeAvl(tete);
 
     return 0;
 }

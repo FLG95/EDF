@@ -1,17 +1,24 @@
 #!/bin/bash
 
 
-# Chemin du fichier source C
-
-#main="../CodeC/main.c"
-
 exe="./exe"
 dir_makefile="../CodeC"
 dir_origine="../Input"
 dir_tmp="../tmp"
-dir_data="../tmp/data"
+#dir_data="../tmp/data"
 dir_graph="../graph"
 
+if [ -z $1 ]; then
+  echo "erreur : aucun fichier spécifié "
+  exit 1
+fi
+
+if [ -e $1 ]; then
+  echo "le fichier passé en premier argument est correct"
+else
+  echo "erreur : le fichier passé en premier argument est incorrect"
+  exit 1
+fi
 
 
 #vérifie si le dossier tmp existe
@@ -19,14 +26,6 @@ if [ -d $dir_tmp ]; then
   rm -r $dir_tmp/*
 else
   mkdir $dir_tmp;
-fi
-
-
-# vérifie si le dossier data existe
-if [ -d $dir_data ]; then
-  rm $dir_data/*
-else
-  mkdir $dir_data;
 fi
 
 
@@ -38,19 +37,20 @@ else
 fi
 
 
-#Copie du fichier dans le dossier temporaire
-#cp $1 ../tmp/data/c-wire_v00_cpy.dat
-
 case $2 in
   "hvb")
   echo hvb
   if [ $3 == "all" ]; then
     echo "impossible de faire hvb all"
+
   elif [ $3 == "indiv" ]; then
     echo "impossible defaire hvb indiv"
+
   elif [ $3 == "comp" ]; then
     #TRIER LE FICHIER AVEC LES DONNÉES VOULUES
     echo "comp"
+    awk -F ';' 'NR == 1 || ($2 != "-" && $5 != "-")' c-wire_v00.dat > ../tmp/data.txt  # Si on veut enlever l'entête il faut enlever NR == 1
+
   else
     echo "ERREUR ARGUMENT"
   fi
@@ -60,40 +60,49 @@ case $2 in
   echo "hva"
   if [ $3 == "all" ]; then
     eccho"impossible de faire hva all"
+
   elif [ $3 == "indiv" ]; then
     echo "impossible de faire hva indiv"
+
   elif [ $3 == "comp" ]; then
-        #TRIER LE FICHIER AVEC LES DONNÉES voulues
         echo "all"
+        awk -F ';' 'NR == 1 || ($3 != "-" && $5 != "-")' c-wire_v00.dat > ../tmp/data.txt
+
   else
     echo "ERREUR ARGUMENT"
   fi
   ;;
 
 
+
   "lv")
   echo "lv"
+  if [ $3 == "all" ]; then
+      echo "all"
+      awk -F ';' 'NR == 1 || ($4 != "-")' c-wire_v00.dat > ../tmp/data.txt
 
+  elif [ $3 == "indiv" ]; then
+      echo "all"
+      awk -F ';' 'NR == 1 || ($4 != "-" && $6 != "-")' c-wire_v00.dat > ../tmp/data.txt
+
+  elif [ $3 == "comp" ]; then
+      echo "all"
+      awk -F ';' 'NR == 1 || ($4 != "-" && $5 != "-")' c-wire_v00.dat > ../tmp/data.txt
+  fi
   ;;
 esac
-
-
-
-#extrait les données utiles dans un fichier temporaire dans le dossier temporaire
-awk -F ';' '$1 == 1' c-wire_v00.dat > ../tmp/temp.txt
 
 
 
 if [ -d $exe  ]; then # Si l'éxécutable éxiste on le lance directement
   ./exe
 else  #Sinon lancement du code C avec le Makefile en passant le fichier en paramètre
-  cd $dir_makefile || exit
-  make all FILE=../tmp/temp.txt
+  cd $dir_makefile || exit 1
+  make all FILE=../tmp/data.txt
   make clean
-  cd $dir_origine || exit
+  cd $dir_origine || exit 1
 fi
 
 
 #suppression des fichiers et/ou dossiers du dossiers tmp
-rm -r ../tmp/data/
 rm ../tmp/*

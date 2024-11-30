@@ -1,5 +1,3 @@
-
-
 #include "include/creer_avl.h"
 #include "include/fonction_utile.h"
 
