@@ -120,7 +120,7 @@ case $2 in
   ;;
 esac
 
-
+START_TIME=$(date +%s)
 
 if [ -d $exe_name  ]; then # Si l'éxécutable éxiste on le lance directement
   ./$exe_name
@@ -133,6 +133,7 @@ fi
 
 
 END_TIME=$(date +%s)
+
 PROCESSUS_TIME=$((END_TIME - START_TIME))
 
 echo "Le programme a mit : $PROCESSUS_TIME secondes"
