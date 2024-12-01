@@ -80,7 +80,7 @@ esac
 
 
 #extrait les données utiles dans un fichier temporaire dans le dossier temporaire
-awk -F ';' '$1 == 1' c-wire_v00.dat > ../tmp/temp.txt
+awk -F ';' '$1 == 1' c-wire_v25.dat > ../tmp/temp.txt
 
 
 
