@@ -5,7 +5,8 @@ FILE* transformerFichier(FILE* fichier){
     if (fichier == NULL){
         exit(1);
     }
-    FILE* out = fopen("../tmp/out.txt", "w");
+
+    FILE* out = fopen("../tests/out.txt", "w");
     if (out == NULL){
         exit(1);
     }
@@ -23,7 +24,7 @@ FILE* transformerFichier(FILE* fichier){
     }
     fclose (fichier);
     fclose (out);
-    out = fopen("../tmp/out.txt", "r");
+    out = fopen("../tests/out.txt", "r");
     if (out == NULL){
         exit(1);
     }
@@ -45,7 +46,7 @@ arbre* ensembleDonne(FILE* fichier, int* h){
     int i = 0;
     while (fgets(ligne2, sizeof(ligne2), out) != NULL) {
         printf("%s", ligne2);
-        sscanf(ligne2, "%llu;%llu;%llu;%llu;%llu;%llu;%llu;%llu;",
+        sscanf(ligne2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
                &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv, &b.entreprise, &b.particuliers, &b.production, &b.consommation);
 
         tete = inserer(tete, b, h);
