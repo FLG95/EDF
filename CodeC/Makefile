@@ -4,7 +4,7 @@ CC = gcc
 # Compiler flags
 CFLAGS = -std=c11 -Iinclude
 
-LIBS = -lncurses
+LIBS = -lncursesw
 
 
 # Source files
