@@ -122,9 +122,6 @@ esac
 
 
 
-START_TIME=$(date +%s)
-
-
 if [ -d $exe_name  ]; then # Si l'éxécutable éxiste on le lance directement
   ./$exe_name
 else  #Sinon lancement du code C avec le Makefile en passant le fichier en paramètre
