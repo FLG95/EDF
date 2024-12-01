@@ -55,11 +55,9 @@ int main(int argc, char* argv[]){
 
 
     int a = 0;
-    while ( a != 1){
-        scanf("%d", &a);
-    }
 
-    //freeAvl(tete);
+
+    freeAvl(tete);
 
     return 0;
 }
