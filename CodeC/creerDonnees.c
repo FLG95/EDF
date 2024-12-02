@@ -6,7 +6,7 @@ FILE* transformerFichier(FILE* fichier){
         exit(1);
     }
 
-    FILE* out = fopen("../tests/out.txt", "w");
+    FILE* out = fopen("../tmp/tmp.txt", "w");
     if (out == NULL){
         exit(1);
     }
@@ -24,7 +24,7 @@ FILE* transformerFichier(FILE* fichier){
     }
     fclose (fichier);
     fclose (out);
-    out = fopen("../tests/out.txt", "r");
+    out = fopen("../tmp/tmp.txt", "r");
     if (out == NULL){
         exit(1);
     }
