@@ -122,6 +122,11 @@ case $2 in
       exit 0
   fi
   ;;
+  *)
+    echo "erreur : l'un des arguments spécifiés est incorrect"
+    exit 0
+  ;;
+
 esac
 
 START_TIME=$(date +%s)

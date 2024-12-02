@@ -54,9 +54,6 @@ int main(int argc, char* argv[]){
     }
 
 
-    int a = 0;
-
-
     freeAvl(tete);
 
     return 0;

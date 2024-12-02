@@ -36,9 +36,7 @@ arbre* ensembleDonne(FILE* fichier, int* h){
         exit(1);
     }
     FILE* out = transformerFichier(fichier);
-    /*if (out == NULL){
-        exit(1);
-    }*/
+
 
     char ligne2[256];
     donnees b;
