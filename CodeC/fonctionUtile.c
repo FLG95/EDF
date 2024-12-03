@@ -21,7 +21,7 @@ void freeAvl(arbre* tete) {
     free(tete);
 }
 
-int ComparaisonData(donnees a, donnees b){
+int comparaisonData(donnees a, donnees b){
     if (a.Powerplant != b.Powerplant){
         return a.Powerplant - b.Powerplant;
     } else if (a.hv_b != b.hv_b){
