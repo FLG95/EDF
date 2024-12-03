@@ -10,7 +10,7 @@ int min(int a, int b);
 int max(int a, int b);
 //fonction pour libérer la mémoire de l'arbre
 void freeAvl(arbre* tete);
-int ComparaisonData(donnees a, donnees b);
+int comparaisonData(donnees a, donnees b);
 
 #endif //FONCTION_UTILE
 
