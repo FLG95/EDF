@@ -20,3 +20,20 @@ void freeAvl(arbre* tete) {
     freeAvl(tete->fd);
     free(tete);
 }
+
+int ComparaisonData(donnees a, donnees b){
+    if (a.Powerplant != b.Powerplant){
+        return a.Powerplant - b.Powerplant;
+    } else if (a.hv_b != b.hv_b){
+        return a.hv_b - b.hv_b;
+    } else if (a.hv_a != b.hv_a){
+        return a.hv_a - b.hv_a;
+    } else if (a.lv != b.lv){
+        return a.lv - b.lv;
+    } else if (a.entreprise != b.entreprise){
+        return a.entreprise - b.entreprise;
+    } else if (a.particuliers != b.particuliers){
+        return a.particuliers - b.particuliers;
+    }
+    return 0;
+}
