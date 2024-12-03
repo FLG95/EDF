@@ -89,10 +89,10 @@ arbre* inserer(arbre* tete, donnees a, int* h) {
         *h = 1;
         return creer(a);
     }
-    if (ComparaisonData(a, tete->a ) < 0) {
+    if (comparaisonData(a, tete->a ) < 0) {
         tete->fg = inserer(tete->fg, a, h);
         *h = -*h;
-    } else if (ComparaisonData(a, tete->a ) > 0) {
+    } else if (comparaisonData(a, tete->a ) > 0) {
         tete->fd = inserer(tete->fd, a, h);
     }
     if (*h != 0) {
