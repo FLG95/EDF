@@ -141,11 +141,22 @@ else  #Sinon lancement du code C avec le Makefile en passant le fichier en param
 fi
 
 
+if [ $2 = 'lv' ] && [ $3 = 'all' ]; then
+
+gnuplot -persist << EOF
+
+EOF
+fi
+
 END_TIME=$(date +%s)
 
 PROCESSUS_TIME=$((END_TIME - START_TIME))
 
+
+
 echo "Le programme a mit : $PROCESSUS_TIME secondes"
+
+
 
 #suppression des fichiers et/ou dossiers du dossiers tmp
 rm tmp/*
