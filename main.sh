@@ -114,7 +114,7 @@ case $2 in
       awk -F ';' 'NR > 1 || ($4 != "-" && $6 != "-")' $1 > tmp/data.txt
 
   elif [ $3 == "comp" ]; then
-      awk -F ';' 'NR == 1 || ($4 != "-" && $5 != "-")' $1 > ../tmp/data.txt
+      awk -F ';' 'NR == 1 || ($4 != "-" && $5 != "-")' $1 > tmp/data.txt
   else
       echo "erreur : l'un des arguments spécifiés est incorrect"
       exit 0
@@ -160,4 +160,4 @@ echo "Le programme a mit : $PROCESSUS_TIME secondes"
 
 
 #suppression des fichiers et/ou dossiers du dossiers tmp
-rm tmp/*
+#rm tmp/*
