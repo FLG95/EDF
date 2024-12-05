@@ -37,3 +37,7 @@ int comparaisonData(donnees a, donnees b){
     }
     return 0;
 }
+
+long long int somme(long unsigned a, long long int b){
+    return a + b;
+}
