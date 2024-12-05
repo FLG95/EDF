@@ -52,7 +52,15 @@ int main(int argc, char* argv[]){
     } else {
         printf("\nL'arbre n'est PAS un AVL.\n");
     }
-printf("%lld\n", somme_tot);
+    printf("%lld\n", somme_tot);
+    arbre* tab[10];
+    int j = 0;
+    printf("hello\n");
+    recuperer10sup(&j, tab, tete);
+
+    for (int i = 0; i < 10; i++){
+        printf("%ld\n", tab[i]->a.consommation);
+    }
 
     freeAvl(tete);
 
