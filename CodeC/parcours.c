@@ -52,10 +52,12 @@ void parcoursLargeur(arbre* tete) {
 }
 */
 // Affichage en profondeur
-void parcoursInfixe(arbre* tete) {
+void parcoursInfixe(arbre* tete, long long int* somme_conso) {
     if (tete != NULL) {
-        parcoursInfixe(tete->fg);
-        traiter(tete);
-        parcoursInfixe(tete->fd);
+        parcoursInfixe(tete->fg, somme_conso);
+        if (tete->a.consommation != 0){
+            *somme_conso += somme(tete->a.consommation, *somme_conso);
+        }
+        parcoursInfixe(tete->fd, somme_conso);
     }
 }
