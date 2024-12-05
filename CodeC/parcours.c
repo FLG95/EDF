@@ -2,7 +2,7 @@
 
 #include "include/parcours.h"
 
-/*file* creerFile(arbre* a) {
+file* creerFile(arbre* a) {
     file* new = malloc(sizeof(file));
     if (new == NULL) {
         fprintf(stderr, "Erreur: allocation mémoire échouée pour la file.\n");
@@ -43,51 +43,24 @@ void parcoursLargeur(arbre* tete) {
     while (f != NULL) {
         arbre* courant = defiler(&f);
         if (courant != NULL) {
-            printf("%d ", courant->nb);
+            traiter(tete);
             if (courant->fg != NULL) f = enfiler(f, courant->fg);
             if (courant->fd != NULL) f = enfiler(f, courant->fd);
         }
     }
     printf("\n");
 }
-*/
+
 // Affichage en profondeur
-void parcoursInfixe(arbre* tete, long long int* somme_conso) {
+void parcoursInfixe(arbre* tete) {
     if (tete != NULL) {
-        parcoursInfixe(tete->fg, somme_conso);
-        if (tete->a.consommation != 0){
+        traiter(tete);
+        parcoursInfixe(tete->fg);
+        /*if (tete->a.consommation != 0){
             *somme_conso += somme(tete->a.consommation, *somme_conso);
-        }
-        parcoursInfixe(tete->fd, somme_conso);
+        }*/
+
+        parcoursInfixe(tete->fd);
     }
 }
-void recuperer10sup(int* compteur, arbre** tab, arbre* tete){
-    if (tete == NULL){
-        exit(1);
-    }
-    if (tete->fd != NULL){
-        recuperer10sup(compteur, tab, tete->fd);
-    }
-    if (*compteur < 10){
-        tab[*compteur] = tete;
-        *compteur = *compteur + 1;
-    }
-    if (tete->fg != NULL){
-        recuperer10sup(compteur, tab, tete->fg);
-    }
-}
-void recuperer10inf(int* compteur, arbre** tab, arbre* tete){
-    if (tete == NULL){
-        exit(1);
-    }
-    if (tete->fg != NULL){
-        recuperer10inf(compteur, tab, tete->fg);
-    }
-    if (*compteur < 10){
-        tab[*compteur] = tete;
-        *compteur = *compteur + 1;
-    }
-    if (tete->fd != NULL){
-        recuperer10inf(compteur, tab, tete->fd);
-    }
-}
+
