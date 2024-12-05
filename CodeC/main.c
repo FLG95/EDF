@@ -44,6 +44,7 @@ int main(int argc, char* argv[]){
 */
 
     tete = ensembleDonne(fichier, h);
+
     parcoursInfixe(tete);
     //parcoursLargeur(tete);
 
@@ -52,12 +53,7 @@ int main(int argc, char* argv[]){
     } else {
         printf("\nL'arbre n'est PAS un AVL.\n");
     }
-    arbre* tab[10];
-    int j = 0;
-
-    for (int i = 0; i < 10; i++){
-        printf("%ld\n", tab[i]->a.consommation);
-    }
+  
 
 
     freeAvl(tete);
