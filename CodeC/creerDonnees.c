@@ -46,7 +46,6 @@ arbre* ensembleDonne(FILE* fichier, int* h){
         printf("%s", ligne2);
         sscanf(ligne2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
                &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv, &b.entreprise, &b.particuliers, &b.production, &b.consommation);
-
         tete = inserer(tete, b, h);
         printf("%d\n", i);
         i++;
