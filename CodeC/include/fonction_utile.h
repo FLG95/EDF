@@ -12,6 +12,9 @@ int max(int a, int b);
 void freeAvl(arbre* tete);
 int comparaisonData(donnees a, donnees b);
 long long int somme(long unsigned a, long long int b);
+int estLv(donnees a);
+int estHvb(donnees a);
+int estHva(donnees a);
 
 #endif //FONCTION_UTILE
 
