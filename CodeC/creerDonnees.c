@@ -42,6 +42,7 @@ arbre* ensembleDonne(FILE* fichier, int* h){
     donnees b;
     arbre* tete = NULL;
     int i = 0;
+    fgets(ligne2, sizeof(ligne2), out);
     while (fgets(ligne2, sizeof(ligne2), out) != NULL) {
         printf("%s", ligne2);
         sscanf(ligne2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
