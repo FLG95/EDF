@@ -79,8 +79,7 @@ case $2 in
 
 
   elif [ $3 == "comp" ]; then
-    #TRIER LE FICHIER AVEC LES DONNÉES VOULUES
-    awk -F ';' 'NR > 1 || ($2 != "-" && $5 != "-")' $1 > tmp/data.txt  # Si on veut enlever l'entête il faut enlever NR == 1
+    awk -F ';' 'NR == 1 || ($2 != "-" && $5 != "-")' $1 > tmp/data.txt
 
   else
     echo "erreur: l'un des arguments spécifiés est incorrect"
@@ -94,13 +93,12 @@ case $2 in
     eccho"impossible de faire hva all"
     exit 0
 
-
   elif [ $3 == "indiv" ]; then
     echo "impossible de faire hva indiv"
     exit 0
 
   elif [ $3 == "comp" ]; then
-        awk -F ';' 'NR > 1 || ($3 != "-" && $5 != "-")' $1 > tmp/data.txt
+    awk -F ';' 'NR == 1 || ($3 != "-" && $5 != "-")' $1 > tmp/data.txt
 
   else
     echo "erreur : l'un des arguments spécifiés est incorrect"
@@ -110,24 +108,25 @@ case $2 in
 
   "lv")
   if [ $3 == "all" ]; then
-      awk -F ';' 'NR > 1 || ($4 != "-")' $1 > tmp/data.txt
+      awk -F ';' 'NR == 1 || ($4 != "-")' $1 > tmp/data.txt
 
   elif [ $3 == "indiv" ]; then
       awk -F ';' 'NR > 1 || ($4 != "-" && $6 != "-")' $1 > tmp/data.txt
 
   elif [ $3 == "comp" ]; then
-      awk -F ';' 'NR > 1 || ($4 != "-" && $5 != "-")' $1 > ../tmp/data.txt
+      awk -F ';' 'NR == 1 || ($4 != "-" && $5 != "-")' $1 > ../tmp/data.txt
   else
       echo "erreur : l'un des arguments spécifiés est incorrect"
       exit 0
   fi
   ;;
+
   *)
     echo "erreur : l'un des arguments spécifiés est incorrect"
     exit 0
   ;;
-
 esac
+
 
 START_TIME=$(date +%s)
 
@@ -144,6 +143,8 @@ fi
 if [ $2 = 'lv' ] && [ $3 = 'all' ]; then
 
 gnuplot -persist << EOF
+
+
 
 EOF
 fi
