@@ -45,7 +45,7 @@ int main(int argc, char* argv[]){
 
     tete = ensembleDonne(fichier, h);
     parcoursInfixe(tete);
-    parcoursLargeur(tete);
+    //parcoursLargeur(tete);
 
     if (estAVL(tete)) {
         printf("\nL'arbre est un AVL.\n");
