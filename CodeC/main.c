@@ -44,15 +44,15 @@ int main(int argc, char* argv[]){
 */
 
     tete = ensembleDonne(fichier, h);
-
-    parcoursInfixe(tete);
+    long long  int somme_tot = 0;
+    parcoursInfixe(tete, &somme_tot);
 
     if (estAVL(tete)) {
         printf("\nL'arbre est un AVL.\n");
     } else {
         printf("\nL'arbre n'est PAS un AVL.\n");
     }
-
+printf("%lld\n", somme_tot);
 
     freeAvl(tete);
 
