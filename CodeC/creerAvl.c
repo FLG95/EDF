@@ -89,10 +89,10 @@ arbre* inserer(arbre* tete, donnees a, int* h) {
         *h = 1;
         return creer(a);
     }
-    if (comparaisonData(tete->a, a) < 0) {
+    if (a.consommation < tete->a.consommation) {
         tete->fg = inserer(tete->fg, a, h);
         *h = -*h;
-    } else if (comparaisonData(tete->a, a) > 0) {
+    } else if (tete->a.consommation < a.consommation) {
         tete->fd = inserer(tete->fd, a, h);
     }
     if (*h != 0) {
