@@ -61,3 +61,33 @@ void parcoursInfixe(arbre* tete, long long int* somme_conso) {
         parcoursInfixe(tete->fd, somme_conso);
     }
 }
+void recuperer10sup(int* compteur, arbre** tab, arbre* tete){
+    if (tete == NULL){
+        exit(1);
+    }
+    if (tete->fd != NULL){
+        recuperer10sup(compteur, tab, tete->fd);
+    }
+    if (*compteur < 10){
+        tab[*compteur] = tete;
+        *compteur = *compteur + 1;
+    }
+    if (tete->fg != NULL){
+        recuperer10sup(compteur, tab, tete->fg);
+    }
+}
+void recuperer10inf(int* compteur, arbre** tab, arbre* tete){
+    if (tete == NULL){
+        exit(1);
+    }
+    if (tete->fg != NULL){
+        recuperer10inf(compteur, tab, tete->fg);
+    }
+    if (*compteur < 10){
+        tab[*compteur] = tete;
+        *compteur = *compteur + 1;
+    }
+    if (tete->fd != NULL){
+        recuperer10inf(compteur, tab, tete->fd);
+    }
+}
