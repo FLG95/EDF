@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #include "type_avl.h"
+#include "parcours.h"
 
 
 
