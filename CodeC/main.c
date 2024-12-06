@@ -70,9 +70,16 @@ int main(int argc, char* argv[]){
     printf("%d\n\n", i);
 
     //parcoursInfixe(consoTree);
-    centerWrite(stationTree, argv[2], argv[3]);
-    if (strcmp(argv[2], "lv") == 0 && strcmp(argv[2], "all") == 0){
-        centerWrite10(consoTree);
+    arbre* stationTreeSort = NULL;
+
+    parcoursSort(&stationTreeSort, stationTree);
+    if (stationTreeSort == NULL){
+        exit(1);
+    }
+
+    centerWrite(stationTreeSort, argv[2], argv[3]);
+    if (strcmp(argv[2], "lv") == 0 && strcmp(argv[3], "all") == 0){
+        centerWrite10(stationTreeSort);
     }
     freeAvl(consoTree);
     freeAvl(stationTree);
