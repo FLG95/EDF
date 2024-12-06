@@ -14,19 +14,16 @@ void write10sup(arbre* tete, int* h, FILE* fichier, char* arg1, char* arg2){
         write10sup(tete->fg, h, fichier, arg1, arg2);
     }
 }
-void write10less(arbre* tete, int* h, FILE* fichier, char* arg1, char* arg2){
+void write10less(arbre* tete, int* h, FILE* fichier){
 
     if (tete != NULL && *h < 10) {
-        write10less(tete->fg, h, fichier, arg1, arg2);
-        if (*h == 0){
-            fprintf(fichier, "Station %s : Capacité : Consommation %s\n", arg1, arg2);
-        }
+        write10less(tete->fg, h, fichier);
         if (*h < 10) {
             *h = *h + 1;
             fprintf(fichier, "%d:%lu:%lu\n",
                     tete->a.id, tete->a.production, tete->a.consommation);
         }
-        write10less(tete->fd, h, fichier, arg1, arg2);
+        write10less(tete->fd, h, fichier);
     }
 }
 
@@ -36,15 +33,14 @@ void centerWrite10(arbre* tete, char* arg1, char* arg2){
     }
     int h_sup = 0;
     int h_inf = 0;
-    FILE* fichier_sup = fopen("../tmp/data_sup.txt", "w");
-    FILE* fichier_inf = fopen("../tmp/data_inf.txt", "w");
-    if (fichier_inf == NULL || fichier_sup == NULL){
+
+    FILE* fichier = fopen("../tmp/lv_minmax.csv", "w");
+    if (fichier == NULL){
         exit(1);
     }
-    write10sup(tete ,&h_sup, fichier_sup, arg1, arg2);
-    write10less(tete, &h_inf, fichier_inf, arg1, arg2);
-    fclose(fichier_sup);
-    fclose(fichier_inf);
+    write10sup(tete ,&h_sup, fichier, arg1, arg2);
+    write10less(tete, &h_inf, fichier);
+    fclose(fichier);
 }
 
 
