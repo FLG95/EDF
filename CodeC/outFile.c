@@ -1,6 +1,4 @@
 #include "include/outFile.h"
-
-
 void write10sup(arbre* tete, int* h, FILE* fichier){
 
     if (tete != NULL && *h < 10) {
@@ -37,7 +35,7 @@ void write10less(arbre* tete, int* h, FILE* fichier){
     }
 }
 
-void centerWrite(arbre* tete){
+void centerWrite10(arbre* tete){
     if (tete == NULL){
         exit(1);
     }
@@ -52,4 +50,36 @@ void centerWrite(arbre* tete){
     write10less(tete, &h_inf, fichier_inf);
     fclose(fichier_sup);
     fclose(fichier_inf);
+}
+
+
+void writeAllData(arbre* tete, FILE* fichier, int* h, char* arg1, char* arg2){
+    if (tete != NULL ){
+        if (*h == 0){
+            *h = *h + 1;
+            fprintf(fichier, "Station %s : Capacité : Consommation %s\n", arg1, arg2);
+        }
+        writeAllData(tete->fg, fichier, h, arg1, arg2);
+        fprintf(fichier, "%d:%lu:%lu\n",
+        tete->a.id, tete->a.production, tete->a.consommation);
+        writeAllData(tete->fd, fichier, h, arg1, arg2);
+    }
+}
+void centerWrite(arbre* tete, char* arg2, char* arg3){
+    if (tete == NULL){
+        exit(1);
+    }
+    int h = 0;
+    char* underscore = "_";
+    char* destination = addCharToChar("../tmp/", arg2);
+    destination = addCharToChar(destination, underscore);
+    destination = addCharToChar(destination, arg3);
+    destination = addCharToChar(destination, ".csv");
+    FILE* fichierAll = fopen(destination, "w");
+    if (fichierAll == NULL){
+        exit(1);
+    }
+
+    writeAllData(tete, fichierAll, &h, arg2, arg3);
+    fclose(fichierAll);
 }
