@@ -49,14 +49,14 @@ int main(int argc, char* argv[]){
 */
 
     ensembleDonne(fichier, &hStation, &hConso, &stationTree, &consoTree, type);
-    parcoursInfixe(stationTree);
+    //parcoursInfixe(stationTree);
 
     if (estAVL(stationTree)) {
         printf("\nL'arbre est un AVL.\n");
     } else {
         printf("\nL'arbre n'est PAS un AVL.\n");
     }
-    parcoursInfixe(consoTree);
+    //parcoursInfixe(consoTree);
     //parcoursLargeur(tete);
 
     if (estAVL(consoTree)) {
@@ -64,15 +64,20 @@ int main(int argc, char* argv[]){
     } else {
         printf("\nL'arbre n'est PAS un AVL.\n");
     }
-    int i = 0;
+    long long unsigned  i = 0;
     nbNoeud(&i, stationTree);
-
-    printf("%d\n\n", i);
+    printf("%llu\n\n", i);
+    long long unsigned j = 0;
+    nbNoeud(&i, consoTree);
+    printf("%llu\n\n", i);
 
     //parcoursInfixe(consoTree);
     arbre* stationTreeSort = NULL;
 
     parcoursSort(&stationTreeSort, stationTree);
+    i = 0;
+    nbNoeud(&i, stationTreeSort);
+    printf("%llu\n\n", i);
     if (stationTreeSort == NULL){
         exit(1);
     }
