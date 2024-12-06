@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "type_avl.h"
+#include "creer_avl.h"
 
 int min(int a, int b);
 int max(int a, int b);
@@ -19,6 +20,7 @@ int estHva(donnees a);
 void nbNoeud(int* i, arbre* tete);
 donnees* init();
 char* addCharToChar(char* origin, char* toAdd);
+void sortByProduction(arbre** out, arbre* tmp);
 
 #endif //FONCTION_UTILE
 
