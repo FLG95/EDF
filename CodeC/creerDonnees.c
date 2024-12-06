@@ -40,16 +40,17 @@ void ensembleDonne(FILE* fichier, int* hStation, int* hConso, arbre** stationTre
     tmp = init();if (tmp == NULL){
         exit(1);
     }
+    int i = 0;
     sscanf(ligne2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
            &tmp->Powerplant, &tmp->hv_b, &tmp->hv_a, &tmp->lv, &tmp->entreprise, &tmp->particuliers, &tmp->production, &tmp->consommation);
-    addTree(stationTree, consoTree, *tmp, hStation, hConso, type, tmp);
+    addTree(stationTree, consoTree, *tmp, hStation, hConso, type, tmp,  &i);
     donnees b;
     arbre *tete = NULL;
     fgets(ligne2, sizeof(ligne2), out);
     while (fgets(ligne2, sizeof(ligne2), out) != NULL) {
         sscanf(ligne2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
                &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv, &b.entreprise, &b.particuliers, &b.production, &b.consommation);
-        addTree(stationTree, consoTree, b, hStation, hConso, type, tmp);
+        addTree(stationTree, consoTree, b, hStation, hConso, type, tmp, &i);
     }
     printf("\n\n\n\n");
     fclose(out);
