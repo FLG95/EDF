@@ -166,40 +166,40 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
         if (estLv(b)){
             *tmp = b;
             b.id = b.lv;
+            *tmp = b;
             *stationTree = insererStation(*stationTree, b, hStation);
         } else {
+            printf("%d\n", tmp->id);
             b.id = b.lv;
 
             if (tmp->id == b.id){
-                printf("hello\n");
-                tmp->consommation += b.consommation;
-
+                parcoursRefresh(stationTree, b);
             }
             *consoTree = insererConso(*consoTree, b, hConso);
         }
     }
     if (strcmp(station, "hvb") == 0){
         if (estHvb(b) == 1){
-            *tmp = b;
             b.id = b.hv_b;
+            *tmp = b;
             *stationTree = insererStation(*stationTree, b, hStation);
         } else {
             b.id = b.hv_b;
             if (tmp->id == b.id){
-                tmp->consommation += b.consommation;
+                parcoursRefresh(stationTree, b);
             }
             *consoTree = insererConso(*consoTree, b, hConso);
         }
     }
     if (strcmp(station, "hva") == 0){
         if (estHva(b) == 1){
-            *tmp = b;
             b.id = b.hv_a;
+            *tmp = b;
             *stationTree = insererStation(*stationTree, b, hStation);
         } else {
             b.id = b.hv_b;
             if (tmp->id == b.id){
-                tmp->consommation += b.consommation;
+                parcoursRefresh(stationTree, b);
             }
             *consoTree = insererConso(*consoTree, b, hConso);
         }
