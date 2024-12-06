@@ -5,12 +5,13 @@
 
 
 
-#include "../CodeC/include/creer_avl.h"
-#include "../CodeC/include/parcours.h"
-#include "../CodeC/include/type_avl.h"
-#include "../CodeC/include/affichage.h"
-#include "../CodeC/include/creerDonnees.h"
-#include "../CodeC/include/fonction_utile.h"
+#include "include/creer_avl.h"
+#include "include/parcours.h"
+#include "include/type_avl.h"
+#include "include/affichage.h"
+#include "include/creerDonnees.h"
+#include "include/fonction_utile.h"
+#include "include/outFile.h"
 
 
 
@@ -19,10 +20,13 @@ int main(int argc, char* argv[]){
     int hConso = 0;
     arbre* stationTree = NULL;
     arbre* consoTree = NULL;
-    char* type = "hvb";
+    if (strcmp(argv[2], "hva") != 0 && strcmp(argv[2], "hvb") && strcmp(argv[2], "lv")){
+        exit(1);
+    }
+    char* type = argv[2];
 
 
-    if (argc != 2){
+    if (argc != 3){
         printf("ERROR : not enough argument");
         exit(1);
     }
@@ -66,8 +70,12 @@ int main(int argc, char* argv[]){
 
     printf("%d\n\n", i);
 
+    parcoursInfixe(consoTree);
+    centerWrite(consoTree);
     freeAvl(consoTree);
     freeAvl(stationTree);
+
+
 
     return 0;
 }
