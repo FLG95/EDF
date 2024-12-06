@@ -169,7 +169,6 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
             *tmp = b;
             *stationTree = insererStation(*stationTree, b, hStation);
         } else {
-            printf("%d\n", tmp->id);
             b.id = b.lv;
 
             if (tmp->id == b.id){
