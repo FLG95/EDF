@@ -15,6 +15,8 @@ long long int somme(long unsigned a, long long int b);
 int estLv(donnees a);
 int estHvb(donnees a);
 int estHva(donnees a);
+void nbNoeud(int* i, arbre* tete);
+donnees* init();
 
 #endif //FONCTION_UTILE
 
