@@ -160,4 +160,4 @@ echo "Le programme a mit : $PROCESSUS_TIME secondes"
 
 
 #suppression des fichiers et/ou dossiers du dossiers tmp
-#rm tmp/*
+rm tmp/*
