@@ -60,7 +60,7 @@ fi
 
 #vérifie si le dossier graph existe
 if [ -d $dir_graph ]; then
-  rm $dir_graph/*
+  rm -f $dir_graph/*
 else
   mkdir $dir_graph;
 fi
@@ -134,7 +134,7 @@ if [ -d $exe_name  ]; then # Si l'éxécutable éxiste on le lance directement
 else  #Sinon lancement du code C avec le Makefile en passant le fichier en paramètre
 
   cd $dir_makefile || exit 0
-  make all ARGS="../tmp/data.txt $2"
+  make all ARGS="../tmp/data.txt $2 $3"
   make clean
   cd $dir_origine || exit 0
 fi
