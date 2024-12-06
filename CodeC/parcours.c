@@ -56,10 +56,6 @@ void parcoursInfixe(arbre* tete) {
     if (tete != NULL) {
         traiter(tete);
         parcoursInfixe(tete->fg);
-        /*if (tete->a.consommation != 0){
-            *somme_conso += somme(tete->a.consommation, *somme_conso);
-        }*/
-
         parcoursInfixe(tete->fd);
     }
 }
