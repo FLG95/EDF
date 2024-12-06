@@ -14,4 +14,5 @@ arbre* defiler(file** f);
 
 void parcoursLargeur(arbre* tete);
 void parcoursInfixe(arbre* tete);
+void parcoursRefresh(arbre** tete, donnees a);
 #endif //PARCOURS_H
