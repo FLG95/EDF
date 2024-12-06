@@ -53,7 +53,7 @@ void ensembleDonne(FILE* fichier, int* hStation, int* hConso, arbre** stationTre
                &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv, &b.entreprise, &b.particuliers, &b.production, &b.consommation);
 
         addTree(stationTree, consoTree, b, hStation, hConso, type, tmp);
-        printf("%d\n", i);
+        //printf("%d\n", i);
         i++;
     }
     printf("\n\n\n\n");
