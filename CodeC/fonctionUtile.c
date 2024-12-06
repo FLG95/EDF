@@ -60,7 +60,7 @@ int estHva(donnees a){
     return 0;
 }
 
-void nbNoeud(int* i, arbre* tete){
+void nbNoeud(long long unsigned * i, arbre* tete){
     if (tete != NULL){
         *i = *i+1;
         nbNoeud(i, tete->fg);
