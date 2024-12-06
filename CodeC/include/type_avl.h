@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 typedef struct donnees{
+    int id;
     long unsigned Powerplant;
     long unsigned hv_b;
     long unsigned hv_a;
