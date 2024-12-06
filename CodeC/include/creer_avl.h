@@ -25,6 +25,6 @@ arbre* insererConso(arbre* tete, donnees a, int* h);
 void freeAvl(arbre* tete);
 int hauteur(arbre* tete);
 bool estAVL(arbre* tete);
-void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, int* hConso, char* station, donnees* tmp);
+void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, int* hConso, char* station, donnees* tmp, int* i);
 
 #endif //CREER_AVL
