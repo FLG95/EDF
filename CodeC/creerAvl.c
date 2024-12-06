@@ -120,7 +120,7 @@ arbre* insererConso(arbre* tete, donnees a, int* h) {
     } else if (tete->a.consommation < a.consommation) {
         tete->fd = insererConso(tete->fd, a, h);
     } else {
-        *h = 0;
+        tete->fd = insererConso(tete->fd, a, h);
         return tete;
     }
     if (*h != 0) {
@@ -158,7 +158,7 @@ bool estAVL(arbre* tete) {
     return estAVL(tete->fg) && estAVL(tete->fd);
 }
 
-void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, int* hConso, char* station, donnees* tmp){
+void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, int* hConso, char* station, donnees* tmp, int* i){
     if (station == NULL){
         exit(1);
     }
@@ -169,12 +169,15 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
             *stationTree = insererStation(*stationTree, b, hStation);
         } else {
             b.id = b.lv;
-
+            printf("%d\n", *i);
+            *i = *i + 1;
             if (tmp->id == b.id){
                 parcoursRefresh(stationTree, b);
             }
+
             *consoTree = insererConso(*consoTree, b, hConso);
         }
+
     }
     if (strcmp(station, "hvb") == 0){
         if (estHvb(b) == 1){
