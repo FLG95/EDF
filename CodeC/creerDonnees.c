@@ -35,12 +35,14 @@ void ensembleDonne(FILE* fichier, int* hStation, int* hConso, arbre** stationTre
         exit(1);
     }
     FILE *out = transformerFichier(fichier);
+    char ligne2[256];
     donnees* tmp = NULL;
-    tmp = init();
-    if (tmp == NULL){
+    tmp = init();if (tmp == NULL){
         exit(1);
     }
-    char ligne2[256];
+    sscanf(ligne2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
+           &tmp->Powerplant, &tmp->hv_b, &tmp->hv_a, &tmp->lv, &tmp->entreprise, &tmp->particuliers, &tmp->production, &tmp->consommation);
+    addTree(stationTree, consoTree, *tmp, hStation, hConso, type, tmp);
     donnees b;
     arbre *tete = NULL;
     fgets(ligne2, sizeof(ligne2), out);
