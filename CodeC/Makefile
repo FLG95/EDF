@@ -8,7 +8,7 @@ LIBS = -lncursesw
 
 
 # Source files
-SRC = main.c creerAvl.c parcours.c affichage.c creerDonnees.c fonctionUtile.c
+SRC = main.c creerAvl.c parcours.c affichage.c creerDonnees.c fonctionUtile.c outFile.c
 
 # Object files
 OBJ = $(SRC:.c=.o)
@@ -16,7 +16,6 @@ OBJ = $(SRC:.c=.o)
 # Executable
 TARGET = exe
 
-FILE = ../tmp.txt
 
 # Linking the executable
 $(TARGET): $(OBJ)
@@ -24,7 +23,7 @@ $(TARGET): $(OBJ)
 
 # Default target
 all: $(TARGET)
-	./exe $(FILE)
+	./$(TARGET) $(ARGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
