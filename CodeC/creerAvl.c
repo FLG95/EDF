@@ -164,7 +164,6 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
     }
     if (strcmp(station, "lv") == 0){
         if (estLv(b)){
-            *tmp = b;
             b.id = b.lv;
             *tmp = b;
             *stationTree = insererStation(*stationTree, b, hStation);
@@ -196,7 +195,7 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
             *tmp = b;
             *stationTree = insererStation(*stationTree, b, hStation);
         } else {
-            b.id = b.hv_b;
+            b.id = b.hv_a;
             if (tmp->id == b.id){
                 parcoursRefresh(stationTree, b);
             }
