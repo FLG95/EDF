@@ -20,7 +20,8 @@ int estHva(donnees a);
 void nbNoeud(long long unsigned* i, arbre* tete);
 donnees* init();
 char* addCharToChar(char* origin, char* toAdd);
-void sortByProduction(arbre** out, arbre* tmp);
+
+int absoluteValue(long unsigned i, long unsigned j);
 
 #endif //FONCTION_UTILE
 
