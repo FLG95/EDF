@@ -64,3 +64,14 @@ void parcoursInfixe(arbre* tete) {
     }
 }
 
+void parcoursRefresh(arbre** tete, donnees a){
+    if (*tete != NULL){
+        if ((*tete)->a.id < a.id){
+            parcoursRefresh(&((*tete)->fd), a);
+        } else if ((*tete)->a.id > a.id) {
+            parcoursRefresh(&((*tete)->fg), a);
+        } else {
+            (*tete)->a.consommation += a.consommation;
+        }
+    }
+}
