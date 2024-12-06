@@ -96,3 +96,12 @@ char* addCharToChar(char* origin, char* toAdd){
     strcat(tmp, toAdd);
     return tmp;
 }
+void sortByProduction(arbre** out, arbre* tmp){
+    if (*out == NULL){
+        *out = creer(tmp->a);
+    } else if ((*out)->a.production < tmp->a.production){
+        sortByProduction(&(*out)->fd, tmp);
+    } else if ((*out)->a.production >= tmp->a.production) {
+        sortByProduction(&(*out)->fg, tmp);
+    }
+}
