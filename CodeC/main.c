@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
     char* type = argv[2];
 
 
-    if (argc != 3){
+    if (argc != 4){
         printf("ERROR : not enough argument");
         exit(1);
     }
@@ -70,8 +70,9 @@ int main(int argc, char* argv[]){
     printf("%d\n\n", i);
 
     //parcoursInfixe(consoTree);
-    if (strcmp(argv[2], "all") == 0){
-        centerWrite(consoTree);
+    centerWrite(stationTree, argv[2], argv[3]);
+    if (strcmp(argv[2], "lv") == 0 && strcmp(argv[2], "all") == 0){
+        centerWrite10(consoTree);
     }
     freeAvl(consoTree);
     freeAvl(stationTree);
