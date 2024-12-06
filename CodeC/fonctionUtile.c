@@ -85,3 +85,14 @@ donnees* init(){
     tmp->production = 0;
     return tmp;
 }
+char* addCharToChar(char* origin, char* toAdd){
+    if (origin == NULL || toAdd == NULL){
+        exit(1);
+    }
+    char* tmp = NULL;
+    int newSize = strlen(origin) + strlen(toAdd) + 1;
+    tmp = malloc((newSize * sizeof(char)));
+    strcpy(tmp, origin);
+    strcat(tmp, toAdd);
+    return tmp;
+}
