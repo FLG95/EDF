@@ -6,10 +6,17 @@
 int min(int a, int b) {
     return (a < b) ? a : b;
 }
-
 //fonction pour déterminer le maximun
 int max(int a, int b) {
     return (a > b) ? a : b;
+}
+int absoluteValue(long unsigned i, long unsigned j){
+    long long int tmp = i - j;
+    if (tmp < 0){
+        return -tmp;
+    } else {
+        return tmp;
+    }
 }
 //fonction pour libérer la mémoire de l'arbre
 void freeAvl(arbre* tete) {
@@ -95,13 +102,4 @@ char* addCharToChar(char* origin, char* toAdd){
     strcpy(tmp, origin);
     strcat(tmp, toAdd);
     return tmp;
-}
-void sortByProduction(arbre** out, arbre* tmp){
-    if (*out == NULL){
-        *out = creer(tmp->a);
-    } else if ((*out)->a.production < tmp->a.production){
-        sortByProduction(&(*out)->fd, tmp);
-    } else if ((*out)->a.production >= tmp->a.production) {
-        sortByProduction(&(*out)->fg, tmp);
-    }
 }
