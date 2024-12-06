@@ -65,7 +65,7 @@ else
   mkdir $dir_graph;
 fi
 
-
+echo $2
 
 case $2 in
   "hvb")
@@ -133,8 +133,9 @@ START_TIME=$(date +%s)
 if [ -d $exe_name  ]; then # Si l'éxécutable éxiste on le lance directement
   ./$exe_name
 else  #Sinon lancement du code C avec le Makefile en passant le fichier en paramètre
+
   cd $dir_makefile || exit 0
-  make all FILE=../tmp/data.txt
+  make all ARGS="../tmp/data.txt $2"
   make clean
   cd $dir_origine || exit 0
 fi
@@ -143,9 +144,6 @@ fi
 if [ $2 = 'lv' ] && [ $3 = 'all' ]; then
 
 gnuplot -persist << EOF
-
-
-
 EOF
 fi
 
@@ -156,8 +154,6 @@ PROCESSUS_TIME=$((END_TIME - START_TIME))
 
 
 echo "Le programme a mit : $PROCESSUS_TIME secondes"
-
-
 
 #suppression des fichiers et/ou dossiers du dossiers tmp
 rm tmp/*
