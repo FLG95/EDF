@@ -79,7 +79,7 @@ case $2 in
 
 
   elif [ $3 == "comp" ]; then
-    awk -F ';' 'NR == 1 || ($2 != "-" && $5 != "-")' $1 > tmp/data.txt
+    awk -F ';' 'NR == 1 || (($3 != "-" && $5 != "-" && $4 == "-" && $3 == "-") || ($2 != "-" && $3 == "-" && $4 == "-"))' $1 > tmp/data.txt
 
   else
     echo "erreur: l'un des arguments spécifiés est incorrect"
@@ -98,7 +98,7 @@ case $2 in
     exit 0
 
   elif [ $3 == "comp" ]; then
-    awk -F ';' 'NR == 1 || ($3 != "-" && $5 != "-")' $1 > tmp/data.txt
+    awk -F ';' 'NR == 1 || (($3 != "-" && $5 != "-" && $4 == "-") || ($3 != "-" && $4 == "-"))' $1 > tmp/data.txt
 
   else
     echo "erreur : l'un des arguments spécifiés est incorrect"
