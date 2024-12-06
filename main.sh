@@ -65,7 +65,6 @@ else
   mkdir $dir_graph;
 fi
 
-echo $2
 
 case $2 in
   "hvb")
