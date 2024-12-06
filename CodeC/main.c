@@ -56,14 +56,14 @@ int main(int argc, char* argv[]){
     } else {
         printf("\nL'arbre n'est PAS un AVL.\n");
     }
-   /* parcoursInfixe(consoTree);
+    parcoursInfixe(consoTree);
     //parcoursLargeur(tete);
 
     if (estAVL(consoTree)) {
         printf("\nL'arbre est un AVL.\n");
     } else {
         printf("\nL'arbre n'est PAS un AVL.\n");
-    }*/
+    }
     int i = 0;
     nbNoeud(&i, stationTree);
 
@@ -79,7 +79,7 @@ int main(int argc, char* argv[]){
 
     centerWrite(stationTreeSort, argv[2], argv[3]);
     if (strcmp(argv[2], "lv") == 0 && strcmp(argv[3], "all") == 0){
-        centerWrite10(stationTreeSort);
+        centerWrite10(stationTreeSort, argv[2], argv[3]);
     }
     freeAvl(consoTree);
     freeAvl(stationTree);
