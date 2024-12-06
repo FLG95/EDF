@@ -84,16 +84,44 @@ arbre* equilibrage(arbre* tete) {
 }
 
 //fonction pour insérer un élément dans l'arbre
-arbre* inserer(arbre* tete, donnees a, int* h) {
+arbre* insererStation(arbre* tete, donnees a, int* h) {
+    if (tete == NULL) {
+        *h = 1;
+        return creer(a);
+    }
+    if (a.id < tete->a.id) {
+        tete->fg = insererStation(tete->fg, a, h);
+        *h = -*h;
+    } else if (tete->a.id < a.id) {
+        tete->fd = insererStation(tete->fd, a, h);
+    } else {
+        *h = 0;
+        return tete;
+    }
+    if (*h != 0) {
+        tete->equilibre += *h;
+        tete = equilibrage(tete);
+        if (tete->equilibre == 0) {
+            *h = 0;
+        } else {
+            *h = 1;
+        }
+    }
+    return tete;
+}
+arbre* insererConso(arbre* tete, donnees a, int* h) {
     if (tete == NULL) {
         *h = 1;
         return creer(a);
     }
     if (a.consommation < tete->a.consommation) {
-        tete->fg = inserer(tete->fg, a, h);
+        tete->fg = insererConso(tete->fg, a, h);
         *h = -*h;
     } else if (tete->a.consommation < a.consommation) {
-        tete->fd = inserer(tete->fd, a, h);
+        tete->fd = insererConso(tete->fd, a, h);
+    } else {
+        *h = 0;
+        return tete;
     }
     if (*h != 0) {
         tete->equilibre += *h;
@@ -128,6 +156,54 @@ bool estAVL(arbre* tete) {
         return false;
     }
     return estAVL(tete->fg) && estAVL(tete->fd);
+}
+
+void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, int* hConso, char* station, donnees* tmp){
+    if (station == NULL){
+        exit(1);
+    }
+    if (strcmp(station, "lv") == 0){
+        if (estLv(b)){
+            *tmp = b;
+            b.id = b.lv;
+            *stationTree = insererStation(*stationTree, b, hStation);
+        } else {
+            b.id = b.lv;
+
+            if (tmp->id == b.id){
+                printf("hello\n");
+                tmp->consommation += b.consommation;
+
+            }
+            *consoTree = insererConso(*consoTree, b, hConso);
+        }
+    }
+    if (strcmp(station, "hvb") == 0){
+        if (estHvb(b) == 1){
+            *tmp = b;
+            b.id = b.hv_b;
+            *stationTree = insererStation(*stationTree, b, hStation);
+        } else {
+            b.id = b.hv_b;
+            if (tmp->id == b.id){
+                tmp->consommation += b.consommation;
+            }
+            *consoTree = insererConso(*consoTree, b, hConso);
+        }
+    }
+    if (strcmp(station, "hva") == 0){
+        if (estHva(b) == 1){
+            *tmp = b;
+            b.id = b.hv_a;
+            *stationTree = insererStation(*stationTree, b, hStation);
+        } else {
+            b.id = b.hv_b;
+            if (tmp->id == b.id){
+                tmp->consommation += b.consommation;
+            }
+            *consoTree = insererConso(*consoTree, b, hConso);
+        }
+    }
 }
 
 
