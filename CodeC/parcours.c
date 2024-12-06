@@ -71,3 +71,10 @@ void parcoursRefresh(arbre** tete, donnees a){
         }
     }
 }
+void parcoursSort(arbre** tete, arbre* tmp){
+    if (tmp != NULL){
+        parcoursSort(tete, tmp->fg);
+        sortByProduction(tete, tmp);
+        parcoursSort(tete, tmp->fd);
+    }
+}
