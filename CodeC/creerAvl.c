@@ -175,7 +175,7 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
                 parcoursRefresh(stationTree, b);
             }
 
-            *consoTree = insererConso(*consoTree, b, hConso);
+            //*consoTree = insererConso(*consoTree, b, hConso);
         }
 
     }
@@ -189,7 +189,7 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
             if (tmp->id == b.id){
                 parcoursRefresh(stationTree, b);
             }
-            *consoTree = insererConso(*consoTree, b, hConso);
+            //*consoTree = insererConso(*consoTree, b, hConso);
         }
     }
     if (strcmp(station, "hva") == 0){
@@ -202,7 +202,47 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
             if (tmp->id == b.id){
                 parcoursRefresh(stationTree, b);
             }
-            *consoTree = insererConso(*consoTree, b, hConso);
+            //*consoTree = insererConso(*consoTree, b, hConso);
+        }
+    }
+}
+void sortByProduction(arbre** out, arbre* tmp, int * h){
+    if (*out == NULL){
+        //*h = 1;
+        *out = creer(tmp->a);
+    } else if ((*out)->a.production <= tmp->a.production){
+        sortByProduction(&(*out)->fd, tmp, h);
+    } else if ((*out)->a.production > tmp->a.production) {
+        sortByProduction(&(*out)->fg, tmp, h);
+        //*h = -*h;
+    }
+    /*if (*h != 0) {
+        (*out)->equilibre += *h;
+        (*out) = equilibrage(*out);
+        if ((*out)->equilibre == 0) {
+            *h = 0;
+        } else {
+            *h = 1;
+        }
+    }*/
+}
+
+void sortByAbs(arbre** out, arbre* tmp, int* h){
+    if (*out == NULL){
+        *out = creer(tmp->a);
+    } else if (absoluteValue((*out)->a.production,(*out)->a.consommation) < absoluteValue(tmp->a.production,tmp->a.consommation)){
+        sortByAbs(&(*out)->fd, tmp, h);
+    }else if (absoluteValue((*out)->a.production,(*out)->a.consommation) > absoluteValue(tmp->a.production, tmp->a.consommation)){
+        *h = -*h;
+        sortByAbs(&(*out)->fg, tmp, h);
+    }
+    if (*h != 0) {
+        (*out)->equilibre += *h;
+        (*out) = equilibrage(*out);
+        if ((*out)->equilibre == 0) {
+            *h = 0;
+        } else {
+            *h = 1;
         }
     }
 }
