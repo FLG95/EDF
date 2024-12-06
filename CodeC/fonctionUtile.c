@@ -36,7 +36,7 @@ long long int somme(long unsigned a, long long int b){
     return a + b;
 }
 int estLv(donnees a){
-    if (a.lv != 0){
+    if (a.lv != 0 && a.consommation == 0){
         return 1;
     } else {
         return 0;
@@ -44,7 +44,7 @@ int estLv(donnees a){
     return 0;
 }
 int estHvb(donnees a){
-    if (a.lv == 0 && a.hv_b != 0 && a.hv_a == 0){
+    if (a.hv_b != 0 && a.hv_a == 0 && a.lv == 0 && a.production != 0){
         return 1;
     } else {
         return 0;
@@ -52,10 +52,36 @@ int estHvb(donnees a){
     return 0;
 }
 int estHva(donnees a){
-    if (a.lv == 0 && a.hv_b != 0 && a.hv_a != 0){
+    if (a.hv_a != 0 && a.lv == 0 && a.production != 0){
         return 1;
     } else {
         return 0;
     }
     return 0;
+}
+
+void nbNoeud(int* i, arbre* tete){
+    if (tete != NULL){
+        *i = *i+1;
+        nbNoeud(i, tete->fg);
+        nbNoeud(i, tete->fd);
+    }
+}
+
+donnees* init(){
+    donnees* tmp = NULL;
+    tmp = malloc(sizeof(donnees));
+    if (tmp == NULL){
+        exit(1);
+    }
+    tmp->lv = 0;
+    tmp->hv_a = 0;
+    tmp->hv_b = 0;
+    tmp->consommation = 0;
+    tmp->id = 1;
+    tmp->particuliers = 0;
+    tmp->entreprise = 0;
+    tmp->Powerplant = 0;
+    tmp->production = 0;
+    return tmp;
 }
