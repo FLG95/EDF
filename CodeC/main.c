@@ -50,7 +50,6 @@ int main(int argc, char* argv[]){
 
     ensembleDonne(fichier, &hStation, &hConso, &stationTree, &consoTree, type);
     parcoursInfixe(stationTree);
-    //parcoursLargeur(tete);
 
     if (estAVL(stationTree)) {
         printf("\nL'arbre est un AVL.\n");
@@ -70,12 +69,11 @@ int main(int argc, char* argv[]){
 
     printf("%d\n\n", i);
 
-    parcoursInfixe(consoTree);
-    centerWrite(consoTree);
+    //parcoursInfixe(consoTree);
+    if (strcmp(argv[2], "all") == 0){
+        centerWrite(consoTree);
+    }
     freeAvl(consoTree);
     freeAvl(stationTree);
-
-
-
     return 0;
 }
