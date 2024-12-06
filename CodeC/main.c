@@ -72,20 +72,29 @@ int main(int argc, char* argv[]){
     printf("%llu\n\n", i);
 
     //parcoursInfixe(consoTree);
-    arbre* stationTreeSort = NULL;
+    arbre* stationTreeSortProduction = NULL;
+    arbre* stationTreeSortAbs = NULL;
+    int h_abs = 0;
+    int h_Prod = 0;
+    parcoursSortAbs(&stationTreeSortAbs, stationTree, &h_abs);
 
-    parcoursSort(&stationTreeSort, stationTree);
+    parcoursSortProduction(&stationTreeSortProduction, stationTree, &h_Prod);
+    printf("HELLO\n");
+
+
+
     i = 0;
-    nbNoeud(&i, stationTreeSort);
-    printf("%llu\n\n", i);
-    if (stationTreeSort == NULL){
+    nbNoeud(&i, stationTreeSortProduction);
+    if (stationTreeSortProduction == NULL || stationTreeSortAbs == NULL){
         exit(1);
     }
 
-    centerWrite(stationTreeSort, argv[2], argv[3]);
+
+    centerWrite(stationTreeSortProduction, argv[2], argv[3]);
     if (strcmp(argv[2], "lv") == 0 && strcmp(argv[3], "all") == 0){
-        centerWrite10(stationTreeSort, argv[2], argv[3]);
+        centerWrite10(stationTreeSortAbs, argv[2], argv[3]);
     }
+
     freeAvl(consoTree);
     freeAvl(stationTree);
     return 0;
