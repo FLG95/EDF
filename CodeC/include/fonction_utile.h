@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "type_avl.h"
 
@@ -17,6 +18,7 @@ int estHvb(donnees a);
 int estHva(donnees a);
 void nbNoeud(int* i, arbre* tete);
 donnees* init();
+char* addCharToChar(char* origin, char* toAdd);
 
 #endif //FONCTION_UTILE
 
