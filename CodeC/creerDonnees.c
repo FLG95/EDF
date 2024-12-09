@@ -37,7 +37,8 @@ void ensembleDonne(FILE* fichier, int* hStation, int* hConso, arbre** stationTre
     FILE *out = transformerFichier(fichier);
     char ligne2[256];
     donnees* tmp = NULL;
-    tmp = init();if (tmp == NULL){
+    tmp = init();
+    if (tmp == NULL){
         exit(1);
     }
     int i = 0;
