@@ -16,10 +16,16 @@ arbre* creer(donnees a) {
 
 //fonction pour faire une double rotation gauche dans l'arbre
 arbre* rotationGauche(arbre* tete) {
-    if (tete == NULL){
-        return 0;
+    if (tete == NULL) {
+        return NULL;
     }
+
     arbre* pivot = tete->fd;
+
+    if (pivot == NULL) {
+        return tete;
+    }
+
     tete->fd = pivot->fg;
     pivot->fg = tete;
 
@@ -29,18 +35,18 @@ arbre* rotationGauche(arbre* tete) {
     return pivot;
 }
 
-//fonction pour faire une rotation droite dans l'arbre
 arbre* rotationDroite(arbre* tete) {
     if (tete == NULL){
         exit(1);
     }
     arbre* pivot = tete->fg;
+    if (pivot == NULL){
+        return tete;
+    }
     tete->fg = pivot->fd;
     pivot->fd = tete;
-
     tete->equilibre = tete->equilibre + 1 - min(0, pivot->equilibre);
     pivot->equilibre = pivot->equilibre + 1 + max(0, tete->equilibre);
-
     return pivot;
 }
 
@@ -169,8 +175,6 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
             *stationTree = insererStation(*stationTree, b, hStation);
         } else {
             b.id = b.lv;
-            printf("%d\n", *i);
-            *i = *i + 1;
             if (tmp->id == b.id){
                 parcoursRefresh(stationTree, b);
             }
@@ -207,16 +211,21 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
     }
 }
 void sortByProduction(arbre** out, arbre* tmp, int * h){
+    if (tmp == NULL) {
+        return;
+    }
     if (*out == NULL){
-        //*h = 1;
+        *h = 1;
         *out = creer(tmp->a);
     } else if ((*out)->a.production <= tmp->a.production){
         sortByProduction(&(*out)->fd, tmp, h);
     } else if ((*out)->a.production > tmp->a.production) {
         sortByProduction(&(*out)->fg, tmp, h);
-        //*h = -*h;
+        *h = -*h;
+    } else {
+        *h = 0;
     }
-    /*if (*h != 0) {
+    if (*h != 0) {
         (*out)->equilibre += *h;
         (*out) = equilibrage(*out);
         if ((*out)->equilibre == 0) {
@@ -224,7 +233,7 @@ void sortByProduction(arbre** out, arbre* tmp, int * h){
         } else {
             *h = 1;
         }
-    }*/
+    }
 }
 
 void sortByAbs(arbre** out, arbre* tmp, int* h){
