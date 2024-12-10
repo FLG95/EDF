@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
     int hConso = 0;
     tree* stationTree = NULL;
     tree* consoTree = NULL;
-    if (strcmp(argv[2], "hva") != 0 && strcmp(argv[2], "hvb") && strcmp(argv[2], "lv")){
+    if (strcmp(argv[2], "hva") != 0 && strcmp(argv[2], "hvb") != 0 && strcmp(argv[2], "lv") != 0){
         exit(1);
     }
     char* type = argv[2];
