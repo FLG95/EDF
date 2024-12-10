@@ -2,7 +2,7 @@
 
 #include "include/parcours.h"
 
-file* creerFile(arbre* a) {
+file* createFile(tree* a) {
     file* new = malloc(sizeof(file));
     if (new == NULL) {
         fprintf(stderr, "Erreur: allocation mémoire échouée pour la file.\n");
@@ -13,8 +13,8 @@ file* creerFile(arbre* a) {
     return new;
 }
 
-file* enfiler(file* f, arbre* tete) {
-    file* new = creerFile(tete);
+file* enfiler(file* f, tree* head) {
+    file* new = createFile(head);
     if (f == NULL) {
         return new;
     }
@@ -26,64 +26,64 @@ file* enfiler(file* f, arbre* tete) {
     return f;
 }
 
-arbre* defiler(file** f) {
+tree* defiler(file** f) {
     if (*f == NULL) return NULL;
 
     file* tmp = *f;
-    arbre* courant = tmp->actuel;
+    tree* actual = tmp->actuel;
     *f = tmp->suivant;
     free(tmp);
-    return courant;
+    return actual;
 }
 
-void parcoursLargeur(arbre* tete) {
-    if (tete == NULL) return;
+void parcoursLargeur(tree* head) {
+    if (head == NULL) return;
 
-    file* f = enfiler(NULL, tete);
+    file* f = enfiler(NULL, head);
     while (f != NULL) {
-        arbre* courant = defiler(&f);
-        if (courant != NULL) {
-            traiter(tete);
-            if (courant->fg != NULL) f = enfiler(f, courant->fg);
-            if (courant->fd != NULL) f = enfiler(f, courant->fd);
+        tree* actual = defiler(&f);
+        if (actual != NULL) {
+            traiter(head);
+            if (actual->fg != NULL) f = enfiler(f, actual->fg);
+            if (actual->fd != NULL) f = enfiler(f, actual->fd);
         }
     }
     printf("\n");
 }
 
 // Affichage en profondeur
-void parcoursInfixe(arbre* tete) {
-    if (tete != NULL) {
-        traiter(tete);
-        parcoursInfixe(tete->fg);
-        parcoursInfixe(tete->fd);
+void parcoursInfixe(tree* head) {
+    if (head != NULL) {
+        traiter(head);
+        parcoursInfixe(head->fg);
+        parcoursInfixe(head->fd);
     }
 }
 
-void parcoursRefresh(arbre** tete, donnees a){
-    if (*tete != NULL){
-        if ((*tete)->a.id < a.id){
-            parcoursRefresh(&((*tete)->fd), a);
-        } else if ((*tete)->a.id > a.id) {
-            parcoursRefresh(&((*tete)->fg), a);
+void parcoursRefresh(tree** head, Data a){
+    if (*head != NULL){
+        if ((*head)->a.id < a.id){
+            parcoursRefresh(&((*head)->fd), a);
+        } else if ((*head)->a.id > a.id) {
+            parcoursRefresh(&((*head)->fg), a);
         } else {
-            (*tete)->a.consommation += a.consommation;
+            (*head)->a.consommation += a.consommation;
         }
     }
 }
-arbre* parcoursSortProduction(arbre* tete, arbre* tmp, int* h){
+tree* parcoursSortProduction(tree* head, tree* tmp, int* h){
     if (tmp != NULL){
-        tete = parcoursSortProduction(tete, tmp->fg, h);
-        tete = sortByProduction(tete, tmp->a, h);
-        tete = parcoursSortProduction(tete, tmp->fd, h);
+        head = parcoursSortProduction(head, tmp->fg, h);
+        head = sortByProduction(head, tmp->a, h);
+        head = parcoursSortProduction(head, tmp->fd, h);
     }
-    return tete;
+    return head;
 }
-arbre* parcoursSortAbs(arbre* tete, arbre* tmp, int* h){
+tree* parcoursSortAbs(tree* head, tree* tmp, int* h){
     if (tmp != NULL){
-        tete = parcoursSortAbs(tete, tmp->fg, h);
-        tete = sortByAbs(tete, tmp->a, h);
-        tete = parcoursSortAbs(tete, tmp->fd, h);
+        head = parcoursSortAbs(head, tmp->fg, h);
+        head = sortByAbs(head, tmp->a, h);
+        head = parcoursSortAbs(head, tmp->fd, h);
     }
-    return tete;
+    return head;
 }
