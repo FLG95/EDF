@@ -8,14 +8,14 @@
 
 
 
-file* creerFile(arbre* a);
-file* enfiler(file* f, arbre* tete);
-arbre* defiler(file** f);
+file* createFile(tree* a);
+file* enfiler(file* f, tree* head);
+tree* defiler(file** f);
 
-void parcoursLargeur(arbre* tete);
-void parcoursInfixe(arbre* tete);
-void parcoursRefresh(arbre** tete, donnees a);
-arbre* parcoursSortProduction(arbre* tete, arbre* tmp, int* h);
-arbre* parcoursSortAbs(arbre* tete, arbre* tmp, int* h);
+void parcoursLargeur(tree* head);
+void parcoursInfixe(tree* head);
+void parcoursRefresh(tree** head, Data a);
+tree* parcoursSortProduction(tree* head, tree* tmp, int* h);
+tree* parcoursSortAbs(tree* head, tree* tmp, int* h);
 
 #endif //PARCOURS_H
