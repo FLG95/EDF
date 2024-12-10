@@ -220,8 +220,12 @@ arbre* sortByAbs(arbre* tete, donnees tmp, int* h) {
     }
     if (*h != 0) {
         tete->equilibre += *h;
-        tete = equilibrage(tete); // Mettez à jour le pointeur après équilibrage
-        *h = tete->equilibre == 0 ? 0 : 1;
+        tete = equilibrage(tete);
+        if (tete->equilibre == 0) {
+            *h = 0;
+        } else {
+            *h = 1;
+        }
     }
     return tete;
 }
@@ -248,7 +252,11 @@ arbre* sortByProduction(arbre* tete, donnees tmp, int* h) {
     if (*h != 0) {
         tete->equilibre += *h;
         tete = equilibrage(tete);
-        *h = (tete->equilibre == 0) ? 0 : 1;
+        if (tete->equilibre == 0) {
+            *h = 0;
+        } else {
+            *h = 1;
+        }
     }
     return tete;
 }
