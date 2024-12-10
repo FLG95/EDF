@@ -5,6 +5,6 @@
 
 #include "type_avl.h"
 
-void traiter(arbre* tete);
+void traiter(tree* head);
 
 #endif //AFFICHAGE_H
