@@ -47,14 +47,17 @@ arbre* rotationDroite(arbre* tete) {
 
 //fonction pour faire une double rotation gauche dans l'arbre
 arbre* doubleRotationGauche(arbre* tete) {
-
+    if (tete == NULL || tete->fd == NULL){
+        return NULL;
+    }
     tete->fd = rotationDroite(tete->fd);
     return rotationGauche(tete);
 }
-
 //fonction pour faire une double rotation droite dans l'arbre
 arbre* doubleRotationDroite(arbre* tete) {
-
+    if (tete == NULL || tete->fg == NULL){
+        return NULL;
+    }
     tete->fg = rotationGauche(tete->fg);
     return rotationDroite(tete);
 }
