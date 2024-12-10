@@ -1,17 +1,22 @@
 #!/bin/bash
 
+
 function help(){
   echo "Aide : "
   echo "Command : main.sh [ARGUMENT] [OPTION]]"
   echo "Argument"
-  echo "ARG[0] : csv file path"
-  echo "ARG[0] : station type ( hvb hva lv )"
-  echo "ARG[1] : consumer type ( comp indiv all)"
+  echo "ARG[1] : csv file path"
+  echo "ARG[2] : station type ( hvb hva lv )"
+  echo "ARG[3] : consumer type ( comp indiv all)"
+  acho "ARG[4] : number of the power plant you want to take ( if you want to take all the power plant just dont use this argument"
   echo "Option :"
+  echo "-n to selected the power plant you want to take ( only one station can be selected if you want to take all the station just dont use this command)"
   echo "-h show help for this command"
-  echo "Aditional help : you can't do : hvb all, hvb indiv, hva all, hva indiv "
+  echo "Additional help : you can't do : hvb all, hvb indiv, hva all, hva indiv "
   exit 0
 }
+
+
 
 for arg in "$@"; do
   case "$arg" in
@@ -22,9 +27,23 @@ for arg in "$@"; do
 done
 
 if [ $# -lt 3 ]; then
-  echo "Number of argument is invalid"
+  echo "Error : Number of argument is invalid"
   exit 0;
 fi
+
+if [ -z $1 ]; then
+  echo "Error : No file specified "
+  exit 0
+fi
+
+
+if [ -e $1 ]; then
+  echo "le fichier passé en premier argument est correct"
+else
+  echo "erreur : le fichier passé en premier argument est incorrect"
+  exit 0
+fi
+
 
 BiggestPowerPlant=$(tail -n 1 $1 | awk '{print $1}')
 if [ $4 -le 0 ] || [ $4 -gt $BiggestPowerPlant ]; then
@@ -74,18 +93,7 @@ dir_graph="graph"
 echo "$ascii1"
 echo "$ascii2"
 
-if [ -z $1 ]; then
-  echo "erreur : aucun fichier spécifié "
-  exit 0
-fi
 
-
-if [ -e $1 ]; then
-  echo "le fichier passé en premier argument est correct"
-else
-  echo "erreur : le fichier passé en premier argument est incorrect"
-  exit 0
-fi
 
 
 #vérifie si le dossier tmp existe
@@ -103,6 +111,7 @@ else
   mkdir $dir_graph;
 fi
 
+START_TIME=$(date +%s)
 echo "We are extracting your data, Please Wait few seconds"
 
 case $2 in
@@ -149,10 +158,10 @@ case $2 in
       awk -F ';' 'NR == 1 || ($4 != "-")' $1 > tmp/data.txt
 
   elif [ $3 == "indiv" ]; then
-      awk -F ';' 'NR == 1 || ($4 != "-" && $6 != "-") || ($4 !="-" && $5 == "-")' $1 > tmp/data.txt
+      awk -F ';' 'NR == 1 || ($4 != "-" && $6 != "-")' $1 > tmp/data.txt
 
   elif [ $3 == "comp" ]; then
-      awk -F ';' 'NR == 1 || ($4 != "-" && $5 != "-") || ($4 != "-" && $6 == "-")' $1 > tmp/data.txt
+      awk -F ';' 'NR == 1 || ($4 != "-" && $5 != "-")' $1 > tmp/data.txt
   else
       echo "erreur : l'un des arguments spécifiés est incorrect"
       exit 0
@@ -166,14 +175,12 @@ case $2 in
 esac
 
 
-START_TIME=$(date +%s)
 
 if [ -d $exe_name  ]; then # Si l'éxécutable éxiste on le lance directement
   ./$exe_name
 else  #Sinon lancement du code C avec le Makefile en passant le fichier en paramètre
 
   cd $dir_makefile || exit 0
-  make clean
   make all ARGS="../tmp/data.txt $2 $3"
   make clean
   cd $dir_origine || exit 0
@@ -181,21 +188,25 @@ fi
 
 
 if [ $2 = 'lv' ] && [ $3 = 'all' ]; then
-
 gnuplot -persist << EOF
+  set terminal png size 1920,1080
+  set output 'graph/lv_all_load_graph.png'
+  set autoscale
+  set style fill solid
+  set title 'Titre'
+  set ylabel 'Load (kWh)'
+  set xlabel 'Station ID'
+  set datafile separator ":"
+  set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "white" behind
+  set style fill solid 0.5 border lc rgb "black"  # Remplissage semi-transparent avec bordure noire
+  plot 'tmp/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "#008B8B" title 'Load'
 EOF
 fi
 
 END_TIME=$(date +%s)
-
 PROCESSUS_TIME=$((END_TIME - START_TIME))
-
-
-
 echo "Le programme a mit : $PROCESSUS_TIME secondes"
 
-
-#suppression des fichiers et/ou dossiers du dossiers tmp
 #rm tmp/*
 
 echo "$ascii3"
