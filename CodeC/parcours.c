@@ -60,14 +60,14 @@ void parcoursInfixe(tree* head) {
     }
 }
 
-void parcoursRefresh(tree** head, Data a){
-    if (*head != NULL){
+void parcoursRefresh(tree** head, Data a) {
+    if (*head != NULL) {
         if ((*head)->a.id < a.id){
             parcoursRefresh(&((*head)->fd), a);
-        } else if ((*head)->a.id > a.id) {
+        } else if ((*head)->a.id > a.id){
             parcoursRefresh(&((*head)->fg), a);
         } else {
-            (*head)->a.consommation += a.consommation;
+            (*head)->a.consommation += a.consommation;  // Mise à jour de la consommation
         }
     }
 }
