@@ -16,19 +16,14 @@ arbre* creer(donnees a) {
 
 //fonction pour faire une double rotation gauche dans l'arbre
 arbre* rotationGauche(arbre* tete) {
-    if (tete == NULL) {
-        return NULL;
-    }
-
-    arbre* pivot = tete->fd;
-
-    if (pivot == NULL) {
+    if (tete == NULL || tete->fd == NULL) {
         return tete;
     }
-
+    arbre* pivot = tete->fd;
     tete->fd = pivot->fg;
     pivot->fg = tete;
 
+    // Mise à jour des facteurs d'équilibre
     tete->equilibre = tete->equilibre - 1 - max(0, pivot->equilibre);
     pivot->equilibre = pivot->equilibre - 1 + min(0, tete->equilibre);
 
@@ -36,43 +31,37 @@ arbre* rotationGauche(arbre* tete) {
 }
 
 arbre* rotationDroite(arbre* tete) {
-    if (tete == NULL){
-        exit(1);
-    }
-    arbre* pivot = tete->fg;
-    if (pivot == NULL){
+    if (tete == NULL || tete->fg == NULL) {
         return tete;
     }
+    arbre* pivot = tete->fg;
     tete->fg = pivot->fd;
     pivot->fd = tete;
+
+    // Mise à jour des facteurs d'équilibre
     tete->equilibre = tete->equilibre + 1 - min(0, pivot->equilibre);
     pivot->equilibre = pivot->equilibre + 1 + max(0, tete->equilibre);
+
     return pivot;
 }
 
 //fonction pour faire une double rotation gauche dans l'arbre
 arbre* doubleRotationGauche(arbre* tete) {
-    if (tete == NULL){
-        exit(1);
-    }
+
     tete->fd = rotationDroite(tete->fd);
     return rotationGauche(tete);
 }
 
 //fonction pour faire une double rotation droite dans l'arbre
 arbre* doubleRotationDroite(arbre* tete) {
-    if (tete == NULL){
-        exit(1);
-    }
+
     tete->fg = rotationGauche(tete->fg);
     return rotationDroite(tete);
 }
 
 //fonction pour équilibrer l'arbre
 arbre* equilibrage(arbre* tete) {
-    if (tete == NULL){
-        exit(1);
-    }
+
     if (tete->equilibre >= 2) {
         if (tete->fd != NULL && tete->fd->equilibre >= 0) {
             return rotationGauche(tete);
@@ -210,50 +199,56 @@ void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, i
         }
     }
 }
-void sortByProduction(arbre** out, arbre* tmp, int * h){
-    if (tmp == NULL) {
-        return;
-    }
-    if (*out == NULL){
+arbre* sortByAbs(arbre* tete, donnees tmp, int* h) {
+    if (tete == NULL) {
         *h = 1;
-        *out = creer(tmp->a);
-    } else if ((*out)->a.production <= tmp->a.production){
-        sortByProduction(&(*out)->fd, tmp, h);
-    } else if ((*out)->a.production > tmp->a.production) {
-        sortByProduction(&(*out)->fg, tmp, h);
+        return creer(tmp);
+    } else if (absoluteValue(tete->a.production, tete->a.consommation) > absoluteValue(tmp.production, tmp.consommation)) {
+        tete->fg = sortByAbs(tete->fg, tmp, h);
         *h = -*h;
+    } else if (absoluteValue(tete->a.production, tete->a.consommation) < absoluteValue(tmp.production, tmp.consommation)) {
+        tete->fd = sortByAbs(tete->fd, tmp, h);
     } else {
-        *h = 0;
-    }
-    if (*h != 0) {
-        (*out)->equilibre += *h;
-        (*out) = equilibrage(*out);
-        if ((*out)->equilibre == 0) {
-            *h = 0;
+        if (tete->a.id > tmp.id){
+            tete->fg = sortByAbs(tete->fg, tmp, h);
+            *h = -*h;
+        } else if (tete->a.id < tmp.id){
+            tete->fd = sortByAbs(tete->fd, tmp, h);
         } else {
-            *h = 1;
+            *h = 0;
         }
     }
+    if (*h != 0) {
+        tete->equilibre += *h;
+        tete = equilibrage(tete); // Mettez à jour le pointeur après équilibrage
+        *h = tete->equilibre == 0 ? 0 : 1;
+    }
+    return tete;
 }
-
-void sortByAbs(arbre** out, arbre* tmp, int* h){
-    if (*out == NULL){
-        *out = creer(tmp->a);
-    } else if (absoluteValue((*out)->a.production,(*out)->a.consommation) < absoluteValue(tmp->a.production,tmp->a.consommation)){
-        sortByAbs(&(*out)->fd, tmp, h);
-    }else if (absoluteValue((*out)->a.production,(*out)->a.consommation) > absoluteValue(tmp->a.production, tmp->a.consommation)){
+arbre* sortByProduction(arbre* tete, donnees tmp, int* h) {
+    if (tete == NULL) {
+        *h = 1;
+        return creer(tmp);
+    }
+    if (tete->a.consommation > tmp.consommation) {
+        tete->fg = sortByProduction(tete->fg, tmp, h);
         *h = -*h;
-        sortByAbs(&(*out)->fg, tmp, h);
-    }
-    if (*h != 0) {
-        (*out)->equilibre += *h;
-        (*out) = equilibrage(*out);
-        if ((*out)->equilibre == 0) {
-            *h = 0;
+    } else if (tete->a.consommation < tmp.consommation) {
+        tete->fd = sortByProduction(tete->fd, tmp, h);
+    } else {
+        if (tete->a.id > tmp.id){
+            tete->fg = sortByProduction(tete->fg, tmp, h);
+            *h = -*h;
+        } else if (tete->a.id < tmp.id){
+            tete->fd = sortByProduction(tete->fd, tmp, h);
         } else {
-            *h = 1;
+            *h = 0;
         }
     }
+    if (*h != 0) {
+        tete->equilibre += *h;
+        tete = equilibrage(tete);
+        *h = (tete->equilibre == 0) ? 0 : 1;
+    }
+    return tete;
 }
-
-
