@@ -1,8 +1,8 @@
 #include "include/affichage.h"
 
-void traiter(arbre* tete){
-    if (tete != NULL){
+void traiter(tree* head){
+    if (head != NULL){
         printf("%lu %lu %lu %lu %lu %lu %lu %lu\n",
-               tete->a.Powerplant, tete->a.hv_b, tete->a.hv_a, tete->a.lv, tete->a.entreprise, tete->a.particuliers, tete->a.production, tete->a.consommation);
+               head->a.Powerplant, head->a.hv_b, head->a.hv_a, head->a.lv, head->a.entreprise, head->a.particuliers, head->a.production, head->a.consommation);
     }
 }
