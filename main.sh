@@ -26,6 +26,12 @@ if [ $# -lt 3 ]; then
   exit 0;
 fi
 
+BiggestPowerPlant=$(tail -n 1 $1 | awk '{print $1}')
+if [ $4 -le 0 ] || [ $4 -gt $BiggestPowerPlant ]; then
+  echo "Error the selected power plant is invalid"
+  exit 0
+fi
+
 
 ascii1="
                         .,.*/(,
