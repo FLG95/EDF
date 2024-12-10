@@ -136,20 +136,17 @@ void addTree(tree** stationTree, tree** consoTree, Data b, int* hStation, int* h
     if (station == NULL){
         exit(1);
     }
-    if (strcmp(station, "lv") == 0){
-        if (isLv(b)){
+    if (strcmp(station, "lv") == 0) {
+        if (isLv(b)) {
             b.id = b.lv;
             *tmp = b;
             *stationTree = insertStation(*stationTree, b, hStation);
         } else {
             b.id = b.lv;
-            if (tmp->id == b.id){
+            if (tmp->id == b.id) {
                 parcoursRefresh(stationTree, b);
             }
-
-            //*consoTree = insererConso(*consoTree, b, hConso);
         }
-
     }
     if (strcmp(station, "hvb") == 0){
         if (isHvb(b) == 1){
@@ -161,7 +158,6 @@ void addTree(tree** stationTree, tree** consoTree, Data b, int* hStation, int* h
             if (tmp->id == b.id){
                 parcoursRefresh(stationTree, b);
             }
-            //*consoTree = insererConso(*consoTree, b, hConso);
         }
     }
     if (strcmp(station, "hva") == 0){
@@ -174,7 +170,6 @@ void addTree(tree** stationTree, tree** consoTree, Data b, int* hStation, int* h
             if (tmp->id == b.id){
                 parcoursRefresh(stationTree, b);
             }
-            //*consoTree = insererConso(*consoTree, b, hConso);
         }
     }
 }
