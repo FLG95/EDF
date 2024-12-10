@@ -18,17 +18,17 @@ int absoluteValue(long unsigned i, long unsigned j){
         return tmp;
     }
 }
-//fonction pour libérer la mémoire de l'arbre
-void freeAvl(arbre* tete) {
-    if (tete == NULL) {
+//fonction pour libérer la mémoire de l'tree
+void freeAvl(tree* head) {
+    if (head == NULL) {
         return;
     }
-    freeAvl(tete->fg);
-    freeAvl(tete->fd);
-    free(tete);
+    freeAvl(head->fg);
+    freeAvl(head->fd);
+    free(head);
 }
 
-int comparaisonData(donnees a, donnees b){
+int comparaisonData(Data a, Data b){
    if (a.hv_b != b.hv_b){
         return a.hv_b - b.hv_b;
     } else if (a.hv_a != b.hv_a){
@@ -42,7 +42,7 @@ int comparaisonData(donnees a, donnees b){
 long long int somme(long unsigned a, long long int b){
     return a + b;
 }
-int estLv(donnees a){
+int isLv(Data a){
     if (a.lv != 0 && a.consommation == 0){
         return 1;
     } else {
@@ -50,7 +50,7 @@ int estLv(donnees a){
     }
     return 0;
 }
-int estHvb(donnees a){
+int isHvb(Data a){
     if (a.hv_b != 0 && a.hv_a == 0 && a.lv == 0 && a.production != 0){
         return 1;
     } else {
@@ -58,7 +58,7 @@ int estHvb(donnees a){
     }
     return 0;
 }
-int estHva(donnees a){
+int isHva(Data a){
     if (a.hv_a != 0 && a.lv == 0 && a.production != 0){
         return 1;
     } else {
@@ -67,17 +67,17 @@ int estHva(donnees a){
     return 0;
 }
 
-void nbNoeud(long long unsigned * i, arbre* tete){
-    if (tete != NULL){
+void nbNodes(long long unsigned * i, tree* head){
+    if (head != NULL){
         *i = *i+1;
-        nbNoeud(i, tete->fg);
-        nbNoeud(i, tete->fd);
+        nbNodes(i, head->fg);
+        nbNodes(i, head->fd);
     }
 }
 
-donnees* init(){
-    donnees* tmp = NULL;
-    tmp = malloc(sizeof(donnees));
+Data* init(){
+    Data* tmp = NULL;
+    tmp = malloc(sizeof(Data));
     if (tmp == NULL){
         exit(1);
     }
