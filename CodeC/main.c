@@ -59,11 +59,7 @@ int main(int argc, char* argv[]){
     //parcoursInfixe(consoTree);
     //parcoursLargeur(tete);
 
-    if (estAVL(consoTree)) {
-        printf("\nL'arbre est un AVL.\n");
-    } else {
-        printf("\nL'arbre n'est PAS un AVL.\n");
-    }
+
     long long unsigned  i = 0;
     nbNoeud(&i, stationTree);
     printf("%llu\n\n", i);
@@ -76,15 +72,32 @@ int main(int argc, char* argv[]){
     arbre* stationTreeSortAbs = NULL;
     int h_abs = 0;
     int h_Prod = 0;
-    parcoursSortAbs(&stationTreeSortAbs, stationTree, &h_abs);
+    stationTreeSortAbs = parcoursSortAbs(stationTreeSortAbs, stationTree, &h_abs);
 
-    parcoursSortProduction(&stationTreeSortProduction, stationTree, &h_Prod);
+    stationTreeSortProduction = parcoursSortProduction(stationTreeSortProduction, stationTree, &h_Prod);
     printf("HELLO\n");
+
+
+    if (estAVL(stationTreeSortProduction)) {
+        printf("\nL'arbre est un AVL.\n");
+    } else {
+        printf("\nL'arbre n'est PAS un AVL.\n");
+    }
+    i = 0;
+    nbNoeud(&i, stationTreeSortProduction);
+    printf("%llu\n\n", i);
+    if (estAVL(stationTreeSortAbs)) {
+        printf("\nL'arbre est un AVL.\n");
+    } else {
+        printf("\nL'arbre n'est PAS un AVL.\n");
+    }
 
 
 
     i = 0;
-    nbNoeud(&i, stationTreeSortProduction);
+    nbNoeud(&i, stationTreeSortAbs);
+    printf("%llu\n\n", i);
+
     if (stationTreeSortProduction == NULL || stationTreeSortAbs == NULL){
         exit(1);
     }
