@@ -34,7 +34,7 @@ void centerWrite10(tree* head, char* arg1, char* arg2){
     int h_sup = 0;
     int h_inf = 0;
 
-    FILE* fichier = fopen("../tmp/lv_minmax.csv", "w");
+    FILE* fichier = fopen("../resultats/lv_minmax.csv", "w");
     if (fichier == NULL){
         exit(1);
     }
@@ -62,7 +62,7 @@ void centerWrite(tree* head, char* arg2, char* arg3){
     }
     int h = 0;
     char* underscore = "_";
-    char* destination = addCharToChar("../tmp/", arg2);
+    char* destination = addCharToChar("../resultats/", arg2);
     destination = addCharToChar(destination, underscore);
     destination = addCharToChar(destination, arg3);
     destination = addCharToChar(destination, ".csv");
