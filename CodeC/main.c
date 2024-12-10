@@ -110,5 +110,7 @@ int main(int argc, char* argv[]){
 
     freeAvl(consoTree);
     freeAvl(stationTree);
+    free(stationTreeSortProduction);
+    free(stationTreeSortAbs);
     return 0;
 }
