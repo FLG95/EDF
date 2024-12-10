@@ -2,7 +2,7 @@
 #define TYPE_AVL
 
 #include <stdint.h>
-typedef struct donnees{
+typedef struct Data{
     int id;
     long unsigned Powerplant;
     long unsigned hv_b;
@@ -12,16 +12,16 @@ typedef struct donnees{
     long unsigned particuliers;
     long unsigned consommation;
     long unsigned production;
-} donnees;
-typedef struct arbre {
-    donnees a;
-    struct arbre* fd;
-    struct arbre* fg;
-    int equilibre;
-} arbre;
+} Data;
+typedef struct tree {
+    Data a;
+    struct tree* fd;
+    struct tree* fg;
+    int balance;
+} tree;
 typedef struct file {
     int a;
-    arbre* actuel;
+    tree* actuel;
     struct file* suivant;
 } file;
 
