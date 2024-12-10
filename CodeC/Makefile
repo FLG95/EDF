@@ -2,13 +2,13 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -std=c11 -Iinclude
+CFLAGS = -std=c11 -Iinclude -g
 
 LIBS = -lncursesw
 
 
 # Source files
-SRC = main.c creerAvl.c parcours.c affichage.c creerDonnees.c fonctionUtile.c outFile.c
+SRC = main.c createAvl.c parcours.c affichage.c createData.c fonctionUtile.c outFile.c
 
 # Object files
 OBJ = $(SRC:.c=.o)
