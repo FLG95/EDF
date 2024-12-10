@@ -26,7 +26,7 @@ void freeAvl(arbre* tete);
 int hauteur(arbre* tete);
 bool estAVL(arbre* tete);
 void addTree(arbre** stationTree, arbre** consoTree, donnees b, int* hStation, int* hConso, char* station, donnees* tmp, int* i);
-void sortByProduction(arbre** out, arbre* tmp, int* h);
-void sortByAbs(arbre** out, arbre* tmp, int* h);
+arbre* sortByProduction(arbre* out, donnees tmp, int* h);
+arbre* sortByAbs(arbre* out, donnees tmp, int* h);
 
 #endif //CREER_AVL
