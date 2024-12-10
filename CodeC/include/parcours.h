@@ -15,7 +15,7 @@ arbre* defiler(file** f);
 void parcoursLargeur(arbre* tete);
 void parcoursInfixe(arbre* tete);
 void parcoursRefresh(arbre** tete, donnees a);
-void parcoursSortProduction(arbre** tete, arbre* tmp, int* h);
-void parcoursSortAbs(arbre** tete, arbre* tmp, int* h);
+arbre* parcoursSortProduction(arbre* tete, arbre* tmp, int* h);
+arbre* parcoursSortAbs(arbre* tete, arbre* tmp, int* h);
 
 #endif //PARCOURS_H
