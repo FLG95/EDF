@@ -1,34 +1,34 @@
 #include "include/outFile.h"
-void write10sup(arbre* tete, int* h, FILE* fichier, char* arg1, char* arg2){
+void write10sup(tree* head, int* h, FILE* fichier, char* arg1, char* arg2){
 
-    if (tete != NULL && *h < 10) {
-        write10sup(tete->fd, h, fichier, arg1, arg2);
+    if (head != NULL && *h < 10) {
+        write10sup(head->fd, h, fichier, arg1, arg2);
         if (*h == 0){
             fprintf(fichier, "Station %s : Capacité : Consommation %s\n", arg1, arg2);
         }
         if (*h < 10) {
             *h = *h + 1;
             fprintf(fichier, "%d:%lu:%lu\n",
-                    tete->a.id, tete->a.production, tete->a.consommation);
+                    head->a.id, head->a.production, head->a.consommation);
         }
-        write10sup(tete->fg, h, fichier, arg1, arg2);
+        write10sup(head->fg, h, fichier, arg1, arg2);
     }
 }
-void write10less(arbre* tete, int* h, FILE* fichier){
+void write10less(tree* head, int* h, FILE* fichier){
 
-    if (tete != NULL && *h < 10) {
-        write10less(tete->fg, h, fichier);
+    if (head != NULL && *h < 10) {
+        write10less(head->fg, h, fichier);
         if (*h < 10) {
             *h = *h + 1;
             fprintf(fichier, "%d:%lu:%lu\n",
-                    tete->a.id, tete->a.production, tete->a.consommation);
+                    head->a.id, head->a.production, head->a.consommation);
         }
-        write10less(tete->fd, h, fichier);
+        write10less(head->fd, h, fichier);
     }
 }
 
-void centerWrite10(arbre* tete, char* arg1, char* arg2){
-    if (tete == NULL){
+void centerWrite10(tree* head, char* arg1, char* arg2){
+    if (head == NULL){
         exit(1);
     }
     int h_sup = 0;
@@ -38,26 +38,26 @@ void centerWrite10(arbre* tete, char* arg1, char* arg2){
     if (fichier == NULL){
         exit(1);
     }
-    write10sup(tete ,&h_sup, fichier, arg1, arg2);
-    write10less(tete, &h_inf, fichier);
+    write10sup(head ,&h_sup, fichier, arg1, arg2);
+    write10less(head, &h_inf, fichier);
     fclose(fichier);
 }
 
 
-void writeAllData(arbre* tete, FILE* fichier, int* h, char* arg1, char* arg2){
-    if (tete != NULL ){
+void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
+    if (head != NULL ){
         if (*h == 0){
             *h = *h + 1;
             fprintf(fichier, "Station %s : Capacité : Consommation %s\n", arg1, arg2);
         }
-        writeAllData(tete->fg, fichier, h, arg1, arg2);
+        writeAllData(head->fg, fichier, h, arg1, arg2);
         fprintf(fichier, "%d:%lu:%lu\n",
-        tete->a.id, tete->a.production, tete->a.consommation);
-        writeAllData(tete->fd, fichier, h, arg1, arg2);
+        head->a.id, head->a.production, head->a.consommation);
+        writeAllData(head->fd, fichier, h, arg1, arg2);
     }
 }
-void centerWrite(arbre* tete, char* arg2, char* arg3){
-    if (tete == NULL){
+void centerWrite(tree* head, char* arg2, char* arg3){
+    if (head == NULL){
         exit(1);
     }
     int h = 0;
@@ -71,6 +71,6 @@ void centerWrite(arbre* tete, char* arg2, char* arg3){
         exit(1);
     }
 
-    writeAllData(tete, fichierAll, &h, arg2, arg3);
+    writeAllData(head, fichierAll, &h, arg2, arg3);
     fclose(fichierAll);
 }
