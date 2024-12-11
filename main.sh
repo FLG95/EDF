@@ -237,7 +237,7 @@ gnuplot -persist << EOF
   set datafile separator ":"
   set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "white" behind
   set style fill solid 0.5 border lc rgb "black"  # Remplissage semi-transparent avec bordure noire
-  plot 'resultats/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "#008B8B" title 'Load'
+  plot 'resultats/lv_minmax.csv' using 2:xtic(1) with boxes linecolor rgb "#008B8B" title 'capacity', 'resultats/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "#FF0000" title 'consomation'
 EOF
 fi
 
