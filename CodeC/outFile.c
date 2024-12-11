@@ -15,8 +15,15 @@ void write10sup(tree* head, int* h, FILE* fichier, char* arg1, char* arg2){
     }
 }
 void write10less(tree* head, int* h, FILE* fichier){
+    long long unsigned i = 0;
+    if (head != NULL){
 
-    if (head != NULL && *h < 10) {
+        nbNodes(&i, head);
+        if (i != 1){
+
+        }
+    }
+    if (head != NULL && *h < 10 && i !=1) {
         write10less(head->fg, h, fichier);
         if (*h < 10) {
             *h = *h + 1;
