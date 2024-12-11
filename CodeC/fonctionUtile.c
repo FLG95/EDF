@@ -2,14 +2,17 @@
 #include "include/type_avl.h"
 
 
-//fonction pour déterminer le minimum
+//Determinate the minimum between the two value in parameter
 int min(int a, int b) {
     return (a < b) ? a : b;
 }
-//fonction pour déterminer le maximun
+
+//Determinate the maximun between the two value in parameter
 int max(int a, int b) {
     return (a > b) ? a : b;
 }
+
+//Determinate the absolute value between the two value in parameter
 int absoluteValue(long unsigned i, long unsigned j){
     long long int tmp = i - j;
     if (tmp < 0){
@@ -18,7 +21,8 @@ int absoluteValue(long unsigned i, long unsigned j){
         return tmp;
     }
 }
-//fonction pour libérer la mémoire de l'tree
+
+//Free the memory
 void freeAvl(tree* head) {
     if (head == NULL) {
         return;
@@ -28,17 +32,17 @@ void freeAvl(tree* head) {
     free(head);
 }
 
-long long int somme(long unsigned a, long long int b){
-    return a + b;
-}
+//Check if the Data in parameter is a lv station
 int isLv(Data a){
-    if (a.lv != 0 && a.consommation == 0){
+    if (a.lv != 0 && a.consumption == 0){
         return 1;
     } else {
         return 0;
     }
     return 0;
 }
+
+//Check if the Data in parameter is a hvb station
 int isHvb(Data a){
     if (a.hv_b != 0 && a.hv_a == 0 && a.lv == 0 && a.production != 0){
         return 1;
@@ -47,6 +51,8 @@ int isHvb(Data a){
     }
     return 0;
 }
+
+//Check if the Data in parameter is a hva station
 int isHva(Data a){
     if (a.hv_a != 0 && a.lv == 0 && a.production != 0){
         return 1;
@@ -56,6 +62,7 @@ int isHva(Data a){
     return 0;
 }
 
+//Determinate the number of nodes in an avl
 void nbNodes(long long unsigned * i, tree* head){
     if (head != NULL){
         *i = *i+1;
@@ -64,6 +71,7 @@ void nbNodes(long long unsigned * i, tree* head){
     }
 }
 
+//Initialize the data
 Data* init(){
     Data* tmp = NULL;
     tmp = malloc(sizeof(Data));
@@ -73,7 +81,7 @@ Data* init(){
     tmp->lv = 0;
     tmp->hv_a = 0;
     tmp->hv_b = 0;
-    tmp->consommation = 0;
+    tmp->consumption = 0;
     tmp->id = 1;
     tmp->particuliers = 0;
     tmp->entreprise = 0;
@@ -81,6 +89,8 @@ Data* init(){
     tmp->production = 0;
     return tmp;
 }
+
+//Add two char* into one char*
 char* addCharToChar(char* origin, char* toAdd){
     if (origin == NULL || toAdd == NULL){
         exit(1);
