@@ -20,9 +20,7 @@ tree* doubleLeftRotation(tree* head);
 tree* doubleRightRotation(tree* head);
 tree* balancing(tree* head);
 tree* insertStation(tree* head, Data a, int* h);
-int height(tree* head);
-bool isAVL(tree* head);
-void addTree(tree** stationTree, tree** consoTree, Data b, int* hStation, int* hConso, char* station, Data* tmp, int* i);
+void addTree(tree** stationTree, Data b, int* hStation, char* station, Data* tmp, int* i);
 tree* sortByProduction(tree* out, Data tmp, int* h);
 tree* sortByAbs(tree* out, Data tmp, int* h);
 
