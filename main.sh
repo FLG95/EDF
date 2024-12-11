@@ -227,7 +227,7 @@ fi
 
 if [ $2 == 'lv' ] && [ $3 == 'all' ]; then
 gnuplot -persist << EOF
-  set terminal png size 1920,1080
+  set terminal png size 1600,900
   set output 'graph/lv_all_load_graph.png'
   set autoscale
   set style fill solid
@@ -235,9 +235,9 @@ gnuplot -persist << EOF
   set ylabel 'Load (kWh)'
   set xlabel 'Station ID'
   set datafile separator ":"
-  set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "white" behind
+  set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "grey" behind
   set style fill solid 0.5 border lc rgb "black"  # Remplissage semi-transparent avec bordure noire
-  plot 'resultats/lv_minmax.csv' using 2:xtic(1) with boxes linecolor rgb "#008B8B" title 'capacity', 'resultats/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "#FF0000" title 'consomation'
+  plot 'resultats/lv_minmax.csv' using 2:xtic(1) with boxes linecolor rgb "navy" title 'capacity', 'resultats/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "gold" title 'consomation'
 EOF
 fi
 
