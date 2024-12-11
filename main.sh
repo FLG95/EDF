@@ -140,10 +140,10 @@ case $2 in
 
 
   elif [ $3 == "comp" ]; then
-    if [ -n "$1" ]; then
+    if [ -n "$4" ]; then
           awk -F ';' -v nb="$nb" 'NR == 1 || (($2 == nb && $5 != "-" && $4 == "-" && $3 == "-") || ($2 == nb && $3 == "-" && $4 == "-"))' $1 > tmp/data.txt
         else
-          awk -F ';' 'NR == 1 || (($2 != "-" && $5 != "-" && $4 == "-" && $3 == "-") || ($2 == "-" && $3 == "-" && $4 == "-"))' $1 > tmp/data.txt
+          awk -F ';' 'NR == 1 || (($2 != "-" && $5 != "-" && $4 == "-" && $3 == "-") || ($2 != "-" && $3 == "-" && $4 == "-"))' $1 > tmp/data.txt
         fi
 
 
@@ -164,8 +164,8 @@ case $2 in
     exit 0
 
   elif [ $3 == "comp" ]; then
-    if [ -n "$1" ]; then
-      awk -F ';' -v nb="$nb" 'NR == 1 || (($3 == nb && $5 != "-" && $4 == "-") || ($3 != nb && $4 == "-"))' $1 > tmp/data.txt
+    if [ -n "$4" ]; then
+      awk -F ';' -v nb="$nb" 'NR == 1 || (($3 == nb && $5 != "-" && $4 == "-") || ($3 == nb && $4 == "-"))' $1 > tmp/data.txt
     else
       awk -F ';' 'NR == 1 || (($3 != "-" && $5 != "-" && $4 == "-") || ($3 != "-" && $4 == "-"))' $1 > tmp/data.txt
     fi
@@ -177,7 +177,7 @@ case $2 in
 
   "lv")
   if [ $3 == "all" ]; then
-    if [ -n "$1" ]; then
+    if [ -n "$4" ]; then
       awk -F ';' -v nb="$nb" 'NR == 1 || ($4 == nb )' $1 > tmp/data.txt
     else
       awk -F ';' 'NR == 1 || ($4 != "-")' $1 > tmp/data.txt
@@ -185,7 +185,7 @@ case $2 in
 
 
   elif [ $3 == "indiv" ]; then
-    if [ -n "$1" ]; then
+    if [ -n "$4" ]; then
       awk -F ';' -v nb="$nb" 'NR == 1 || ($4 == nb && $6 != "-") || ($4 == nb && $5 == "-")' "$1" > tmp/data.txt
     else
       awk -F ';' 'NR == 1 || ($4 != "-" && $6 != "-") || ($4 !="-" && $5 == "-")' $1 > tmp/data.txt
@@ -193,7 +193,7 @@ case $2 in
 
 
   elif [ $3 == "comp" ]; then
-    if [ -n "$1" ]; then
+    if [ -n "$4" ]; then
       awk -F ';' -v nb="$nb" 'NR == 1 || ($4 == nb && $5 != "-") || ($4 == nb && $6 == "-")' "$1" > tmp/data.txt
     else
       awk -F ';' 'NR == 1 || ($4 != "-" && $5 != "-") || ($4 != "-" && $6 == "-")' $1 > tmp/data.txt
