@@ -34,9 +34,16 @@ not all case are allowed (hvb all/indiv) & (hva all/indiv)
 
 
 
-Dependencies
 
-    pthread
+
+
+
+
+
+
+
+
+
 
 Env variables
 
