@@ -8,7 +8,7 @@ function help(){
   echo "ARG[1] : csv file path"
   echo "ARG[2] : station type ( hvb hva lv )"
   echo "ARG[3] : consumer type ( comp indiv all)"
-  acho "ARG[4] : number of the power plant you want to take ( if you want to take all the power plant just dont use this argument"
+  echo "ARG[4] : number of the power plant you want to take ( if you want to take all the power plant just dont use this argument"
   echo "Option :"
   echo "-n to selected the power plant you want to take ( only one station can be selected if you want to take all the station just dont use this command)"
   echo "-h show help for this command"
