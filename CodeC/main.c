@@ -15,97 +15,63 @@
 
 
 int main(int argc, char* argv[]){
-    int hStation = 0;
-    int hConso = 0;
-    tree* stationTree = NULL;
-    tree* consoTree = NULL;
+
+    //Check if argv[2] is correct
     if (strcmp(argv[2], "hva") != 0 && strcmp(argv[2], "hvb") != 0 && strcmp(argv[2], "lv") != 0){
         exit(1);
     }
-    char* type = argv[2];
 
-
+    //Check if the number of argument is correct
     if (argc != 4){
         printf("ERROR : not enough argument");
         exit(1);
     }
 
+    //Define the type of the station
+    char* type = argv[2];
+
+    //Initialize the parameterss for the height anf the stability of an avl
+    int hStation = 0;
+
+    //Initialize the tree of the station
+    tree* stationTree = NULL;
+
+    //Open the file which contains the data and check if all is right
     FILE* fichier = fopen(argv[1], "r");
     if (fichier == NULL){
         printf("ERROR : argument 1 file is empty");
         exit(1);
     }
 
+    printf("\n\n\nWe are sorting your data, please wait few seconds");
 
+    //Take data of a file and add it to a tree
+    ensembleDonne(fichier, &hStation, &stationTree, type);
 
-/*
-    FILE* out = fopen("../tmp/out.txt", "w");
-    if (out == NULL){
-        printf("ERROR : can't open file");
-        exit(1);
-    }
-
-*/
-
-    ensembleDonne(fichier, &hStation, &hConso, &stationTree, &consoTree, type);
-    //parcoursInfixe(stationTree);
-
-    if (isAVL(stationTree)) {
-        printf("\nL'arbre est un AVL.\n");
-    } else {
-        printf("\nL'arbre n'est PAS un AVL.\n");
-    }
-    //parcoursInfixe(consoTree);
-    //parcoursLargeur(head);
-
-
-    long long unsigned  i = 0;
-    nbNodes(&i, stationTree);
-    printf("%llu\n\n", i);
-    long long unsigned j = 0;
-    nbNodes(&i, consoTree);
-    printf("%llu\n\n", i);
-
-    //parcoursInfixe(consoTree);
+    //Initialize tree
     tree* stationTreeSortProduction = NULL;
     tree* stationTreeSortAbs = NULL;
+
+    //Initialize the parameters for the height anf the stability of an avl
     int h_abs = 0;
     int h_Prod = 0;
-    stationTreeSortAbs = parcoursSortAbs(stationTreeSortAbs, stationTree, &h_abs);
 
+    //Add Nodes to the different tree with the right method for each one
+    stationTreeSortAbs = parcoursSortAbs(stationTreeSortAbs, stationTree, &h_abs);
     stationTreeSortProduction = parcoursSortProduction(stationTreeSortProduction, stationTree, &h_Prod);
 
-    if (isAVL(stationTreeSortProduction)) {
-        printf("\nL'arbre est un AVL.\n");
-    } else {
-        printf("\nL'arbre n'est PAS un AVL.\n");
-    }
-    i = 0;
-    nbNodes(&i, stationTreeSortProduction);
-    printf("%llu\n\n", i);
-    if (isAVL(stationTreeSortAbs)) {
-        printf("\nL'arbre est un AVL.\n");
-    } else {
-        printf("\nL'arbre n'est PAS un AVL.\n");
-    }
-
-
-
-    i = 0;
-    nbNodes(&i, stationTreeSortAbs);
-    printf("%llu\n\n", i);
-
+    //Check if the tree are not empty
     if (stationTreeSortProduction == NULL || stationTreeSortAbs == NULL){
         exit(1);
     }
 
-
+    //Write the nodes of the tree in external files
     centerWrite(stationTreeSortProduction, argv[2], argv[3]);
     if (strcmp(argv[2], "lv") == 0 && strcmp(argv[3], "all") == 0){
         centerWrite10(stationTreeSortAbs, argv[2], argv[3]);
     }
 
-    freeAvl(consoTree);
+    //free the memory
     freeAvl(stationTree);
     free(stationTreeSortProduction);
     free(stationTreeSortAbs);
