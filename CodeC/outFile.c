@@ -51,9 +51,10 @@ void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
             fprintf(fichier, "Station %s : Capacité : Consommation %s\n", arg1, arg2);
         }
         writeAllData(head->fg, fichier, h, arg1, arg2);
+        writeAllData(head->fd, fichier, h, arg1, arg2);
         fprintf(fichier, "%d:%lu:%lu\n",
         head->a.id, head->a.production, head->a.consommation);
-        writeAllData(head->fd, fichier, h, arg1, arg2);
+
     }
 }
 void centerWrite(tree* head, char* arg2, char* arg3){
