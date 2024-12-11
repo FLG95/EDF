@@ -20,7 +20,7 @@ function help(){
 
 for arg in "$@"; do
   case "$arg" in
-      -h) # si un argument est -h on affiche l'aide
+      -h)
         help
         ;;
   esac
@@ -145,7 +145,7 @@ case $2 in
 
 
   else
-    echo "erreur: l'un des arguments spécifiés est incorrect"
+    echo "error : one of the argument is invalid"
     exit 0
 
   fi
@@ -167,7 +167,7 @@ case $2 in
       awk -F ';' 'NR == 1 || (($3 != "-" && $5 != "-" && $4 == "-") || ($3 != "-" && $4 == "-"))' $1 > tmp/data.txt
     fi
   else
-    echo "erreur : l'un des arguments spécifiés est incorrect"
+    echo "error : one of the argument is invalid"
     exit 0
   fi
   ;;
@@ -198,13 +198,13 @@ case $2 in
 
 
   else
-      echo "erreur : l'un des arguments spécifiés est incorrect"
+      echo "error : one of the argument is invalid"
       exit 0
   fi
   ;;
 
   *)
-    echo "erreur : l'un des arguments spécifiés est incorrect"
+    echo "error : one of the argument is invalid"
     exit 0
   ;;
 esac
@@ -226,14 +226,14 @@ if [ $2 == 'lv' ] && [ $3 == 'all' ]; then
 gnuplot -persist << EOF
   set terminal png size 1600,900
   set output 'graph/lv_all_load_graph.png'
-  set autoscale
+  #set autoscale
   set style fill solid
   set title 'Titre'
   set ylabel 'Load (kWh)'
   set xlabel 'Station ID'
   set datafile separator ":"
   set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "grey" behind
-  set style fill solid 0.5 border lc rgb "black"  # Remplissage semi-transparent avec bordure noire
+  set style fill solid 0.5 border lc rgb "black"
   plot 'resultats/lv_minmax.csv' using 2:xtic(1) with boxes linecolor rgb "navy" title 'capacity', 'resultats/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "gold" title 'consomation'
 EOF
 fi
@@ -242,7 +242,7 @@ fi
 
 END_TIME=$(date +%s)
 PROCESSUS_TIME=$((END_TIME - START_TIME))
-echo "Le programme a mit : $PROCESSUS_TIME secondes"
+echo "The programme last : $PROCESSUS_TIME seconds"
 
 rm tmp/*
 
