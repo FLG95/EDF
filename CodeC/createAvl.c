@@ -1,7 +1,7 @@
 #include "include/create_avl.h"
 #include "include/fonction_utile.h"
 
-//fonction pour créer un noeud dans l'tree
+//Create node for a tree
 tree* create(Data a) {
     tree* new = malloc(sizeof(tree));
     if (new == NULL) {
@@ -14,7 +14,7 @@ tree* create(Data a) {
     return new;
 }
 
-//fonction pour faire une double rotation gauche dans l'tree
+//Make a simple left rotation for the stability of the tree
 tree* leftRotation(tree* head) {
     if (head == NULL || head->fd == NULL) {
         return head;
@@ -30,6 +30,7 @@ tree* leftRotation(tree* head) {
     return pivot;
 }
 
+//Make a simple right rotation for the stability of the tree
 tree* RightRotation(tree* head) {
     if (head == NULL || head->fg == NULL) {
         return head;
@@ -45,7 +46,7 @@ tree* RightRotation(tree* head) {
     return pivot;
 }
 
-//fonction pour faire une double rotation gauche dans l'tree
+//Make a double left rotation for the stability of the tree
 tree* doubleLeftRotation(tree* head) {
     if (head == NULL || head->fd == NULL){
         return NULL;
@@ -53,7 +54,8 @@ tree* doubleLeftRotation(tree* head) {
     head->fd = RightRotation(head->fd);
     return leftRotation(head);
 }
-//fonction pour faire une double rotation droite dans l'tree
+
+//Make a double right rotation for the stability of the tree
 tree* doubleRightRotation(tree* head) {
     if (head == NULL || head->fg == NULL){
         return NULL;
@@ -62,7 +64,7 @@ tree* doubleRightRotation(tree* head) {
     return RightRotation(head);
 }
 
-//fonction pour équilibrer l'tree
+//Balance the tree for the stability of the avl
 tree* balancing(tree* head) {
     if (head->balance >= 2) {
         if (head->fd != NULL && head->fd->balance >= 0) {
@@ -80,7 +82,7 @@ tree* balancing(tree* head) {
     return head;
 }
 
-//fonction pour insérer un élément dans l'tree
+//Insert Data in a tree
 tree* insertStation(tree* head, Data a, int* h) {
     if (head == NULL) {
         *h = 1;
@@ -107,31 +109,8 @@ tree* insertStation(tree* head, Data a, int* h) {
     return head;
 }
 
-
-//fonction pour calculer la hauter de l'tree
-int height(tree* head) {
-    if (head == NULL){
-        return 0;
-    }
-    return 1 + max(height(head->fg), height(head->fd));
-}
-//fonction pour déterminer si l'tree est bien un AVL
-bool isAVL(tree* head) {
-    if (head == NULL){
-        return true;
-    }
-
-    int heightG = height(head->fg);
-    int heightD = height(head->fd);
-
-    int factor = heightG - heightD;
-    if (factor < -1 || factor > 1){
-        return false;
-    }
-    return isAVL(head->fg) && isAVL(head->fd);
-}
-
-void addTree(tree** stationTree, tree** consoTree, Data b, int* hStation, int* hConso, char* station, Data* tmp, int* i){
+//Add data to a tree
+void addTree(tree** stationTree, Data b, int* hStation, char* station, Data* tmp, int* i){
     if (station == NULL){
         exit(1);
     }
@@ -172,14 +151,16 @@ void addTree(tree** stationTree, tree** consoTree, Data b, int* hStation, int* h
         }
     }
 }
+
+//Sort a tree by absolute value between production and consumption
 tree* sortByAbs(tree* head, Data tmp, int* h) {
     if (head == NULL) {
         *h = 1;
         return create(tmp);
-    } else if (absoluteValue(head->a.production, head->a.consommation) > absoluteValue(tmp.production, tmp.consommation)) {
+    } else if (absoluteValue(head->a.production, head->a.consumption) > absoluteValue(tmp.production, tmp.consumption)) {
         head->fg = sortByAbs(head->fg, tmp, h);
         *h = -*h;
-    } else if (absoluteValue(head->a.production, head->a.consommation) < absoluteValue(tmp.production, tmp.consommation)) {
+    } else if (absoluteValue(head->a.production, head->a.consumption) < absoluteValue(tmp.production, tmp.consumption)) {
         head->fd = sortByAbs(head->fd, tmp, h);
     } else {
         if (head->a.id > tmp.id){
@@ -194,6 +175,9 @@ tree* sortByAbs(tree* head, Data tmp, int* h) {
     if (*h != 0) {
         head->balance += *h;
         head = balancing(head);
+        if (head == NULL){
+            exit(1);
+        }
         if (head->balance == 0) {
             *h = 0;
         } else {
@@ -202,15 +186,17 @@ tree* sortByAbs(tree* head, Data tmp, int* h) {
     }
     return head;
 }
+
+//Sort a tree by production
 tree* sortByProduction(tree* head, Data tmp, int* h) {
     if (head == NULL) {
         *h = 1;
         return create(tmp);
     }
-    if (head->a.consommation > tmp.consommation) {
+    if (head->a.consumption > tmp.consumption) {
         head->fg = sortByProduction(head->fg, tmp, h);
         *h = -*h;
-    } else if (head->a.consommation < tmp.consommation) {
+    } else if (head->a.consumption < tmp.consumption) {
         head->fd = sortByProduction(head->fd, tmp, h);
     } else {
         if (head->a.id > tmp.id){
@@ -225,6 +211,9 @@ tree* sortByProduction(tree* head, Data tmp, int* h) {
     if (*h != 0) {
         head->balance += *h;
         head = balancing(head);
+        if (head == NULL){
+            exit(1);
+        }
         if (head->balance == 0) {
             *h = 0;
         } else {
