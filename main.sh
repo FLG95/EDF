@@ -89,6 +89,7 @@ dir_makefile="CodeC"
 dir_origine="../"
 dir_tmp="tmp"
 dir_graph="graph"
+dir_result="resultats"
 
 echo "$ascii1"
 echo "$ascii2"
@@ -102,7 +103,11 @@ if [ -d $dir_tmp ]; then
 else
   mkdir $dir_tmp;
 fi
-
+if [ -d $dir_result ]; then
+  rm -r $dir_result/*
+else
+  mkdir $dir_result;
+fi
 
 #vérifie si le dossier graph existe
 if [ -d $dir_graph ]; then
@@ -199,7 +204,7 @@ gnuplot -persist << EOF
   set datafile separator ":"
   set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "white" behind
   set style fill solid 0.5 border lc rgb "black"  # Remplissage semi-transparent avec bordure noire
-  plot 'tmp/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "#008B8B" title 'Load'
+  plot 'resultats/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "#008B8B" title 'Load'
 EOF
 fi
 
