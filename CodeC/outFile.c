@@ -4,7 +4,7 @@ void write10sup(tree* head, int* h, FILE* fichier, char* arg1, char* arg2){
     if (head != NULL && *h < 10) {
         write10sup(head->fd, h, fichier, arg1, arg2);
         if (*h == 0){
-            fprintf(fichier, "Station %s : Capacité : Consommation %s\n", arg1, arg2);
+            fprintf(fichier, "Station %s : Capacity : Consommation %s\n", arg1, arg2);
         }
         if (*h < 10) {
             *h = *h + 1;
@@ -55,7 +55,7 @@ void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
     if (head != NULL ){
         if (*h == 0){
             *h = *h + 1;
-            fprintf(fichier, "Station %s : Capacité : Consommation %s\n", arg1, arg2);
+            fprintf(fichier, "Station %s : Capacity : Consommation %s\n", arg1, arg2);
         }
         writeAllData(head->fg, fichier, h, arg1, arg2);
         writeAllData(head->fd, fichier, h, arg1, arg2);
