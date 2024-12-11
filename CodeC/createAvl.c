@@ -23,7 +23,7 @@ tree* leftRotation(tree* head) {
     head->fd = pivot->fg;
     pivot->fg = head;
 
-    // Mise à jour des facteurs d'équilibre
+    // Mise à jour des factors d'équilibre
     head->balance = head->balance - 1 - max(0, pivot->balance);
     pivot->balance = pivot->balance - 1 + min(0, head->balance);
 
@@ -38,7 +38,7 @@ tree* RightRotation(tree* head) {
     head->fg = pivot->fd;
     pivot->fd = head;
 
-    // Mise à jour des facteurs d'équilibre
+    // Mise à jour des factors d'équilibre
     head->balance = head->balance + 1 - min(0, pivot->balance);
     pivot->balance = pivot->balance + 1 + max(0, head->balance);
 
@@ -125,8 +125,8 @@ bool isAVL(tree* head) {
     int heightG = height(head->fg);
     int heightD = height(head->fd);
 
-    int facteur = heightG - heightD;
-    if (facteur < -1 || facteur > 1){
+    int factor = heightG - heightD;
+    if (factor < -1 || factor > 1){
         return false;
     }
     return isAVL(head->fg) && isAVL(head->fd);
