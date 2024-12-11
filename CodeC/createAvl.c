@@ -64,7 +64,6 @@ tree* doubleRightRotation(tree* head) {
 
 //fonction pour équilibrer l'tree
 tree* balancing(tree* head) {
-
     if (head->balance >= 2) {
         if (head->fd != NULL && head->fd->balance >= 0) {
             return leftRotation(head);
