@@ -126,7 +126,7 @@ else
 fi
 
 START_TIME=$(date +%s)
-echo "We are extracting your data, Please Wait few seconds"
+
 
 case $2 in
   "hvb")
@@ -211,7 +211,7 @@ case $2 in
     exit 0
   ;;
 esac
-
+echo "We are extracting your data, Please Wait few seconds"
 
 
 if [ -d $exe_name  ]; then # Si l'éxécutable éxiste on le lance directement
@@ -225,7 +225,7 @@ else  #Sinon lancement du code C avec le Makefile en passant le fichier en param
 fi
 
 
-if [ $2 = 'lv' ] && [ $3 = 'all' ]; then
+if [ $2 == 'lv' ] && [ $3 == 'all' ]; then
 gnuplot -persist << EOF
   set terminal png size 1920,1080
   set output 'graph/lv_all_load_graph.png'
