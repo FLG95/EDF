@@ -6,7 +6,7 @@ Subject CyWire subject.pdf
 
 
 
-Arguments
+<u>Arguments</u>
 
     input_file: path to the input file
     station_type: type of station (hvb, hva, lv)
