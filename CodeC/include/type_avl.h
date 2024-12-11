@@ -10,7 +10,7 @@ typedef struct Data{
     long unsigned lv;
     long unsigned entreprise;
     long unsigned particuliers;
-    long unsigned consommation;
+    long unsigned consumption;
     long unsigned production;
 } Data;
 typedef struct tree {
