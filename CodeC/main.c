@@ -8,7 +8,6 @@
 #include "include/create_avl.h"
 #include "include/parcours.h"
 #include "include/type_avl.h"
-#include "include/affichage.h"
 #include "include/createData.h"
 #include "include/fonction_utile.h"
 #include "include/outFile.h"
@@ -75,7 +74,6 @@ int main(int argc, char* argv[]){
     stationTreeSortAbs = parcoursSortAbs(stationTreeSortAbs, stationTree, &h_abs);
 
     stationTreeSortProduction = parcoursSortProduction(stationTreeSortProduction, stationTree, &h_Prod);
-
 
     if (isAVL(stationTreeSortProduction)) {
         printf("\nL'arbre est un AVL.\n");
