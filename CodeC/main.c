@@ -75,7 +75,6 @@ int main(int argc, char* argv[]){
     stationTreeSortAbs = parcoursSortAbs(stationTreeSortAbs, stationTree, &h_abs);
 
     stationTreeSortProduction = parcoursSortProduction(stationTreeSortProduction, stationTree, &h_Prod);
-    printf("HELLO\n");
 
 
     if (isAVL(stationTreeSortProduction)) {
