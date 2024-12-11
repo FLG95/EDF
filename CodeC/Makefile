@@ -8,7 +8,7 @@ LIBS = -lncursesw
 
 
 # Source files
-SRC = main.c createAvl.c parcours.c affichage.c createData.c fonctionUtile.c outFile.c
+SRC = main.c createAvl.c parcours.c createData.c fonctionUtile.c outFile.c
 
 # Object files
 OBJ = $(SRC:.c=.o)
