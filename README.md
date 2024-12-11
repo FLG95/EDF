@@ -9,7 +9,6 @@
         <h1>Welcome to The README of Cy EDF Project 😊</h1>
     </header>
     <main>
-        
         <section>
             <h2>Cy EDF</h2>
             <p>Pre-Ing-2 S1 project</p>
@@ -25,15 +24,13 @@
                 <li><strong>consumer_type:</strong> type of consumer (indiv, comp, all)</li>
                 <li><strong>OPTIONAL:</strong> power_plant_id: id of the power plant</li>
             </ul>
-            <p>Note: Not all cases are allowed (e.g., hvb supports all/indiv; hva supports all/indiv).</p>
+            <p> Not all cases are allowed (hvb supports all/indiv; hva supports all/indiv).</p>
             <h3>Exemple d'utilisation :</h3>
+            <p>./main.sh Input/[input_file] [station_type(hvb, hva, lv)] [consumer_type(indiv, comp, all)] exemple:</p>
             <pre>
 ./main.sh Input/c-wire_v25.dat hva comp
             </pre>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 My Website</p>
-    </footer>
 </body>
 </html>
