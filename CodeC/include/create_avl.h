@@ -12,8 +12,7 @@
 
 
 
-int min(int a, int b);
-int max(int a, int b);
+
 tree* create(Data a);
 tree* leftRotation(tree* head);
 tree* RightRotation(tree* head);
@@ -21,8 +20,6 @@ tree* doubleLeftRotation(tree* head);
 tree* doubleRightRotation(tree* head);
 tree* balancing(tree* head);
 tree* insertStation(tree* head, Data a, int* h);
-tree* insererConso(tree* head, Data a, int* h);
-void freeAvl(tree* head);
 int height(tree* head);
 bool isAVL(tree* head);
 void addTree(tree** stationTree, tree** consoTree, Data b, int* hStation, int* hConso, char* station, Data* tmp, int* i);
