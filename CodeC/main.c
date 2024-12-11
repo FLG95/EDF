@@ -43,7 +43,7 @@ int main(int argc, char* argv[]){
         exit(1);
     }
 
-    printf("\n\n\nWe are sorting your data, please wait few seconds");
+    printf("\n\n\n\n\033[33mWe are sorting your data, please wait few seconds.\033[0m\n");
 
     //Take data of a file and add it to a tree
     ensembleDonne(fichier, &hStation, &stationTree, type);
