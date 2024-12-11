@@ -11,7 +11,6 @@
 int min(int a, int b);
 int max(int a, int b);
 void freeAvl(tree* head);
-long long int somme(long unsigned a, long long int b);
 int isLv(Data a);
 int isHvb(Data a);
 int isHva(Data a);
