@@ -23,7 +23,7 @@ void write10less(tree* head, int* h, FILE* fichier){
 
         }
     }
-    if (head != NULL && *h < 10 && i !=1) {
+    if (head != NULL && *h < 10) {
         write10less(head->fg, h, fichier);
         if (*h < 10) {
             *h = *h + 1;
