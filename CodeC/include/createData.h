@@ -8,7 +8,7 @@
 #include "fonction_utile.h"
 
 FILE* transformerFichier(FILE* fichier);
-void ensembleDonne(FILE* fichier, int* hStation, int* hConso, tree** stationTree, tree** consoTree, char* type);
+void ensembleDonne(FILE* fichier, int* hStation, tree** stationTree, char* type);
 
 
 #endif //createData
