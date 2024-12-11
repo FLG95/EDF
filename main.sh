@@ -46,10 +46,19 @@ fi
 
 
 BiggestPowerPlant=$(tail -n 1 $1 | awk '{print $1}')
-if [ $4 -le 0 ] || [ $4 -gt $BiggestPowerPlant ]; then
-  echo "Error the selected power plant is invalid"
-  exit 0
+if [ -n "$4" ]; then
+  nb=$4
+  if [ $4 -le 0 ] || [ $4 -gt $BiggestPowerPlant ]; then
+    echo "Error the selected power plant is invalid"
+    exit 0
+  fi
+else
+  echo "L'argument 1 n'existe pas."
 fi
+
+
+
+
 
 
 ascii1="
@@ -131,7 +140,12 @@ case $2 in
 
 
   elif [ $3 == "comp" ]; then
-    awk -F ';' 'NR == 1 || (($3 != "-" && $5 != "-" && $4 == "-" && $3 == "-") || ($2 != "-" && $3 == "-" && $4 == "-"))' $1 > tmp/data.txt
+    if [ -n "$1" ]; then
+          awk -F ';' -v nb="$nb" 'NR == 1 || (($2 == nb && $5 != "-" && $4 == "-" && $3 == "-") || ($2 == nb && $3 == "-" && $4 == "-"))' $1 > tmp/data.txt
+        else
+          awk -F ';' 'NR == 1 || (($2 != "-" && $5 != "-" && $4 == "-" && $3 == "-") || ($2 == "-" && $3 == "-" && $4 == "-"))' $1 > tmp/data.txt
+        fi
+
 
   else
     echo "erreur: l'un des arguments spécifiés est incorrect"
@@ -150,8 +164,11 @@ case $2 in
     exit 0
 
   elif [ $3 == "comp" ]; then
-    awk -F ';' 'NR == 1 || (($3 != "-" && $5 != "-" && $4 == "-") || ($3 != "-" && $4 == "-"))' $1 > tmp/data.txt
-
+    if [ -n "$1" ]; then
+      awk -F ';' -v nb="$nb" 'NR == 1 || (($3 == nb && $5 != "-" && $4 == "-") || ($3 != nb && $4 == "-"))' $1 > tmp/data.txt
+    else
+      awk -F ';' 'NR == 1 || (($3 != "-" && $5 != "-" && $4 == "-") || ($3 != "-" && $4 == "-"))' $1 > tmp/data.txt
+    fi
   else
     echo "erreur : l'un des arguments spécifiés est incorrect"
     exit 0
@@ -160,13 +177,29 @@ case $2 in
 
   "lv")
   if [ $3 == "all" ]; then
+    if [ -n "$1" ]; then
+      awk -F ';' -v nb="$nb" 'NR == 1 || ($4 == nb )' $1 > tmp/data.txt
+    else
       awk -F ';' 'NR == 1 || ($4 != "-")' $1 > tmp/data.txt
+    fi
+
 
   elif [ $3 == "indiv" ]; then
+    if [ -n "$1" ]; then
+      awk -F ';' -v nb="$nb" 'NR == 1 || ($4 == nb && $6 != "-") || ($4 == nb && $5 == "-")' "$1" > tmp/data.txt
+    else
       awk -F ';' 'NR == 1 || ($4 != "-" && $6 != "-") || ($4 !="-" && $5 == "-")' $1 > tmp/data.txt
+    fi
+
 
   elif [ $3 == "comp" ]; then
+    if [ -n "$1" ]; then
+      awk -F ';' -v nb="$nb" 'NR == 1 || ($4 == nb && $5 != "-") || ($4 == nb && $6 == "-")' "$1" > tmp/data.txt
+    else
       awk -F ';' 'NR == 1 || ($4 != "-" && $5 != "-") || ($4 != "-" && $6 == "-")' $1 > tmp/data.txt
+    fi
+
+
   else
       echo "erreur : l'un des arguments spécifiés est incorrect"
       exit 0
@@ -212,6 +245,6 @@ END_TIME=$(date +%s)
 PROCESSUS_TIME=$((END_TIME - START_TIME))
 echo "Le programme a mit : $PROCESSUS_TIME secondes"
 
-rm tmp/*
+#rm tmp/*
 
 echo "$ascii3"
