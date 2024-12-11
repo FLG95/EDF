@@ -28,17 +28,6 @@ void freeAvl(tree* head) {
     free(head);
 }
 
-int comparaisonData(Data a, Data b){
-   if (a.hv_b != b.hv_b){
-        return a.hv_b - b.hv_b;
-    } else if (a.hv_a != b.hv_a){
-        return a.hv_a - b.hv_a;
-    } else if (a.lv != b.lv){
-        return a.lv - b.lv;
-    }
-    return 0;
-}
-
 long long int somme(long unsigned a, long long int b){
     return a + b;
 }
