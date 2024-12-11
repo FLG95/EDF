@@ -45,10 +45,10 @@ else
 fi
 
 
-
+BiggestPowerPlant=$(tail -n 1 $1 | awk '{print $1}')
 if [ -n "$4" ]; then
   nb=$4
-  if [ $4 -le 0 ]; then
+  if [ $4 -le 0 ] || [ $4 -gt $BiggestPowerPlant ]; then
     echo "Error the selected power plant is invalid"
     exit 0
   fi
