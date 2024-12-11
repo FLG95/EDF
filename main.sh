@@ -45,10 +45,10 @@ else
 fi
 
 
-BiggestPowerPlant=$(tail -n 1 $1 | awk '{print $1}')
+
 if [ -n "$4" ]; then
   nb=$4
-  if [ $4 -le 0 ] || [ $4 -gt $BiggestPowerPlant ]; then
+  if [ $4 -le 0 ]; then
     echo "Error the selected power plant is invalid"
     exit 0
   fi
@@ -225,26 +225,12 @@ else  #Sinon lancement du code C avec le Makefile en passant le fichier en param
 fi
 
 
-if [ $2 = 'lv' ] && [ $3 = 'all' ]; then
-gnuplot -persist << EOF
-  set terminal png size 1920,1080
-  set output 'graph/lv_all_load_graph.png'
-  set autoscale
-  set style fill solid
-  set title 'Titre'
-  set ylabel 'Load (kWh)'
-  set xlabel 'Station ID'
-  set datafile separator ":"
-  set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "white" behind
-  set style fill solid 0.5 border lc rgb "black"  # Remplissage semi-transparent avec bordure noire
-  plot 'resultats/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "#008B8B" title 'Load'
-EOF
-fi
+
 
 END_TIME=$(date +%s)
 PROCESSUS_TIME=$((END_TIME - START_TIME))
 echo "Le programme a mit : $PROCESSUS_TIME secondes"
 
-#rm tmp/*
+rm tmp/*
 
 echo "$ascii3"
