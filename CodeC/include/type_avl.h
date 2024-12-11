@@ -19,10 +19,5 @@ typedef struct tree {
     struct tree* fg;
     int balance;
 } tree;
-typedef struct file {
-    int a;
-    tree* actuel;
-    struct file* suivant;
-} file;
 
 #endif //TYPE_AVL
