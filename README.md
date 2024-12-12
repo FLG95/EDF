@@ -31,7 +31,10 @@
 ./main.sh Input/c-wire_v25.dat hva comp
             </pre>
             <h3>Shell script exit code:</h3>
-        </section>
+            <p> *à remplir*</p>
+            <h3>C program exit code</h3>
+            <p> *à remplir*</p>
+        </section>     
     </main>
 </body>
 </html>
