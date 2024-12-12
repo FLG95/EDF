@@ -124,6 +124,7 @@ fi
 
 START_TIME=$(date +%s)
 
+echo -e "\033[33mWe are extracting your data, Please Wait few seconds\033[0m"
 
 case $2 in
   "hvb")
@@ -208,8 +209,6 @@ case $2 in
     exit 0
   ;;
 esac
-echo "We are extracting your data, Please Wait few seconds"
-
 
 if [ -d $exe_name  ]; then # Si l'éxécutable éxiste on le lance directement
   ./$exe_name
