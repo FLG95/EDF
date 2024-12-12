@@ -19,10 +19,10 @@
             <p>Subject: <a href="C-Wire.pdf" target="_blank"><strong>C-Wire.pdf</strong></a></p>
             <h3>Arguments:</h3>
             <ul>
-                <li><strong>Input_file:</strong> path to the input file</li>
-                <li><strong>Station_type:</strong> type of station (hvb, hva, lv)</li>
-                <li><strong>Consumer_type:</strong> type of consumer (indiv, comp, all)</li>
-                <li><strong>OPTIONAL:</strong> power_plant_id: id of the power plant</li>
+                <li><strong>Input_file :</strong> path to the input file</li>
+                <li><strong>Station_type :</strong> type of station (hvb, hva, lv)</li>
+                <li><strong>Consumer_type :</strong> type of consumer (indiv, comp, all)</li>
+                <li><strong>OPTIONAL :</strong> power_plant_id: id of the power plant</li>
             </ul>
             <p> Not all cases are allowed (hvb supports all/indiv; hva supports all/indiv).</p>
             <h3>Exemple d'utilisation :</h3>
