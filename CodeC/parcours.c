@@ -15,7 +15,7 @@ void parcoursRefresh(tree** head, Data a) {
 
 //Create an Avl which sort the Node by production
 tree* parcoursSortProduction(tree* head, tree* tmp, int* h){
-    if (tmp != NULL){
+    if (tmp != NULL && h != NULL){
         head = parcoursSortProduction(head, tmp->fg, h);
         head = sortByProduction(head, tmp->a, h);
         head = parcoursSortProduction(head, tmp->fd, h);
@@ -25,7 +25,7 @@ tree* parcoursSortProduction(tree* head, tree* tmp, int* h){
 
 //Create an Avl which sort the Node by absolute value (production - consumption)
 tree* parcoursSortAbs(tree* head, tree* tmp, int* h){
-    if (tmp != NULL){
+    if (tmp != NULL && h != NULL){
         head = parcoursSortAbs(head, tmp->fg, h);
         head = sortByAbs(head, tmp->a, h);
         head = parcoursSortAbs(head, tmp->fd, h);
