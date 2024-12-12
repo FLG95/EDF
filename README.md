@@ -36,7 +36,8 @@
             <p> *à remplir*</p>
         </section>
     <section>
-        <h3> Contributors </h3>
+        <hr>
+<h3>Contributors</h3>
          <p> Goupil Florian-MI03</p>
          <p> Morille Paul-MI03</p>
          <p> Wingering Cyprien-MI03</p>
