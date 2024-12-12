@@ -90,4 +90,5 @@ void centerWrite(tree* head, char* arg2, char* arg3){
 
     writeAllData(head, fichierAll, &h, arg2, arg3);
     fclose(fichierAll);
+    free(destination);
 }
