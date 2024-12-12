@@ -38,9 +38,9 @@
     <section>
         <hr>
 <h3>Contributors</h3>
-         <p> Goupil Florian-MI03</p>
-         <p> Morille Paul-MI03</p>
-         <p> Wingering Cyprien-MI03</p>
+         <p> Goupil Florian-MI03 22402529</p>
+         <p> Morille Paul-MI03 22402306</p>
+         <p> Wingering Cyprien-MI03 22401105</p>
     </section>
     </main>
 </body>
