@@ -2,7 +2,7 @@
 
 //Write in a file 10 data
 void write10sup(tree* head, int* h, FILE* fichier, char* arg1, char* arg2){
-    if (head != NULL && *h < 10) {
+    if (head != NULL && h != NULL && fichier != NULL && arg1 != NULL && arg2 != NULL && *h < 10) {
         write10sup(head->fd, h, fichier, arg1, arg2);
         if (*h == 0){
             fprintf(fichier, "Station %s : Capacity : consumption %s\n", arg1, arg2);
@@ -20,7 +20,7 @@ void write10sup(tree* head, int* h, FILE* fichier, char* arg1, char* arg2){
 void write10less(tree* head, int* h, FILE* fichier){
     long long unsigned i = 0;
 
-    if (head != NULL && *h < 10) {
+    if (head != NULL && h != NULL && fichier != NULL && *h < 10) {
         write10less(head->fg, h, fichier);
         if (*h < 10) {
             *h = *h + 1;
@@ -33,7 +33,7 @@ void write10less(tree* head, int* h, FILE* fichier){
 
 //Write in a file 20 data and create the file to write that
 void centerWrite10(tree* head, char* arg1, char* arg2){
-    if (head == NULL){
+    if (head == NULL && arg1 == NULL && arg2 == NULL){
         exit(1);
     }
     int h_sup = 0;
@@ -59,7 +59,7 @@ void centerWrite10(tree* head, char* arg1, char* arg2){
 
 //Write all the nodes of an avl in a file
 void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
-    if (head != NULL ){
+    if (head != NULL && fichier != NULL && h != NULL && arg1 != NULL && arg2 != NULL){
         if (*h == 0){
             *h = *h + 1;
             fprintf(fichier, "Station %s : Capacity : consumption %s\n", arg1, arg2);
@@ -74,7 +74,7 @@ void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
 
 //Create the file to write all the nodes of an avl
 void centerWrite(tree* head, char* arg2, char* arg3){
-    if (head == NULL){
+    if (head == NULL || arg2 == NULL || arg3 == NULL){
         exit(1);
     }
     int h = 0;
