@@ -30,13 +30,14 @@
             <pre>
 ./main.sh Input/c-wire_v25.dat hva comp
             </pre>
-            <h3>Shell script exit code:</h3>
+            <h3>Shell exit code:</h3>
             <p> *à remplir*</p>
-            <h3>C program exit code</h3>
+            <h3>C exit code</h3>
             <p> *à remplir*</p>
         </section>
     <section>
-        <h3> Contributors </h3>
+        <hr>
+<h3>Contributors</h3>
          <p> Goupil Florian-MI03</p>
          <p> Morille Paul-MI03</p>
          <p> Wingering Cyprien-MI03</p>
