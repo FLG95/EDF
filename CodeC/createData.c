@@ -34,7 +34,7 @@ FILE* transformerFichier(FILE* fichier){
 
 //Take data of a File and add it to a tree
 void ensembleDonne(FILE* fichier, int* hStation, tree** stationTree, char* type) {
-    if (fichier == NULL) {
+    if (fichier == NULL || hStation == NULL && type == NULL) {
         exit(1);
     }
     FILE *new_file = transformerFichier(fichier);
