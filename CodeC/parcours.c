@@ -11,7 +11,7 @@ void parcoursRefresh(tree** head, Data a) {
             (*head)->a.consumption += a.consumption;
         }
     }
-} 
+}  
 
 //Create an Avl which sort the Node by production
 tree* parcoursSortProduction(tree* head, tree* tmp, int* h){
