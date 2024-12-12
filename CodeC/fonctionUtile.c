@@ -64,7 +64,7 @@ int isHva(Data a){
 
 //Determinate the number of nodes in an avl
 void nbNodes(long long unsigned * i, tree* head){
-    if (head != NULL){
+    if (head != NULL && i != NULL){
         *i = *i+1;
         nbNodes(i, head->fg);
         nbNodes(i, head->fd);
