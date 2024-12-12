@@ -16,7 +16,7 @@
         <section>
             <h2>Projects</h2>
             <p>Cy EDF Pre-Ing-2 S1 project</p>
-            <p>Subject: <a href="EDF/C-Wire.pdf" target="_blank"><strong>C-Wire.pdf</strong></a></p>
+            <p>Subject: <a href="C-Wire.pdf" target="_blank"><strong>C-Wire.pdf</strong></a></p>
             <p>Subject: <strong>C-Wire.pdf</strong></p>
             <h3>Arguments:</h3>
             <ul>
