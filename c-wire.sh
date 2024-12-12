@@ -38,9 +38,9 @@ fi
 
 
 if [ -e $1 ]; then
-  echo "le fichier passé en premier argument est correct"
+  echo
 else
-  echo "erreur : le fichier passé en premier argument est incorrect"
+  echo "Error : the specified file is invalid"
   exit 0
 fi
 
@@ -95,7 +95,7 @@ dir_makefile="CodeC"
 dir_origine="../"
 dir_tmp="tmp"
 dir_graph="graph"
-dir_result="resultats"
+dir_result="results"
 
 echo "$ascii1"
 echo "$ascii2"
@@ -105,19 +105,19 @@ echo "$ascii2"
 
 #vérifie si le dossier tmp existe
 if [ -d $dir_tmp ]; then
-  rm -r $dir_tmp/*
+  rm -rf $dir_tmp/*
 else
   mkdir $dir_tmp;
 fi
 if [ -d $dir_result ]; then
-  rm -r $dir_result/*
+  rm -rf $dir_result/*
 else
   mkdir $dir_result;
 fi
 
 #vérifie si le dossier graph existe
 if [ -d $dir_graph ]; then
-  rm -f $dir_graph/*
+  rm -rf $dir_graph/*
 else
   mkdir $dir_graph;
 fi
@@ -129,11 +129,11 @@ echo -e "\033[33mWe are extracting your data, Please Wait few seconds\033[0m"
 case $2 in
   "hvb")
   if [ $3 == "all" ]; then
-    echo "impossible de faire hvb all"
+    echo "You cant do hvb all"
     exit 0
 
   elif [ $3 == "indiv" ]; then
-    echo "impossible de faire hvb indiv"
+    echo "You cant do hvb indiv"
     exit 0
 
 
@@ -146,7 +146,7 @@ case $2 in
 
 
   else
-    echo "error : one of the argument is invalid"
+    echo "Error : one of the argument is invalid"
     exit 0
 
   fi
@@ -154,11 +154,11 @@ case $2 in
 
   "hva")
   if [ $3 == "all" ]; then
-    eccho"impossible de faire hva all"
+    eccho"You cant do hva all"
     exit 0
 
   elif [ $3 == "indiv" ]; then
-    echo "impossible de faire hva indiv"
+    echo "You cant do hva indiv"
     exit 0
 
   elif [ $3 == "comp" ]; then
@@ -168,7 +168,7 @@ case $2 in
       awk -F ';' 'NR == 1 || (($3 != "-" && $5 != "-" && $4 == "-") || ($3 != "-" && $4 == "-"))' $1 > tmp/data.txt
     fi
   else
-    echo "error : one of the argument is invalid"
+    echo "Error : one of the argument is invalid"
     exit 0
   fi
   ;;
@@ -199,13 +199,13 @@ case $2 in
 
 
   else
-      echo "error : one of the argument is invalid"
+      echo "Error : one of the argument is invalid"
       exit 0
   fi
   ;;
 
   *)
-    echo "error : one of the argument is invalid"
+    echo "Error : one of the argument is invalid"
     exit 0
   ;;
 esac
@@ -225,7 +225,7 @@ if [ $2 == 'lv' ] && [ $3 == 'all' ]; then
 gnuplot -persist << EOF
   set terminal png size 1600,900
   set output 'graph/lv_all_load_graph.png'
-  #set autoscale
+  set autoscale
   set style fill solid
   set title 'Titre'
   set ylabel 'Load (kWh)'
@@ -233,7 +233,7 @@ gnuplot -persist << EOF
   set datafile separator ":"
   set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "grey" behind
   set style fill solid 0.5 border lc rgb "black"
-  plot 'resultats/lv_minmax.csv' using 2:xtic(1) with boxes linecolor rgb "navy" title 'capacity', 'resultats/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "gold" title 'consomation'
+  plot 'results/lv_minmax.csv' using 2:xtic(1) with boxes linecolor rgb "navy" title 'Capacity', 'results/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "gold" title 'Consumption'
 EOF
 fi
 
@@ -241,7 +241,7 @@ fi
 
 END_TIME=$(date +%s)
 PROCESSUS_TIME=$((END_TIME - START_TIME))
-echo "The programme last : $PROCESSUS_TIME seconds"
+echo "The program last : $PROCESSUS_TIME seconds"
 
 rm tmp/*
 
