@@ -17,10 +17,6 @@ function help(){
 }
 
 
-mpg123 -q musique.mp3 &
-MUSIC_PID=$! # Récupère le PID du processus de lecture
-
-
 for arg in "$@"; do
   case "$arg" in
       -h)
@@ -63,7 +59,7 @@ fi
 if command -v mpg123 >/dev/null 2>&1; then
   echo "mpg123 est installé. Lecture de la musique..."
   mpg123 -q musique.mp3 &
-  MUSIC_PID=$! # Récupère le PID du processus de lecture
+  MUSIC_PID=$!
 else
     echo "Erreur : mpg123 n'est pas installé. Veuillez l'installer d'abord."
 fi
@@ -259,5 +255,5 @@ echo "The program last : $PROCESSUS_TIME seconds"
 rm tmp/*
 
 echo "$ascii3"
-kill $MUSIC_PID
-echo "Musique arrêtée."
+kill -9 $MUSIC_PID
+trap 'kill -9 $MUSIC_PID 2>/dev/null; exit 1' ERR
