@@ -60,6 +60,15 @@ fi
 
 
 
+if command -v mpg123 >/dev/null 2>&1; then
+  echo "mpg123 est installé. Lecture de la musique..."
+  mpg123 -q musique.mp3 &
+  MUSIC_PID=$! # Récupère le PID du processus de lecture
+else
+    echo "Erreur : mpg123 n'est pas installé. Veuillez l'installer d'abord."
+fi
+
+
 
 ascii1="
                         .,.*/(,
