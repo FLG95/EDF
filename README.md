@@ -10,7 +10,7 @@
     </header>
     <main>
         <section>
-            <h2>Cy EDF</h2>
+            <h2>⚡Cy EDF⚡</h2>
             <p>Pre-Ing-2 S1 project</p>
         </section>
         <section>
