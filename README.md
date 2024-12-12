@@ -30,6 +30,7 @@
             <pre>
 ./main.sh Input/c-wire_v25.dat hva comp
             </pre>
+            <h3>Shell script exit code:</h3>
         </section>
     </main>
 </body>
