@@ -25,7 +25,7 @@
                 <li><strong>OPTIONAL :</strong> power_plant_id: id of the power plant</li>
             </ul>
             <p> Not all cases are allowed (hvb supports all/indiv; hva supports all/indiv).</p>
-            <h3>Exemple d'utilisation :</h3>
+            <h3>Example of use :</h3>
             <p>./main.sh Input/[input_file] [station_type(hvb, hva, lv)] [consumer_type(indiv, comp, all)]  (power_plant_id) Exemple:</p>
             <pre>
 ./main.sh Input/c-wire_v25.dat hva comp
