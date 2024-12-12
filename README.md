@@ -34,7 +34,13 @@
             <p> *à remplir*</p>
             <h3>C program exit code</h3>
             <p> *à remplir*</p>
-        </section>     
+        </section>
+    <section>
+        <h3> Contributors </h3>
+         <p> Goupil Florian-MI03</p>
+         <p> Morille Paul-MI03</p>
+         <p> Wingering Cyprien-MI03</p>
+    </section>
     </main>
 </body>
 </html>
