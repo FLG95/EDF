@@ -15,3 +15,4 @@ CMakeLists.txt
 **/**/c-wire_v00.dat
 **/graph/*
 musique.mp3
+../musique.mp3
