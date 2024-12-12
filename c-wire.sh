@@ -20,7 +20,7 @@ function help(){
 for arg in "$@"; do
   case "$arg" in
       -h)
-        help
+        help 
         ;;
   esac
 done
