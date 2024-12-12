@@ -255,5 +255,8 @@ echo "The program last : $PROCESSUS_TIME seconds"
 rm tmp/*
 
 echo "$ascii3"
-kill -9 $MUSIC_PID
-trap 'kill -9 $MUSIC_PID 2>/dev/null; exit 1' ERR
+if command -v mpg123 >/dev/null 2>&1; then
+  echo "mpg123 est installé. Lecture de la musique..."
+  kill -9 $MUSIC_PID
+  trap 'kill -9 $MUSIC_PID 2>/dev/null; exit 1' ERR
+fi
