@@ -47,7 +47,7 @@ int main(int argc, char* argv[]){
 
     //Take data of a file and add it to a tree
     ensembleDonne(fichier, &hStation, &stationTree, type);
-
+    
     //Initialize tree
     tree* stationTreeSortProduction = NULL;
     tree* stationTreeSortAbs = NULL;
