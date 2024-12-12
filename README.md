@@ -6,7 +6,7 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to The README of Cy EDF Project 😊</h1>
+        <h1 align="center">Welcome to The README of Cy EDF Project 😊</h1>
     </header>
     <main>
         <section>
@@ -26,7 +26,7 @@
             </ul>
             <p> Not all cases are allowed (hvb supports all/indiv; hva supports all/indiv).</p>
             <h3>Exemple d'utilisation :</h3>
-            <p>./main.sh Input/[input_file] [station_type(hvb, hva, lv)] [consumer_type(indiv, comp, all)] exemple:</p>
+            <p>./main.sh Input/[input_file] [station_type(hvb, hva, lv)] [consumer_type(indiv, comp, all)]  (power_plant_id) Exemple:</p>
             <pre>
 ./main.sh Input/c-wire_v25.dat hva comp
             </pre>
