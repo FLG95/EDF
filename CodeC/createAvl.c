@@ -84,6 +84,9 @@ tree* balancing(tree* head) {
 
 //Insert Data in a tree
 tree* insertStation(tree* head, Data a, int* h) {
+    if (h == NULL){
+        exit(1);
+    }
     if (head == NULL) {
         *h = 1;
         return create(a);
@@ -100,6 +103,9 @@ tree* insertStation(tree* head, Data a, int* h) {
     if (*h != 0) {
         head->balance += *h;
         head = balancing(head);
+        if (head == NULL){
+            exit(1);
+        }
         if (head->balance == 0) {
             *h = 0;
         } else {
@@ -111,6 +117,9 @@ tree* insertStation(tree* head, Data a, int* h) {
 
 //Add data to a tree
 void addTree(tree** stationTree, Data b, int* hStation, char* station, Data* tmp, int* i){
+    if (hStation == NULL){
+        exit(1);
+    }
     if (station == NULL){
         exit(1);
     }
@@ -154,6 +163,9 @@ void addTree(tree** stationTree, Data b, int* hStation, char* station, Data* tmp
 
 //Sort a tree by absolute value between production and consumption
 tree* sortByAbs(tree* head, Data tmp, int* h) {
+    if (h == NULL){
+        exit(1);
+    }
     if (head == NULL) {
         *h = 1;
         return create(tmp);
@@ -189,6 +201,9 @@ tree* sortByAbs(tree* head, Data tmp, int* h) {
 
 //Sort a tree by production
 tree* sortByProduction(tree* head, Data tmp, int* h) {
+    if (h == NULL){
+        exit(1);
+    }
     if (head == NULL) {
         *h = 1;
         return create(tmp);
