@@ -16,8 +16,8 @@
         <section>
             <h2>Projects</h2>
             <p>Cy EDF Pre-Ing-2 S1 project</p>
-            <p>Subject: <a href="C-Wire.pdf" target="_blank"><strong>C-Wire.pdf</strong></a></p>
-            <h3>Arguments:</h3>
+            <p>Subject : <a href="C-Wire.pdf" target="_blank"><strong>C-Wire.pdf</strong></a></p>
+            <h3>Arguments :</h3>
             <ul>
                 <li><strong>Input_file :</strong> path to the input file</li>
                 <li><strong>Station_type :</strong> type of station (hvb, hva, lv)</li>
@@ -30,10 +30,18 @@
             <pre>
 ./main.sh Input/c-wire_v25.dat hva comp
             </pre>
-            <h3>Shell exit code:</h3>
+            <h3>Shell exit code :</h3>
             <p> *à remplir*</p>
-            <h3>C exit code</h3>
-            <p> *à remplir*</p>
+            <h3>C exit code :</h3>
+             <ul>
+                <li>0 : Succes</li>
+                <li>10 : Error by passing arguments</li>
+                <li>20 : Invalid arguments</li>
+                <li>30 : Error when reading file</li>
+                <li>40 : Error when building AVL tree</li>
+                <li>50 : Error when writing output file</li>
+                <li>60 : Error when using AVL tree</li>
+            </ul>
         </section>
     <section>
         <hr>
