@@ -5,7 +5,7 @@
 tree* create(Data a) {
     tree* new = malloc(sizeof(tree));
     if (new == NULL) {
-        exit(1);
+        exit(40);
     }
     new->a = a;
     new->fd = NULL;
@@ -49,7 +49,7 @@ tree* RightRotation(tree* head) {
 //Make a double left rotation for the stability of the tree
 tree* doubleLeftRotation(tree* head) {
     if (head == NULL || head->fd == NULL){
-        return NULL;
+        return head;
     }
     head->fd = RightRotation(head->fd);
     return leftRotation(head);
@@ -85,7 +85,7 @@ tree* balancing(tree* head) {
 //Insert Data in a tree
 tree* insertStation(tree* head, Data a, int* h) {
     if (h == NULL){
-        exit(1);
+        exit(40);
     }
     if (head == NULL) {
         *h = 1;
@@ -118,10 +118,10 @@ tree* insertStation(tree* head, Data a, int* h) {
 //Add data to a tree
 void addTree(tree** stationTree, Data b, int* hStation, char* station, Data* tmp, int* i){
     if (hStation == NULL){
-        exit(1);
+        exit(40);
     }
     if (station == NULL){
-        exit(1);
+        exit(40);
     }
     if (strcmp(station, "lv") == 0) {
         if (isLv(b)) {
@@ -164,7 +164,7 @@ void addTree(tree** stationTree, Data b, int* hStation, char* station, Data* tmp
 //Sort a tree by absolute value between production and consumption
 tree* sortByAbs(tree* head, Data tmp, int* h) {
     if (h == NULL){
-        exit(1);
+        exit(40);
     }
     if (head == NULL) {
         *h = 1;
@@ -188,7 +188,7 @@ tree* sortByAbs(tree* head, Data tmp, int* h) {
         head->balance += *h;
         head = balancing(head);
         if (head == NULL){
-            exit(1);
+            exit(40);
         }
         if (head->balance == 0) {
             *h = 0;
@@ -202,7 +202,7 @@ tree* sortByAbs(tree* head, Data tmp, int* h) {
 //Sort a tree by production
 tree* sortByProduction(tree* head, Data tmp, int* h) {
     if (h == NULL){
-        exit(1);
+        exit(40);
     }
     if (head == NULL) {
         *h = 1;
@@ -227,7 +227,7 @@ tree* sortByProduction(tree* head, Data tmp, int* h) {
         head->balance += *h;
         head = balancing(head);
         if (head == NULL){
-            exit(1);
+            exit(40);
         }
         if (head->balance == 0) {
             *h = 0;
