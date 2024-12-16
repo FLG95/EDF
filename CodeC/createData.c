@@ -6,11 +6,11 @@
 //Transform the "-" of the file by "0"
 FILE* transformerFichier(FILE* fichier){
     if (fichier == NULL){
-        exit(1);
+        exit(30);
     }
     FILE* new_file = fopen("../tmp/tmp.txt", "w");
     if (new_file == NULL){
-        exit(1);
+        exit(30);
     }
     char line[256];
     while (fgets(line, sizeof(line), fichier)) {
@@ -35,14 +35,14 @@ FILE* transformerFichier(FILE* fichier){
 //Take data of a File and add it to a tree
 void ensembleDonne(FILE* fichier, int* hStation, tree** stationTree, char* type) {
     if (fichier == NULL || hStation == NULL && type == NULL) {
-        exit(1);
+        exit(30);
     }
     FILE *new_file = transformerFichier(fichier);
     char line2[256];
     Data* tmp = NULL;
     tmp = init();
     if (tmp == NULL){
-        exit(1);
+        exit(30);
     }
     int i = 0;
     sscanf(line2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
