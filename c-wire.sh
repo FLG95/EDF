@@ -26,12 +26,12 @@ for arg in "$@"; do
 done
 
 if [ $# -lt 3 ]; then
-  echo "Error : Number of argument is invalid"
+  echo -e "\033[31mError : Number of argument is invalid\033[0m"
   exit 0;
 fi
 
 if [ -z $1 ]; then
-  echo "Error : No file specified "
+  echo -e "\033[31mError : No file specified\033[0m"
   exit 0
 fi
 
@@ -39,7 +39,7 @@ fi
 if [ -e $1 ]; then
   echo
 else
-  echo "Error : the specified file is invalid"
+  echo -e "\033[31mError : the specified file is invalid\033[0m"
   exit 0
 fi
 
@@ -49,7 +49,7 @@ BiggestPowerPlant=$(tail -n 1 $1 | cut -d';' -f1)
 if [ -n "$4" ]; then
   nb=$4
   if [ $4 -le 0 ] || [ $4 -gt $BiggestPowerPlant ]; then
-    echo "Error the selected power plant is invalid"
+    echo -e "\033[31mError the selected power plant is invalid\033[0m"
     exit 0
   fi
 fi
@@ -123,16 +123,16 @@ fi
 
 START_TIME=$(date +%s)
 
-echo -e "\033[33mWe are extracting your data, Please Wait few seconds\033[0m"
+echo -e "\033[32mWe are extracting your data, Please Wait few seconds\033[0m"
 
 case $2 in
   "hvb")
   if [ $3 == "all" ]; then
-    echo "You cant do hvb all"
+    echo -e "\033[31mYou cant do hvb all\033[0m"
     exit 0
 
   elif [ $3 == "indiv" ]; then
-    echo "You cant do hvb indiv"
+    echo -e "\033[31mYou cant do hvb indiv\033[0m"
     exit 0
 
 
@@ -145,7 +145,7 @@ case $2 in
 
 
   else
-    echo "Error : one of the argument is invalid"
+    echo -e "\033[31mError : one of the argument is invalid\033[0m"
     exit 0
 
   fi
@@ -153,11 +153,11 @@ case $2 in
 
   "hva")
   if [ $3 == "all" ]; then
-    eccho"You cant do hva all"
+    echo -e "\033[31mYou cant do hva all\033[0m"
     exit 0
 
   elif [ $3 == "indiv" ]; then
-    echo "You cant do hva indiv"
+    echo -e "\033[31mYou cant do hva indiv\033[0m"
     exit 0
 
   elif [ $3 == "comp" ]; then
@@ -167,7 +167,7 @@ case $2 in
       awk -F ';' 'NR == 1 || (($3 != "-" && $5 != "-" && $4 == "-") || ($3 != "-" && $4 == "-"))' $1 > tmp/data.txt
     fi
   else
-    echo "Error : one of the argument is invalid"
+    echo -e "\033[31mError : one of the argument is invalid\033[0m"
     exit 0
   fi
   ;;
@@ -198,13 +198,13 @@ case $2 in
 
 
   else
-      echo "Error : one of the argument is invalid"
+      echo -e "\033[31mError : one of the argument is invalid\033[0m"
       exit 0
   fi
   ;;
 
   *)
-    echo "Error : one of the argument is invalid"
+    echo -e "\033[31mError : one of the argument is invalid\033[0m"
     exit 0
   ;;
 esac
@@ -241,5 +241,7 @@ fi
 END_TIME=$(date +%s)
 PROCESSUS_TIME=$((END_TIME - START_TIME))
 echo "The program last : $PROCESSUS_TIME seconds"
+
+echo "$ascii3"
 
 rm tmp/*
