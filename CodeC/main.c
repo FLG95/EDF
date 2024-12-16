@@ -15,16 +15,15 @@
 
 
 int main(int argc, char* argv[]){
-
-    //Check if argv[2] is correct
-    if (strcmp(argv[2], "hva") != 0 && strcmp(argv[2], "hvb") != 0 && strcmp(argv[2], "lv") != 0){
-        exit(1);
-    }
-
     //Check if the number of argument is correct
     if (argc != 4){
         printf("ERROR : not enough argument");
-        exit(1);
+        exit(10);
+    }
+
+    //Check if argv[2] is correct
+    if (strcmp(argv[2], "hva") != 0 && strcmp(argv[2], "hvb") != 0 && strcmp(argv[2], "lv") != 0){
+        exit(20);
     }
 
     //Define the type of the station
@@ -62,7 +61,7 @@ int main(int argc, char* argv[]){
 
     //Check if the tree are not empty
     if (stationTreeSortProduction == NULL || stationTreeSortAbs == NULL){
-        exit(1);
+        exit(60);
     }
 
     //Write the nodes of the tree in external files
