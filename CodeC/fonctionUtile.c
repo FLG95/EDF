@@ -76,7 +76,7 @@ Data* init(){
     Data* tmp = NULL;
     tmp = malloc(sizeof(Data));
     if (tmp == NULL){
-        exit(1);
+        exit(30);
     }
     tmp->lv = 0;
     tmp->hv_a = 0;
