@@ -29,7 +29,7 @@ int main(int argc, char* argv[]){
     //Define the type of the station
     char* type = argv[2];
 
-    //Initialize the parameterss for the height anf the stability of an avl
+    //Initialize the parameters for the height anf the stability of an avl
     int hStation = 0;
 
     //Initialize the tree of the station
