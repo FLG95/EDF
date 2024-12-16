@@ -17,7 +17,7 @@
 int main(int argc, char* argv[]){
     //Check if the number of argument is correct
     if (argc != 4){
-        printf("ERROR : not enough argument");
+        printf("\033[31mERROR : not enough argument\033[0m\n");
         exit(10);
     }
 
@@ -38,11 +38,11 @@ int main(int argc, char* argv[]){
     //Open the file which contains the data and check if all is right
     FILE* fichier = fopen(argv[1], "r");
     if (fichier == NULL){
-        printf("ERROR : argument 1 file is empty");
+        printf("\033[31mERROR : argument 1 file is empty\033[0m\n");
         exit(1);
     }
 
-    printf("\n\n\n\n\033[33mWe are sorting your data, please wait few seconds.\033[0m\n");
+    printf("\n\n\n\n\033[32mWe are sorting your data, please wait few seconds\033[0m\n");
 
     //Take data of a file and add it to a tree
     ensembleDonne(fichier, &hStation, &stationTree, type);
