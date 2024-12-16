@@ -1,9 +1,8 @@
-#include "include/type_avl.h"
-#include "include/create_avl.h"
-#include "include/fonction_utile.h"
-
-
-//Transform the "-" of the file by "0"
+#include "include/createData.h"
+/**
+ * @param fichier
+ * Transform the "-" of the file by "0"
+ */
 FILE* transformerFichier(FILE* fichier){
     if (fichier == NULL){
         exit(30);
@@ -32,7 +31,14 @@ FILE* transformerFichier(FILE* fichier){
     return new_file;
 }
 
-//Take data of a File and add it to a tree
+
+/**
+ * @param fichier
+ * @param hStation
+ * @param stationTree
+ * @param type
+ * Take data of a File and add it to a tree
+ */
 void ensembleDonne(FILE* fichier, int* hStation, tree** stationTree, char* type) {
     if (fichier == NULL || hStation == NULL && type == NULL) {
         exit(30);
@@ -46,14 +52,14 @@ void ensembleDonne(FILE* fichier, int* hStation, tree** stationTree, char* type)
     }
     int i = 0;
     sscanf(line2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
-           &tmp->Powerplant, &tmp->hv_b, &tmp->hv_a, &tmp->lv, &tmp->entreprise, &tmp->particuliers, &tmp->production, &tmp->consumption);
+           &tmp->Powerplant, &tmp->hv_b, &tmp->hv_a, &tmp->lv, &tmp->company, &tmp->consumer, &tmp->production, &tmp->consumption);
     addTree(stationTree, *tmp, hStation, type, tmp,  &i);
     Data b;
     tree *head = NULL;
     fgets(line2, sizeof(line2), new_file);
     while (fgets(line2, sizeof(line2), new_file) != NULL) {
         sscanf(line2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
-               &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv, &b.entreprise, &b.particuliers, &b.production, &b.consumption);
+               &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv, &b.company, &b.consumer, &b.production, &b.consumption);
         addTree(stationTree, b, hStation, type, tmp, &i);
     }
     printf("\n\n\n\n");

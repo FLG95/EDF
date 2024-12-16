@@ -1,7 +1,9 @@
 #include "include/create_avl.h"
-#include "include/fonction_utile.h"
 
-//Create node for a tree
+/**
+ * @param a
+ * Create node for a tree
+ */
 tree* create(Data a) {
     tree* new = malloc(sizeof(tree));
     if (new == NULL) {
@@ -14,7 +16,10 @@ tree* create(Data a) {
     return new;
 }
 
-//Make a simple left rotation for the stability of the tree
+/**
+ * @param head
+ * Make a simple left rotation for the stability of the tree
+ */
 tree* leftRotation(tree* head) {
     if (head == NULL || head->fd == NULL) {
         return head;
@@ -30,7 +35,10 @@ tree* leftRotation(tree* head) {
     return pivot;
 }
 
-//Make a simple right rotation for the stability of the tree
+/**
+ * @param head
+ * Make a simple right rotation for the stability of the tree
+ */
 tree* RightRotation(tree* head) {
     if (head == NULL || head->fg == NULL) {
         return head;
@@ -46,7 +54,10 @@ tree* RightRotation(tree* head) {
     return pivot;
 }
 
-//Make a double left rotation for the stability of the tree
+/**
+ * @param head
+ * Make a double left rotation for the stability of the tree
+ */
 tree* doubleLeftRotation(tree* head) {
     if (head == NULL || head->fd == NULL){
         return head;
@@ -55,7 +66,10 @@ tree* doubleLeftRotation(tree* head) {
     return leftRotation(head);
 }
 
-//Make a double right rotation for the stability of the tree
+/**
+ * @param head
+ * Make a double right rotation for the stability of the tree
+ */
 tree* doubleRightRotation(tree* head) {
     if (head == NULL || head->fg == NULL){
         return NULL;
@@ -64,7 +78,10 @@ tree* doubleRightRotation(tree* head) {
     return RightRotation(head);
 }
 
-//Balance the tree for the stability of the avl
+/**
+ * @param head
+ * Balance the tree for the stability of the avl
+ */
 tree* balancing(tree* head) {
     if (head->balance >= 2) {
         if (head->fd != NULL && head->fd->balance >= 0) {
@@ -82,7 +99,12 @@ tree* balancing(tree* head) {
     return head;
 }
 
-//Insert Data in a tree
+/**
+ * @param head
+ * @param a
+ * @param h
+ * Insert Data in a tree
+ */
 tree* insertStation(tree* head, Data a, int* h) {
     if (h == NULL){
         exit(40);
@@ -115,7 +137,15 @@ tree* insertStation(tree* head, Data a, int* h) {
     return head;
 }
 
-//Add data to a tree
+/**
+ * @param stationTree
+ * @param b
+ * @param hStation
+ * @param station
+ * @param tmp
+ * @param i
+ * Add data to a tree
+ */
 void addTree(tree** stationTree, Data b, int* hStation, char* station, Data* tmp, int* i){
     if (hStation == NULL){
         exit(40);
@@ -161,7 +191,12 @@ void addTree(tree** stationTree, Data b, int* hStation, char* station, Data* tmp
     }
 }
 
-//Sort a tree by absolute value between production and consumption
+/**
+ * @param head
+ * @param tmp
+ * @param h
+ * Sort a tree by absolute value between production and consumption
+ */
 tree* sortByAbs(tree* head, Data tmp, int* h) {
     if (h == NULL){
         exit(40);
@@ -199,7 +234,12 @@ tree* sortByAbs(tree* head, Data tmp, int* h) {
     return head;
 }
 
-//Sort a tree by production
+/**
+ * @param head
+ * @param tmp
+ * @param h
+ * Sort a tree by production
+ */
 tree* sortByProduction(tree* head, Data tmp, int* h) {
     if (h == NULL){
         exit(40);

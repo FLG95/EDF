@@ -1,6 +1,13 @@
 #include "include/outFile.h"
 
-//Write in a file 10 data
+/**
+ * @param head
+ * @param h
+ * @param fichier
+ * @param arg1
+ * @param arg2
+ * Write in a file 10 data
+ */
 void write10sup(tree* head, int* h, FILE* fichier, char* arg1, char* arg2){
     if (head != NULL && h != NULL && fichier != NULL && arg1 != NULL && arg2 != NULL && *h < 10) {
         write10sup(head->fd, h, fichier, arg1, arg2);
@@ -16,7 +23,12 @@ void write10sup(tree* head, int* h, FILE* fichier, char* arg1, char* arg2){
     }
 }
 
-//Write in a file 10 data
+/**
+ * @param head
+ * @param h
+ * @param fichier
+ * Write in a file 10 data
+ */
 void write10less(tree* head, int* h, FILE* fichier){
     long long unsigned i = 0;
 
@@ -31,7 +43,12 @@ void write10less(tree* head, int* h, FILE* fichier){
     }
 }
 
-//Write in a file 20 data and create the file to write that
+/**
+ * @param head
+ * @param arg1
+ * @param arg2
+ * Write in a file 20 data and create the file to write that
+ */
 void centerWrite10(tree* head, char* arg1, char* arg2){
     if (head == NULL && arg1 == NULL && arg2 == NULL){
         exit(50);
@@ -57,7 +74,14 @@ void centerWrite10(tree* head, char* arg1, char* arg2){
     fclose(fichier);
 }
 
-//Write all the nodes of an avl in a file
+/**
+ * @param head
+ * @param fichier
+ * @param h
+ * @param arg1
+ * @param arg2
+ * Write all the nodes of an avl in a file
+ */
 void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
     if (head != NULL && fichier != NULL && h != NULL && arg1 != NULL && arg2 != NULL){
         if (*h == 0){
@@ -72,7 +96,12 @@ void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
     }
 }
 
-//Create the file to write all the nodes of an avl
+/**
+ * @param head
+ * @param arg2
+ * @param arg3
+ * Create the file to write all the nodes of an avl
+ */
 void centerWrite(tree* head, char* arg2, char* arg3){
     if (head == NULL || arg2 == NULL || arg3 == NULL){
         exit(50);

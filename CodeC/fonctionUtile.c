@@ -1,18 +1,38 @@
 #include "include/fonction_utile.h"
-#include "include/type_avl.h"
 
-
-//Determinate the minimum between the two value in parameter
+/**
+ * @param a
+ * @param b
+ * Determinate the minimum between the two value in parameter
+ */
 int min(int a, int b) {
-    return (a < b) ? a : b;
+    if (a < b){
+        return a;
+    } else {
+        return b;
+    }
+    return 0;
 }
 
-//Determinate the maximun between the two value in parameter
+/**
+ * @param a
+ * @param b
+ * Determinate the maximum between the two value in parameter
+ */
 int max(int a, int b) {
-    return (a > b) ? a : b;
+    if (a < b){
+        return b;
+    } else {
+        return a;
+    }
+    return 0;
 }
 
-//Determinate the absolute value between the two value in parameter
+/**
+ * @param i
+ * @param j
+ * Determinate the absolute value between the two value in parameter
+ */
 int absoluteValue(long unsigned i, long unsigned j){
     long long int tmp = i - j;
     if (tmp < 0){
@@ -22,7 +42,10 @@ int absoluteValue(long unsigned i, long unsigned j){
     }
 }
 
-//Free the memory
+/**
+ * @param head
+ * Free the memory
+ */
 void freeAvl(tree* head) {
     if (head == NULL) {
         return;
@@ -32,7 +55,10 @@ void freeAvl(tree* head) {
     free(head);
 }
 
-//Check if the Data in parameter is a lv station
+/**
+ * @param a
+ * Check if the Data in parameter is a lv station
+ */
 int isLv(Data a){
     if (a.lv != 0 && a.consumption == 0){
         return 1;
@@ -42,7 +68,10 @@ int isLv(Data a){
     return 0;
 }
 
-//Check if the Data in parameter is a hvb station
+/**
+ * @param a
+ * Check if the Data in parameter is a hvb station
+ */
 int isHvb(Data a){
     if (a.hv_b != 0 && a.hv_a == 0 && a.lv == 0 && a.production != 0){
         return 1;
@@ -52,7 +81,10 @@ int isHvb(Data a){
     return 0;
 }
 
-//Check if the Data in parameter is a hva station
+/**
+ * @param a
+ * Check if the Data in parameter is a hva station
+ */
 int isHva(Data a){
     if (a.hv_a != 0 && a.lv == 0 && a.production != 0){
         return 1;
@@ -62,7 +94,11 @@ int isHva(Data a){
     return 0;
 }
 
-//Determinate the number of nodes in an avl
+/**
+ * @param i
+ * @param head
+ * Determinate the number of nodes in an avl
+ */
 void nbNodes(long long unsigned * i, tree* head){
     if (head != NULL && i != NULL){
         *i = *i+1;
@@ -71,7 +107,9 @@ void nbNodes(long long unsigned * i, tree* head){
     }
 }
 
-//Initialize the data
+/**
+ * Initialize the data
+ */
 Data* init(){
     Data* tmp = NULL;
     tmp = malloc(sizeof(Data));
@@ -83,14 +121,18 @@ Data* init(){
     tmp->hv_b = 0;
     tmp->consumption = 0;
     tmp->id = 1;
-    tmp->particuliers = 0;
-    tmp->entreprise = 0;
+    tmp->consumer = 0;
+    tmp->company = 0;
     tmp->Powerplant = 0;
     tmp->production = 0;
     return tmp;
 }
 
-//Add two char* into one char*
+/**
+ * @param origin
+ * @param toAdd
+ * Add two char* into one char*
+ */
 char* addCharToChar(char* origin, char* toAdd){
     if (origin == NULL || toAdd == NULL){
         exit(1);

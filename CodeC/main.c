@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "include/createData.h"
-
-
 
 #include "include/create_avl.h"
 #include "include/parcours.h"
