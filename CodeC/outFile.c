@@ -34,7 +34,7 @@ void write10less(tree* head, int* h, FILE* fichier){
 //Write in a file 20 data and create the file to write that
 void centerWrite10(tree* head, char* arg1, char* arg2){
     if (head == NULL && arg1 == NULL && arg2 == NULL){
-        exit(1);
+        exit(50);
     }
     int h_sup = 0;
     int h_inf = 0;
@@ -75,7 +75,7 @@ void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
 //Create the file to write all the nodes of an avl
 void centerWrite(tree* head, char* arg2, char* arg3){
     if (head == NULL || arg2 == NULL || arg3 == NULL){
-        exit(1);
+        exit(50);
     }
     int h = 0;
     char* underscore = "_";
