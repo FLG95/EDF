@@ -36,7 +36,7 @@ int main(int argc, char* argv[]){
     FILE* fichier = fopen(argv[1], "r");
     if (fichier == NULL){
         printf("\033[31mERROR : argument 1 file is empty\033[0m\n");
-        exit(1);
+        exit(30);
     }
 
     printf("\n\n\n\n\033[32mWe are sorting your data, please wait few seconds\033[0m\n");
