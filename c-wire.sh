@@ -229,7 +229,7 @@ if [ -d $exe_name  ]; then # If the exe already exist launch it
   ./$exe_name
 else  # Else launch the compilation with the Makefile
   cd $dir_makefile || exit 0
-  make all ARGS="tmp/data.txt $2 $3" & # Give the argument needed by the code in c
+  make all ARGS="tmp/data.txt $2 $3" &# Give the argument needed by the code in c
   echo
   make clean
   cd $dir_origine || exit 0
