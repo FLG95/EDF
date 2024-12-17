@@ -32,6 +32,7 @@ int main(int argc, char* argv[]){
     //Initialize the tree of the station
     tree* stationTree = NULL;
 
+
     //Open the file which contains the data and check if all is right
     FILE* fichier = fopen(argv[1], "r");
     if (fichier == NULL){

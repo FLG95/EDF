@@ -26,8 +26,8 @@ for arg in "$@"; do
   esac
 done
 
-# Check if the number argument is lowest than 3
-if [ $# -lt 3 ]; then
+# Check if the number argument is lowest than 3 or greater than 4
+if [ $# -lt 3 ] || [ $# -gt 4 ]; then
   echo -e "\033[31mError : Number of argument is invalid\033[0m"
   exit 0;
 fi
@@ -229,7 +229,7 @@ if [ -d $exe_name  ]; then # If the exe already exist launch it
   ./$exe_name
 else  # Else launch the compilation with the Makefile
   cd $dir_makefile || exit 0
-  make all ARGS="../tmp/data.txt $2 $3" # Give the argument needed by the code in c
+  make all ARGS="tmp/data.txt $2 $3" & # Give the argument needed by the code in c
   echo
   make clean
   cd $dir_origine || exit 0
