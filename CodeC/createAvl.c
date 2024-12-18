@@ -248,10 +248,10 @@ tree* sortByProduction(tree* head, Data tmp, int* h) {
         *h = 1;
         return create(tmp);
     }
-    if (head->a.consumption > tmp.consumption) {
+    if (head->a.production > tmp.production) {
         head->fg = sortByProduction(head->fg, tmp, h);
         *h = -*h;
-    } else if (head->a.consumption < tmp.consumption) {
+    } else if (head->a.production < tmp.production) {
         head->fd = sortByProduction(head->fd, tmp, h);
     } else {
         if (head->a.id > tmp.id){
