@@ -10,7 +10,7 @@ int min(int a, int b) {
         return a;
     } else {
         return b;
-    }
+    } 
     return 0;
 }
 
