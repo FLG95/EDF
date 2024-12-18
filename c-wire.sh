@@ -27,7 +27,7 @@ for arg in "$@"; do
 done
 
 # Check if the number argument is lowest than 3 or greater than 4
-if [ $# -lt 3 ] || [ $# -gt 3 ]; then
+if [ $# -lt 3 ] || [ $# -gt 4 ]; then
   echo -e "\033[31mError : Number of argument is invalid\033[0m"
   exit 0;
 fi
