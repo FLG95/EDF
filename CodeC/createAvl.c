@@ -204,10 +204,11 @@ tree* sortByAbs(tree* head, Data tmp, int* h) {
     if (head == NULL) {
         *h = 1;
         return create(tmp);
-    } else if (head->a.production - head->a.consumption > tmp.production - tmp.consumption) {
+    } else if ((head->a.production - head->a.consumption) > (tmp.production - tmp.consumption)) {
         head->fg = sortByAbs(head->fg, tmp, h);
         *h = -*h;
-    } else if (head->a.production - head->a.consumption < tmp.production - tmp.consumption) {
+    } else if ((head->a.production - head->a.consumption) < (tmp.production - tmp.consumption)) {
+        printf("%lli\n",head->a.production - head->a.consumption);
         head->fd = sortByAbs(head->fd, tmp, h);
     } else {
         if (head->a.id > tmp.id){

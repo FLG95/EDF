@@ -11,7 +11,7 @@ void write10sup(tree* head, int* h, FILE* fichier){
         write10sup(head->fd, h, fichier);
         if (*h < 10) {
             *h = *h + 1;
-            fprintf(fichier, "%d:%lu:%lu\n",
+            fprintf(fichier, "%d:%lli:%lli\n",
                     head->a.id, head->a.production, head->a.consumption);
         }
         write10sup(head->fg, h, fichier);
@@ -25,13 +25,13 @@ void write10sup(tree* head, int* h, FILE* fichier){
  * Write in a file 10 data
  */
 void write10less(tree* head, int* h, FILE* fichier){
-    long long unsigned i = 0;
+    long long int i = 0;
 
     if (head != NULL && h != NULL && fichier != NULL && *h < 10) {
         write10less(head->fg, h, fichier);
         if (*h < 10) {
             *h = *h + 1;
-            fprintf(fichier, "%d:%lu:%lu\n",
+            fprintf(fichier, "%d:%lli:%lli\n",
                     head->a.id, head->a.production, head->a.consumption);
         }
         write10less(head->fd, h, fichier);
@@ -63,7 +63,7 @@ void centerWrite10(tree* head, char* arg1, char* arg2){
     }
     int h_sup = 0;
     int h_inf = 0;
-    long long unsigned i = 0;
+    long long int i = 0;
     nbNodes(&i, head);
     FILE* fichier = fopen("../results/lv_all_minmax2.csv", "w");
     if (fichier == NULL){
@@ -98,7 +98,7 @@ void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
             fprintf(fichier, "Station %s : Capacity : consumption (%s)\n", arg1, arg2);
         }
         writeAllData(head->fg, fichier, h, arg1, arg2);
-        fprintf(fichier, "%d:%lu:%lu\n",
+        fprintf(fichier, "%d:%lli:%lli\n",
                 head->a.id, head->a.production, head->a.consumption);
         writeAllData(head->fd, fichier, h, arg1, arg2);
     }

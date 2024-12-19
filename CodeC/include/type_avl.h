@@ -16,14 +16,14 @@
  */
 typedef struct Data{
     int id;
-    long unsigned Powerplant;
-    long unsigned hv_b;
-    long unsigned hv_a;
-    long unsigned lv;
-    long unsigned company;
-    long unsigned consumer;
-    long unsigned consumption;
-    long unsigned production;
+    long long int Powerplant;
+    long long int hv_b;
+    long long int hv_a;
+    long long int lv;
+    long long int company;
+    long long int consumer;
+    long long int consumption;
+    long long int production;
 } Data;
 
 /**

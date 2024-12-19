@@ -51,14 +51,14 @@ void ensembleDonne(FILE* fichier, int* hStation, tree** stationTree, char* type)
         exit(30);
     }
     int i = 0;
-    sscanf(line2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
+    sscanf(line2, "%lli;%lli;%lli;%lli;%lli;%lli;%lli;%lli;",
            &tmp->Powerplant, &tmp->hv_b, &tmp->hv_a, &tmp->lv, &tmp->company, &tmp->consumer, &tmp->production, &tmp->consumption);
     addTree(stationTree, *tmp, hStation, type, tmp,  &i);
     Data b;
     tree *head = NULL;
     fgets(line2, sizeof(line2), new_file);
     while (fgets(line2, sizeof(line2), new_file) != NULL) {
-        sscanf(line2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu;",
+        sscanf(line2, "%lli;%lli;%lli;%lli;%lli;%lli;%lli;%lli;",
                &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv, &b.company, &b.consumer, &b.production, &b.consumption);
         addTree(stationTree, b, hStation, type, tmp, &i);
     }

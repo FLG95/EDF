@@ -253,7 +253,7 @@ head -n 1 "$input_file" > "$output_file"
 tail -n +2 "$input_file" | \
 awk -F: '{diff = $2 - $3; print $1 ":" $2 ":" $3 ":" diff}' | \
 sort -t: -k4,4n | \
-awk -F: '{print $1 ":" $2 ":" $3}' >> "$output_file"
+awk -F: '{print $1 ":" $2 ":" $3 ":" $4}' >> "$output_file"
 
 # Supprimer le fichier d'entrée uniquement si nécessaire
 if [[ -f "$input_file" ]]; then
