@@ -17,6 +17,7 @@
             <h2>Projects</h2>
             <p>Cy EDF Pre-Ing-2 S1 project</p>
             <p>Subject : <a href="C-Wire.pdf" target="_blank"><strong>C-Wire.pdf</strong></a></p>
+            <p>This project aims to analyze energy distribution networks, from power plants to end consumers. The system is organized into levels (HV-B, HV-A, LV), each playing a key role in energy transformation and distribution. The goal is to identify situations of overproduction or underproduction and understand the distribution of consumption between businesses and individuals.</p>
             <h3>Arguments :</h3>
             <ul>
                 <li><strong>Input_file :</strong> path to the input file</li>
