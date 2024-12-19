@@ -43,6 +43,10 @@ int main(int argc, char* argv[]){
         exit(30);
     }*/
 
+    if(stdin == NULL){
+        exit(30);
+    }
+
     printf("\033[32mWe are sorting your data, please wait few seconds\033[0m\n");
 
     //Take data of a file and add it to a tree

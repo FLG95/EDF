@@ -251,8 +251,9 @@ head -n 1 "$input_file" > "$output_file"
 tail -n +2 "$input_file" | \
 awk -F: '{diff = $2 - $3; print $1 ":" $2 ":" $3 ":" diff}' | \
 sort -t: -k4,4n | \
-awk -F: '{print $1 ":" $2 ":" $3}' >> "$output_file"
+awk -F: '{print $1 ":" $2 ":" $3}' > "$output_file"
 rm $input_file
+
 
 
 if [ $2 == 'lv' ] && [ $3 == 'all' ]; then # If Argument 2 == "lv" and Argument 3 == "all" we create add the graph in the grah directory

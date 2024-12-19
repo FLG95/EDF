@@ -67,6 +67,8 @@ void centerWrite10(tree* head, char* arg1, char* arg2){
     nbNodes(&i, head);
 
     FILE* fichier = fopen("../results/lv_all_minmax2.csv", "w");
+    freopen("../results/lv_all_minmax2.csv", "w", stdout);
+
     if (fichier == NULL){
         exit(70);
     }
@@ -81,7 +83,7 @@ void centerWrite10(tree* head, char* arg1, char* arg2){
         write10less(head, &h_inf, fichier);
         write10sup(head ,&h_sup, fichier);
     }
-    fclose(fichier);
+    fclose(stdout);
 }
 
 /**
@@ -122,12 +124,14 @@ void centerWrite(tree* head, char* arg2, char* arg3){
     destination = addCharToChar(destination, ".csv");
 
     //FILE* fichierAll = fopen(destination, "w");
+
+    freopen(destination, "w", stdout);
     if (stdout == NULL){
         exit(70);
     }
 
     writeAllData(head, stdout, &h, arg2, arg3);
-    //fclose(fichierAll);
+    fclose(stdout);
     free(destination);
     destination = NULL;
 }
