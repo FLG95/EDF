@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
 
 #include "include/create_avl.h"
 #include "include/parcours.h"
@@ -11,7 +8,6 @@
 #include "include/createData.h"
 #include "include/fonction_utile.h"
 #include "include/outFile.h"
-
 
 
 int main(int argc, char* argv[]){
@@ -26,6 +22,10 @@ int main(int argc, char* argv[]){
         exit(20);
     }
 
+
+
+
+
     //Define the type of the station
     char* type = argv[2];
 
@@ -36,17 +36,17 @@ int main(int argc, char* argv[]){
     tree* stationTree = NULL;
 
 
-    //Open the file which contains the data and check if all is right
-    FILE* fichier = fopen(argv[1], "r");
+    //Open the file which contains the data and check if all is good
+    /*FILE* fichier = fopen(argv[1], "r");
     if (fichier == NULL){
         printf("\033[31mERROR : argument 1 file is empty\033[0m\n");
         exit(30);
-    }
+    }*/
 
     printf("\n\n\n\n\033[32mWe are sorting your data, please wait few seconds\033[0m\n");
 
     //Take data of a file and add it to a tree
-    ensembleDonne(fichier, &hStation, &stationTree, type);
+    ensembleDonne(stdin, &hStation, &stationTree, type);
 
     //Initialize tree
     tree* stationTreeSortProduction = NULL;
