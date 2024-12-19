@@ -236,7 +236,6 @@ fi
 
 # Lire le fichier, calculer la différence (production - consommation), trier, et afficher les résultats
 input_file="results/lv_all_minmax2.csv"
-
 output_file="results/lv_all_minmax.csv"
 
 # Vérifier si le fichier existe
