@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+
 
 
 #include "include/create_avl.h"
@@ -16,7 +15,7 @@
 
 int main(int argc, char* argv[]){
     //Check if the number of argument is correct
-    if (argc != 4){
+    if (argc < 4 || argc > 5){
         printf("\033[31mERROR : not enough argument\033[0m\n");
         exit(10);
     }
@@ -66,7 +65,7 @@ int main(int argc, char* argv[]){
     }
 
     //Write the nodes of the tree in external files
-    centerWrite(stationTreeSortProduction, argv[2], argv[3]);
+    centerWrite(stationTreeSortProduction, argv[2], argv[3], argv[4]);
 
     if (strcmp(argv[2], "lv") == 0 && strcmp(argv[3], "all") == 0){
         centerWrite10(stationTreeSortAbs, argv[2], argv[3]);

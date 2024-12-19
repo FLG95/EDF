@@ -16,7 +16,6 @@ function help(){
   exit 0
 }
 
-
 # Check if any argument is -h
 for arg in "$@"; do
   case "$arg" in # if the argument is -h display the help
@@ -138,7 +137,6 @@ echo -e "\033[32mWe are extracting your data, Please Wait few seconds\033[0m"
 
 # Switch case on the second argument then check all the possibility for the third argument according to the first argument
 
-
 case $2 in
   "hvb")
   if [ $3 == "all" ]; then # If the argument are "hvb" and "all" display and error and exit
@@ -229,7 +227,12 @@ if [ -d $exe_name  ]; then # If the exe already exist launch it
 else  # Else launch the compilation with the Makefile
   cd $dir_makefile || exit 0
   make clean
-  make all ARGS="../tmp/data.txt $2 $3" # Give the argument needed by the code in c
+  if [ -z $4 ]; then
+      make all ARGS="../tmp/data.txt $2 $3" # Give the argument needed by the code in c
+    else
+      make all ARGS="../tmp/data.txt $2 $3 $4" # Give the argument needed by the code in c
+  fi
+
   make clean
   cd $dir_origine || exit 0
 fi
@@ -238,13 +241,20 @@ fi
 #!/bin/bash
 
 input_file="results/lv_all_minmax2.csv"
-output_file="results/lv_all_minmax.csv"
+if [ -z $4 ]; then
+    output_file="results/lv_all_minmax.csv"
+  else
+    output_file="results/lv_all_minmax_$4.csv"
+fi
+
 
 # Vérifier si le fichier existe
 if [[ ! -f "$input_file" ]]; then
     echo -e "\033[31mError: the file '$input_file' doesn't exist\033[0m"
     exit 50
 fi
+
+
 
 # Extraire l'en-tête
 head -n 1 "$input_file" > "$output_file"
@@ -278,7 +288,7 @@ gnuplot -persist << EOF
   set boxwidth 1
   set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "grey" behind
   set datafile separator ":"
-  plot 'results/lv_all_minmax.csv' using 2:xtic(1) lc rgb "navy" title 'Capacity','' using 3 lc rgb "gold" title 'Consumption'
+  plot '$output_file' using 2:xtic(1) lc rgb "navy" title 'Capacity','' using 3 lc rgb "gold" title 'Consumption'
 EOF
 fi
 
