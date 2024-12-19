@@ -29,13 +29,13 @@ done
 # Check if the number argument is lowest than 3 or greater than 4
 if [ $# -lt 3 ] || [ $# -gt 4 ]; then
   echo -e "\033[31mError : Number of argument is invalid\033[0m"
-  exit 0;
+  exit 20
 fi
 
 # Check if the first argument is empty
 if [ -z $1 ]; then
   echo -e "\033[31mError : No file specified\033[0m"
-  exit 0
+  exit 30
 fi
 
 
@@ -44,7 +44,7 @@ if [ -e $1 ]; then
   echo
 else
   echo -e "\033[31mError : the specified file is invalid\033[0m"
-  exit 0
+  exit 30
 fi
 
 
@@ -56,7 +56,7 @@ if [ -n "$4" ]; then
   # Check if the value of $4 is less than or equal to 0 OR greater than the value of 'BiggestPowerPlant'
   if [ $4 -le 0 ] || [ $4 -gt $BiggestPowerPlant ]; then
     echo -e "\033[31mError the selected power plant is invalid\033[0m"
-    exit 0
+    exit 10
   fi
 fi
 
@@ -143,11 +143,11 @@ case $2 in
   "hvb")
   if [ $3 == "all" ]; then # If the argument are "hvb" and "all" display and error and exit
     echo -e "\033[31mYou cant do hvb all\033[0m"
-    exit 0
+    exit 10
 
   elif [ $3 == "indiv" ]; then # If the argument are "hvb" and "indiv" display and error and exit
     echo -e "\033[31mYou cant do hvb indiv\033[0m"
-    exit 0
+    exit 10
 
 
   elif [ $3 == "comp" ]; then #If the third argument is "comp" we check if the power plant is selected then extract the correct line
@@ -160,7 +160,7 @@ case $2 in
 
   else # If the third argument aren't correct we display an error and exit
     echo -e "\033[31mError : one of the argument is invalid\033[0m"
-    exit 0
+    exit 10
 
   fi
   ;;
@@ -168,11 +168,11 @@ case $2 in
   "hva")
   if [ $3 == "all" ]; then # If the argument are "hva" and "all" display and error and exit
     echo -e "\033[31mYou cant do hva all\033[0m"
-    exit 0
+    exit 10
 
   elif [ $3 == "indiv" ]; then # If the argument are "hva" and "indiv" display and error and exit
     echo -e "\033[31mYou cant do hva indiv\033[0m"
-    exit 0
+    exit 10
 
   elif [ $3 == "comp" ]; then #If the third argument is "comp" we check if the power plant is selected then extract the correct line
     if [ -n "$4" ]; then
@@ -182,7 +182,7 @@ case $2 in
     fi
   else # If the third argument aren't correct we display an error and exit
     echo -e "\033[31mError : one of the argument is invalid\033[0m"
-    exit 0
+    exit 10
   fi
   ;;
 
@@ -213,13 +213,13 @@ case $2 in
 
   else # If the third argument aren't correct we display an error and exit
       echo -e "\033[31mError : one of the argument is invalid\033[0m"
-      exit 0
+      exit 10
   fi
   ;;
 
   *) # Default case = if the second argument isn't valid we display an error and exit
     echo -e "\033[31mError : one of the argument is invalid\033[0m"
-    exit 0
+    exit 10
   ;;
 esac
 
@@ -237,23 +237,27 @@ fi
 
 
 
-if [ $2 == 'lv' ] && [ $3 == 'all' ]; then # If Argument 2 == "lv" and Argument 3 == "all"
+if [ $2 == 'lv' ] && [ $3 == 'all' ]; then # If Argument 2 == "lv" and Argument 3 == "all" we create add the graph in the grah directory
 gnuplot -persist << EOF
   set terminal png size 1600,900
   set output 'graph/lv_all_load_graph.png'
+
+  set style data histogram
+  set style histogram cluster gap 1
+  set style fill solid border -1
   set autoscale
   set style fill solid
   set title 'Graph of the 10 biggest and lowest load'
   set ylabel 'Load (kWh)'
   set xlabel 'Station ID'
-  set datafile separator ":"
+  set grid ytics
+  set key outside
+  set boxwidth 1
   set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "grey" behind
-  set style fill solid 0.5 border lc rgb "black"
-  set boxwidth 0.8
-  plot 'results/lv_all_minmax.csv' using 2:xtic(1) with boxes linecolor rgb "navy" title 'Capacity', 'results/lv_all_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "gold" title 'Consumption'
+  set datafile separator ":"
+  plot 'results/lv_minmax.csv' using 2:xtic(1) lc rgb "navy" title 'Capacity','' using 3 lc rgb "gold" title 'Consumption'
 EOF
 fi
-
 
 
 END_TIME=$(date +%s) # Get the actual time and stock it in the END_TIME variable
