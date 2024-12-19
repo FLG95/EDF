@@ -96,10 +96,10 @@ void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
     if (head != NULL && fichier != NULL && h != NULL && arg1 != NULL && arg2 != NULL){
         if (*h == 0){
             *h = *h + 1;
-            fprintf(fichier, "Station %s : Capacity : consumption (%s)\n", arg1, arg2);
+            fprintf(stdout, "Station %s : Capacity : consumption (%s)\n", arg1, arg2);
         }
         writeAllData(head->fg, fichier, h, arg1, arg2);
-        fprintf(fichier, "%d:%lu:%lu\n",
+        fprintf(stdout, "%d:%lu:%lu\n",
                 head->a.id, head->a.production, head->a.consumption);
         writeAllData(head->fd, fichier, h, arg1, arg2);
     }
@@ -121,14 +121,14 @@ void centerWrite(tree* head, char* arg2, char* arg3){
     destination = addCharToChar(destination, arg3);
     destination = addCharToChar(destination, ".csv");
 
-    //FILE* fichierAll = stdout;
-    FILE* fichierAll = fopen(destination, "w");
+    FILE* fichierAll = stdout;
+    //FILE* fichierAll = fopen(destination, "w");
     if (fichierAll == NULL){
         exit(70);
     }
 
     writeAllData(head, fichierAll, &h, arg2, arg3);
-    fclose(fichierAll);
+    //fclose(fichierAll);
     free(destination);
     destination = NULL;
 }
