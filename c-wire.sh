@@ -224,7 +224,6 @@ case $2 in
 esac
 
 
-
 if [ -d $exe_name  ]; then # If the exe already exist launch it
   ./$exe_name
 else  # Else launch the compilation with the Makefile
@@ -286,11 +285,9 @@ fi
 
 
 END_TIME=$(date +%s) # Get the actual time and stock it in the END_TIME variable
-
 PROCESSUS_TIME=$((END_TIME - START_TIME)) # Calculs the processus time
 
 echo "The program last : $PROCESSUS_TIME seconds" # Display the processus time
-
 echo "$ascii3" # Display the third ASCII
 
 rm tmp/* # Empty the tmp file
