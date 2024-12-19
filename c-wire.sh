@@ -255,7 +255,7 @@ gnuplot -persist << EOF
   set boxwidth 1
   set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "grey" behind
   set datafile separator ":"
-  plot 'results/lv_minmax.csv' using 2:xtic(1) lc rgb "navy" title 'Capacity','' using 3 lc rgb "gold" title 'Consumption'
+  plot 'results/lv_all_minmax.csv' using 2:xtic(1) lc rgb "navy" title 'Capacity','' using 3 lc rgb "gold" title 'Consumption'
 EOF
 fi
 
