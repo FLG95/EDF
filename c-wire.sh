@@ -245,18 +245,14 @@ if [[ ! -f "$input_file" ]]; then
     exit 1
 fi
 
-# Extraire la première ligne (en-tête) et la conserver séparément
-head -n 1 "$input_file" > "$output_file"
 
-# Trier le reste du fichier en fonction de la différence entre production et consommation
-# Ne pas inclure la première ligne dans le tri
+head -n 1 "$input_file" > "$output_file"
 tail -n +2 "$input_file" | \
 awk -F: '{diff = $2 - $3; print $1 ":" $2 ":" $3 ":" diff}' | \
 sort -t: -k4,4n | \
 awk -F: '{print $1 ":" $2 ":" $3}' >> "$output_file"
-
-# Remplacer le fichier d'entrée par le fichier temporaire
 rm $input_file
+
 
 if [ $2 == 'lv' ] && [ $3 == 'all' ]; then # If Argument 2 == "lv" and Argument 3 == "all" we create add the graph in the grah directory
 gnuplot -persist << EOF
@@ -279,9 +275,6 @@ gnuplot -persist << EOF
   plot 'results/lv_all_minmax.csv' using 2:xtic(1) lc rgb "navy" title 'Capacity','' using 3 lc rgb "gold" title 'Consumption'
 EOF
 fi
-
-
-
 
 
 END_TIME=$(date +%s) # Get the actual time and stock it in the END_TIME variable
