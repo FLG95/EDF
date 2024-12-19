@@ -236,9 +236,9 @@ else  # Else launch the compilation with the Makefile
 fi
 
 # Lire le fichier, calculer la différence (production - consommation), trier, et afficher les résultats
-input_file="results/lv_all_minmax.csv"
+input_file="results/lv_all_minmax2.csv"
 
-output_file="results/lv_all_minmax2.csv"
+output_file="results/lv_all_minmax.csv"
 
 # Vérifier si le fichier existe
 if [[ ! -f "$input_file" ]]; then
@@ -257,7 +257,7 @@ sort -t: -k4,4n | \
 awk -F: '{print $1 ":" $2 ":" $3}' >> "$output_file"
 
 # Remplacer le fichier d'entrée par le fichier temporaire
-
+rm $input_file
 
 if [ $2 == 'lv' ] && [ $3 == 'all' ]; then # If Argument 2 == "lv" and Argument 3 == "all" we create add the graph in the grah directory
 gnuplot -persist << EOF

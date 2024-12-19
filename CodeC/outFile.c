@@ -65,7 +65,7 @@ void centerWrite10(tree* head, char* arg1, char* arg2){
     int h_inf = 0;
     long long unsigned i = 0;
     nbNodes(&i, head);
-    FILE* fichier = fopen("../results/lv_all_minmax.csv", "w");
+    FILE* fichier = fopen("../results/lv_all_minmax2.csv", "w");
     if (fichier == NULL){
         exit(70);
     }
