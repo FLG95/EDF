@@ -250,7 +250,7 @@ gnuplot -persist << EOF
   set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb "grey" behind
   set style fill solid 0.5 border lc rgb "black"
   set boxwidth 0.8
-  plot 'results/lv_minmax.csv' using 2:xtic(1) with boxes linecolor rgb "navy" title 'Capacity', 'results/lv_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "gold" title 'Consumption'
+  plot 'results/lv_all_minmax.csv' using 2:xtic(1) with boxes linecolor rgb "navy" title 'Capacity', 'results/lv_all_minmax.csv' using 3:xtic(1) with boxes linecolor rgb "gold" title 'Consumption'
 EOF
 fi
 

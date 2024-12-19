@@ -33,12 +33,11 @@ int max(int a, int b) {
  * @param j
  * Determinate the absolute value between the two value in parameter
  */
-int absoluteValue(long unsigned i, long unsigned j){
-    long long int tmp = i - j;
-    if (tmp < 0){
-        return -tmp;
+int absoluteValue(long unsigned i){
+    if (i < 0){
+        return -i;
     } else {
-        return tmp;
+        return i;
     }
 }
 
@@ -114,7 +113,7 @@ Data* init(){
     Data* tmp = NULL;
     tmp = malloc(sizeof(Data));
     if (tmp == NULL){
-        exit(30);
+        exit(70);
     }
     tmp->lv = 0;
     tmp->hv_a = 0;
@@ -135,11 +134,14 @@ Data* init(){
  */
 char* addCharToChar(char* origin, char* toAdd){
     if (origin == NULL || toAdd == NULL){
-        exit(1);
+        exit(70);
     }
     char* tmp = NULL;
-    int newSize = strlen(origin) + strlen(toAdd) + 1;
+    int newSize = strlen(origin) + strlen(toAdd) + 2;
     tmp = malloc((newSize * sizeof(char)));
+    if (tmp == NULL){
+        exit(70);
+    }
     strcpy(tmp, origin);
     strcat(tmp, toAdd);
     return tmp;

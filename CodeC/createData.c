@@ -62,5 +62,6 @@ void ensembleDonne(FILE* fichier, int* hStation, tree** stationTree, char* type)
                &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv, &b.company, &b.consumer, &b.production, &b.consumption);
         addTree(stationTree, b, hStation, type, tmp, &i);
     }
+    free(tmp);
     fclose(new_file);
 }

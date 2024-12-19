@@ -15,7 +15,7 @@
  * @param arg2
  * Write in a file 10 data
  */
-void write10sup(tree* head, int* h, FILE* fichier, char* arg1, char* arg2);
+void write10sup(tree* head, int* h, FILE* fichier);
 
 /**
  * @param head
@@ -50,5 +50,13 @@ void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2);
  * Create the file to write all the nodes of an avl
  */
 void centerWrite(tree* head, char* arg2, char* arg3);
+
+/**
+ * @param fichier
+ * @param arg1
+ * @param arg2
+ * Put documentation on the top of the file
+ */
+void addHighDocumentation(FILE *fichier, char* arg1, char* arg2);
 
 #endif //OutFile

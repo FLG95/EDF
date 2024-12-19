@@ -64,6 +64,7 @@ int main(int argc, char* argv[]){
 
     //Write the nodes of the tree in external files
     centerWrite(stationTreeSortProduction, argv[2], argv[3]);
+
     if (strcmp(argv[2], "lv") == 0 && strcmp(argv[3], "all") == 0){
         centerWrite10(stationTreeSortAbs, argv[2], argv[3]);
     }

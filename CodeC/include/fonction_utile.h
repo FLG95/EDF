@@ -67,10 +67,9 @@ char* addCharToChar(char* origin, char* toAdd);
 
 /**
 * @param i
-* @param j
 * Determinate the absolute value between the two value in parameter
 */
-int absoluteValue(long unsigned i, long unsigned j);
+int absoluteValue(long unsigned i);
 
 #endif //FONCTION_UTILE
 
