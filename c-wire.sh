@@ -260,8 +260,6 @@ if [[ -f "$input_file" ]]; then
     rm "$input_file"
 fi
 
-
-
 if [ $2 == 'lv' ] && [ $3 == 'all' ]; then # If Argument 2 == "lv" and Argument 3 == "all" we create add the graph in the grah directory
 gnuplot -persist << EOF
   set terminal png size 1600,900
