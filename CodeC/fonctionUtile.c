@@ -33,13 +33,7 @@ int max(int a, int b) {
  * @param j
  * Determinate the absolute value between the two value in parameter
  */
-int absoluteValue(long unsigned i){
-    if (i < 0){
-        return -i;
-    } else {
-        return i;
-    }
-}
+
 
 /**
  * @param head
