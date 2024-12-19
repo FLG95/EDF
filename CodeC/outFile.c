@@ -121,13 +121,12 @@ void centerWrite(tree* head, char* arg2, char* arg3){
     destination = addCharToChar(destination, arg3);
     destination = addCharToChar(destination, ".csv");
 
-    FILE* fichierAll = stdout;
     //FILE* fichierAll = fopen(destination, "w");
-    if (fichierAll == NULL){
+    if (stdout == NULL){
         exit(70);
     }
 
-    writeAllData(head, fichierAll, &h, arg2, arg3);
+    writeAllData(head, stdout, &h, arg2, arg3);
     //fclose(fichierAll);
     free(destination);
     destination = NULL;
