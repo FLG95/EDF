@@ -241,8 +241,8 @@ output_file="results/lv_all_minmax.csv"
 
 # Vérifier si le fichier existe
 if [[ ! -f "$input_file" ]]; then
-    echo "Erreur : Le fichier $input_file n'existe pas."
-    exit 1
+    echo -e "\033[31mError : the file $input_file doesn't exist\033[0m"
+    exit 50
 fi
 
 
