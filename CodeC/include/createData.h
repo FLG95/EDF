@@ -12,7 +12,7 @@
  * @param fichier
  * Transform the "-" of the file by "0"
  */
-FILE* transformerFichier(FILE* fichier);
+void transformerFichier(FILE* fichier, int pipe_write);
 
 /**
  * @param fichier
@@ -21,7 +21,7 @@ FILE* transformerFichier(FILE* fichier);
  * @param type
  * Take data of a File and add it to a tree
  */
-void ensembleDonne(FILE* fichier, int* hStation, tree** stationTree, char* type);
+void ensembleDonne(int* hStation, tree** stationTree, char* type, int pipe_write);
 
 
 #endif //createData

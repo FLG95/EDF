@@ -2,7 +2,7 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -std=c11 -Iinclude -g
+CFLAGS = -std=gnu99 -Iinclude -g
 
 LIBS = -lncurses
 
