@@ -4,9 +4,6 @@ CC = gcc
 # Compiler flags
 CFLAGS = -std=c11 -Iinclude -g
 
-LIBS = -lncurses
-
-
 # Source files
 SRC = main.c createAvl.c parcours.c createData.c fonctionUtile.c outFile.c
 
