@@ -41,6 +41,7 @@
                 <li>40 : Error when building AVL tree</li>
                 <li>50 : Error when writing output file</li>
                 <li>60 : Error when using AVL tree</li>
+                <li>70 : Error when using pointer</li>
             </ul>
         </section>
     <section>
