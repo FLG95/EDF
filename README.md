@@ -32,7 +32,11 @@
 ./c-wire.sh Input/c-wire_v25.dat hva comp
             </pre>
             <h3>Shell exit code :</h3>
-            <p> *à remplir*</p>
+            <ul>
+                <li>10 : Error by passing arguments</li>
+                <li>20 : Invalid arguments</li>
+                <li>30 : Error when reading file</li>
+            </ul>
             <h3>C exit code :</h3>
              <ul>
                 <li>0 : Succes</li>
