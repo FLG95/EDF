@@ -47,6 +47,7 @@ else
 fi
 
 
+
 # Get the biggest Power Plant possible
 BiggestPowerPlant=$(tail -n 1 $1 | cut -d';' -f1)
 
@@ -71,13 +72,11 @@ dir_origine="../"
 dir_tmp="tmp"
 dir_graph="graph"
 dir_result="results"
+dir_test="test"
 
 #Display the two first ASCII
 cat $asciiEDF
 cat $asciiEYD
-
-
-
 
 # Check if the directory tmp exist if not create it
 if [ -d $dir_tmp ]; then
@@ -86,13 +85,25 @@ else
   mkdir $dir_tmp;
 fi
 
-# Chack if the directory result exist if not create it
+# Check if the directory result exist if not create it
 if [ -d $dir_result ]; then
-  rm -rf $dir_result/*
+  # Check if the directory result exist if not create it and move file into it
+  if [ -d $dir_test ]; then
+        mv $dir_result/* $dir_test
+  else
+        mkdir $dir_test;
+        mv $dir_result/* $dir_test
+  fi
 else
   mkdir $dir_result;
+  # Check if the directory result exist if not create it and move file into it
+  if [ -d $dir_test ]; then
+          mv $dir_result/* $dir_test
+  else
+          mkdir $dir_test;
+          mv $dir_result/* $dir_test
+  fi
 fi
-
 
 #Check if the directory graph exist if not create it
 if [ -d $dir_graph ]; then
