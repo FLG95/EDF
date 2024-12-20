@@ -4,9 +4,6 @@ CC = gcc
 # Compiler flags
 CFLAGS = -std=gnu99 -Iinclude -g
 
-LIBS = -lncurses
-
-
 # Source files
 SRC = main.c createAvl.c parcours.c createData.c fonctionUtile.c outFile.c
 
@@ -15,7 +12,6 @@ OBJ = $(SRC:.c=.o)
 
 # Executable
 TARGET = exe
-
 
 # Linking the executable
 $(TARGET): $(OBJ)

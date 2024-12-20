@@ -36,15 +36,6 @@ int main(int argc, char* argv[]){
     tree* stationTree = NULL;
 
 
-    //Open the file which contains the data and check if all is good
-    /*FILE* fichier = fopen(argv[1], "r");
-    if (fichier == NULL){
-        printf("\033[31mERROR : argument 1 file is empty\033[0m\n");
-        exit(30);
-    }*/
-
-
-
     printf("\033[32mWe are sorting your data, please wait few seconds\033[0m\n");
 
 
@@ -67,16 +58,9 @@ int main(int argc, char* argv[]){
     }
     else{
         transformerFichier(stdin, pipe_fd[1]);
-        ssize_t bytes_read;
-        char buffer[1024];
-        while ((bytes_read = read(pipe_fd[0], buffer, sizeof(buffer) - 1)) > 0) {
-            buffer[bytes_read] = '\0'; // Terminer la chaîne lue
-            printf("%s", buffer);
-        }
-        //close(pipe_fd[1]);
+        close(pipe_fd[1]);
         wait(NULL);
     }
-
 
 
     //Initialize tree
@@ -93,6 +77,7 @@ int main(int argc, char* argv[]){
 
     //Check if the tree are not empty
     if (stationTreeSortProduction == NULL || stationTreeSortAbs == NULL){
+        printf("ici");
         exit(60);
     }
 

@@ -16,7 +16,7 @@ void transformerFichier(FILE* fichier, int pipe_write) {
 
     char line[256];
     while (fgets(line, sizeof(line), fichier) != NULL) {
-        // Remplacer chaque '-' par '0'.
+        // Transform the "-" of the file by "0"
         for (int i = 0; i < strlen(line); i++) {
             if (line[i] == '-') {
                 line[i] = '0';
@@ -28,7 +28,7 @@ void transformerFichier(FILE* fichier, int pipe_write) {
         ssize_t bytes_written = write(pipe_write, line, strlen(line));
         if (bytes_written == -1) {
             perror("Erreur d'écriture dans le pipe");
-            close(pipe_write); // S'assurer de fermer proprement
+            close(pipe_write);
             exit(EXIT_FAILURE);
         }
     }
