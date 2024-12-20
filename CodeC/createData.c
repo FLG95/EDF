@@ -52,7 +52,12 @@ void ensembleDonne(FILE* fichier, int* hStation, int* hConso, tree** stationTree
     Data b;
     int i = 0;
 
-    //Read the line of the document
+    //This is to skip the first line
+    if (fgets(line, sizeof(line), new_file) != NULL){
+        sscanf(line, "%lli", &b.Powerplant);
+    }
+
+    //Read the line of the document by starting on the second line
     while (fgets(line, sizeof(line), new_file) != NULL) {
         sscanf(line, "%lld;%lld;%lld;%lld;%lld;%lld;%lld;%lld;",
                &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv,
