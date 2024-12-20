@@ -52,15 +52,6 @@ void ensembleDonne(FILE* fichier, int* hStation, int* hConso, tree** stationTree
     Data b;
     int i = 0;
 
-    //Read the first line of the document
-    if (fgets(line, sizeof(line), new_file) != NULL) {
-        sscanf(line, "%lld;%lld;%lld;%lld;%lld;%lld;%lld;%lld;",
-               &b.Powerplant, &b.hv_b, &b.hv_a, &b.lv,
-               &b.company, &b.consumer, &b.production, &b.consumption);
-
-        //Add data to the stationTree or the consoTree
-        addTree(stationTree, consoTree, b, hStation, hStation, type, &i);
-    }
     //Read the line of the document
     while (fgets(line, sizeof(line), new_file) != NULL) {
         sscanf(line, "%lld;%lld;%lld;%lld;%lld;%lld;%lld;%lld;",
