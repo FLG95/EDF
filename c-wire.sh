@@ -262,7 +262,7 @@ head -n 1 "$input_file" > "$output_file"
 # Traiter les données et les trier par la différence (colonne 4)
 tail -n +2 "$input_file" | \
 awk -F: '{diff = $2 - $3; print $1 ":" $2 ":" $3 ":" diff}' | \
-sort -t: -k4,4n | \
+sort -t: -k4,4g | \
 awk -F: '{print $1 ":" $2 ":" $3}' >> "$output_file"
 
 # Supprimer le fichier d'entrée uniquement si nécessaire
