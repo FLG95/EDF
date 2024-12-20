@@ -60,9 +60,9 @@ if [ -n "$4" ]; then
 fi
 
 
-asciiEDF="Input/asciiCYEDF.txt"
-asciiEYD="Input/asciiEYD.txt"
-asciiTSYS="Input/asciiTSYS.txt"
+asciiEDF="input/asciiCYEDF.txt"
+asciiEYD="input/asciiEYD.txt"
+asciiTSYS="input/asciiTSYS.txt"
 
 # Get all the file path in variable
 exe_name="exe"
