@@ -2,26 +2,9 @@
 
 /**
  * @param head
- * @param a
- * Sum the consumption of the data to the station which has the same id
- */
-void parcoursRefresh(tree** head, Data a) {
-    if (*head != NULL) {
-        if ((*head)->a.id < a.id){
-            parcoursRefresh(&((*head)->fd), a);
-        } else if ((*head)->a.id > a.id){
-            parcoursRefresh(&((*head)->fg), a);
-        } else {
-            (*head)->a.consumption += a.consumption;
-        }
-    }
-}  
-
-/**
- * @param head
  * @param tmp
  * @param h
- * Create an Avl which sort the Node by production
+ * This function create an Avl which sort the Node by production
  */
 tree* parcoursSortProduction(tree* head, tree* tmp, int* h){
     if (tmp != NULL && h != NULL){
@@ -36,13 +19,45 @@ tree* parcoursSortProduction(tree* head, tree* tmp, int* h){
  * @param head
  * @param tmp
  * @param h
- * Create an Avl which sort the Node by absolute value (production - consumption)
+ * This function create an Avl which sort the Node by Consumption
  */
-tree* parcoursSortAbs(tree* head, tree* tmp, int* h){
+tree* parcoursSortConsumption(tree* head, tree* tmp, int* h){
     if (tmp != NULL && h != NULL){
-        head = parcoursSortAbs(head, tmp->fg, h);
-        head = sortByAbs(head, tmp->a, h);
-        head = parcoursSortAbs(head, tmp->fd, h);
+        head = parcoursSortConsumption(head, tmp->fg, h);
+        head = sortByConsumption(head, tmp->a, h);
+        head = parcoursSortConsumption(head, tmp->fd, h);
     }
     return head;
+}
+
+/**
+ * @param a
+ * @param stationTree
+ * This function make the sum of the consumption of the consumers an add it to the respective station
+ */
+void addConsumptionToStation(Data a, tree** stationTree){
+    if (*stationTree != NULL){
+        if (a.id == (*stationTree)->a.id) {
+            (*stationTree)->a.consumption += a.consumption;
+        } else {
+            if (a.id < (*stationTree)->a.id){
+                addConsumptionToStation(a, &(*stationTree)->fg);
+            } else {
+                addConsumptionToStation(a, &(*stationTree)->fd);
+            }
+        }
+    }
+}
+
+/**
+ * @param consoTree
+ * @param stationTree
+ * This function make an in-order traversal to call the function which make the sum of the consumption and add it to the station
+ */
+void parcoursInfixeSum(tree* consoTree, tree** stationTree){
+    if (consoTree != NULL && stationTree != NULL){
+        addConsumptionToStation(consoTree->a, stationTree);
+        parcoursInfixeSum(consoTree->fg, stationTree);
+        parcoursInfixeSum(consoTree->fd, stationTree);
+    }
 }

@@ -11,64 +11,53 @@
 /**
  * @param a
  * @param b
- * Determinate the minimum between the two value in parameter
+ * This function determinate the minimum between the two value in parameter
  */
 int min(int a, int b);
 
 /**
  * @param a
  * @param b
- * Determinate the maximum between the two value in parameter
+ * This function determinate the maximum between the two value in parameter
  */
 int max(int a, int b);
 
 /**
  * @param head
- * Free the memory
+ * This function free the memory of an AVL
  */
 void freeAvl(tree* head);
 
 /**
-* @param a
-* Check if the Data in parameter is a lv station
-*/
+ * @param a
+ * This function check if the Data in parameter is a lv station
+ */
 int isLv(Data a);
 
 /**
-* @param a
-* Check if the Data in parameter is a hvb station
-*/
+ * @param a
+ * This function check if the Data in parameter is a hvb station
+ */
 int isHvb(Data a);
 
 /**
-* @param a
-* Check if the Data in parameter is a hva station
-*/
+ * @param a
+ * This function check if the Data in parameter is a hva station
+ */
 int isHva(Data a);
 
 /**
-* @param i
-* @param head
-* Determinate the number of nodes in an avl
-*/
-void nbNodes(long long int* i, tree* head);
+ * @param i
+ * @param head
+ * This function determinate the number of node(s) in an avl
+ */
+void nbNodes(long long int * i, tree* head);
 
 /**
-* Initialize the data
-*/
-Data* init();
-
-/**
-* @param origin
-* @param toAdd
-* Add two char* into one char*
-*/
+ * @param origin
+ * @param toAdd
+ * This function add two char* into one char*
+ */
 char* addCharToChar(char* origin, char* toAdd);
 
-/**
-* @param i
-* Determinate the absolute value between the two value in parameter
-*/
-
 #endif //FONCTION_UTILE
-
