@@ -21,7 +21,7 @@ function help(){
 for arg in "$@"; do
   case "$arg" in # if the argument is -h display the help
       -h)
-        help 
+        help
         ;;
   esac
 done
@@ -234,25 +234,38 @@ else  # Else launch the compilation with the Makefile
   cd $dir_origine || exit 0
 fi
 
-# Lire le fichier, calculer la différence (production - consommation), trier, et afficher les résultats
-input_file="results/lv_all_minmax2.csv"
 
-output_file="results/lv_all_minmax.csv"
+
+
+input_file="results/lv_all_minmax2.csv"
+if [ -z $4 ]; then
+    output_file="results/lv_all_minmax.csv"
+  else
+    output_file="results/lv_all_minmax_$4.csv"
+fi
 
 
 # Vérifier si le fichier existe
 if [[ ! -f "$input_file" ]]; then
-    echo -e "\033[31mError : the file $input_file doesn't exist\033[0m"
+    echo -e "\033[31mError: the file '$input_file' doesn't exist\033[0m"
     exit 50
 fi
 
 
+
+# Extraire l'en-tête
 head -n 1 "$input_file" > "$output_file"
+
+# Traiter les données et les trier par la différence (colonne 4)
 tail -n +2 "$input_file" | \
 awk -F: '{diff = $2 - $3; print $1 ":" $2 ":" $3 ":" diff}' | \
 sort -t: -k4,4n | \
-awk -F: '{print $1 ":" $2 ":" $3}' > "$output_file"
-rm $input_file
+awk -F: '{print $1 ":" $2 ":" $3}' >> "$output_file"
+
+# Supprimer le fichier d'entrée uniquement si nécessaire
+if [[ -f "$input_file" ]]; then
+    rm "$input_file"
+fi
 
 
 

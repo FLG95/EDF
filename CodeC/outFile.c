@@ -98,7 +98,7 @@ void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
     if (head != NULL && fichier != NULL && h != NULL && arg1 != NULL && arg2 != NULL){
         if (*h == 0){
             *h = *h + 1;
-            fprintf(stdout, "Station %s : Capacity : consumption (%s)\n", arg1, arg2);
+            fprintf(fichier, "Station %s : Capacity : consumption (%s)\n", arg1, arg2);
         }
         writeAllData(head->fg, fichier, h, arg1, arg2);
         fprintf(fichier, "%d:%lu:%lu\n",

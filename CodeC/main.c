@@ -71,15 +71,20 @@ int main(int argc, char* argv[]){
     int h_abs = 0;
     int h_Prod = 0;
 
+    if(stationTree == NULL){
+        printf("stationTree NULL\n");
+    }
+
     //Add Nodes to the different tree with the right method for each one
     stationTreeSortAbs = parcoursSortAbs(stationTreeSortAbs, stationTree, &h_abs);
     stationTreeSortProduction = parcoursSortProduction(stationTreeSortProduction, stationTree, &h_Prod);
 
     //Check if the tree are not empty
-    if (stationTreeSortProduction == NULL || stationTreeSortAbs == NULL){
-        printf("ici");
+
+
+    /*if (stationTreeSortProduction == NULL || stationTreeSortAbs == NULL){
         exit(60);
-    }
+    }*/
 
 
     //Write the nodes of the tree in external files
