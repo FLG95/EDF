@@ -60,38 +60,9 @@ if [ -n "$4" ]; then
 fi
 
 
-ascii1="
-                        .,.*/(,
-                        ((((((,
-                       ((((((((
-                        ((((((/
-              .(,         (((/       .,,,.            ..
-            ((((((*             /((((((((((((*    #&&&&&&&&%   &&&&%&&&&&*  ,&&&&&&&&
-            /(((((((((((/             ./((((((   #&&&    %&&%  &&&/    &&&( ,&&&
-               ./((((/,                          &&&&&&&&&&&%  &&&/    #&&% ,&&&&&&&*
-                               .((/.             (&&&*     *   &&&/   ,&&&, ,&&&
-                       *(((.     /(((((/          .&&&&&&&&&(  &&&&&&&&&*   ,&&&
-                (**/(((((((,       (((((((
-                *(((((((((*        ((((((((
-                   .***.              ,/*
-
-                                                                                  "
-ascii2="
-        ███████╗██╗     ███████╗ ██████╗████████╗██████╗ ██╗███████╗██╗   ██╗    ██╗   ██╗ ██████╗ ██╗   ██╗██████╗     ██████╗ ██████╗ ███████╗ █████╗ ███╗   ███╗███████╗
-        ██╔════╝██║     ██╔════╝██╔════╝╚══██╔══╝██╔══██╗██║██╔════╝╚██╗ ██╔╝    ╚██╗ ██╔╝██╔═══██╗██║   ██║██╔══██╗    ██╔══██╗██╔══██╗██╔════╝██╔══██╗████╗ ████║██╔════╝
-        █████╗  ██║     █████╗  ██║        ██║   ██████╔╝██║█████╗   ╚████╔╝      ╚████╔╝ ██║   ██║██║   ██║██████╔╝    ██║  ██║██████╔╝█████╗  ███████║██╔████╔██║███████╗
-        ██╔══╝  ██║     ██╔══╝  ██║        ██║   ██╔══██╗██║██╔══╝    ╚██╔╝        ╚██╔╝  ██║   ██║██║   ██║██╔══██╗    ██║  ██║██╔══██╗██╔══╝  ██╔══██║██║╚██╔╝██║╚════██║
-        ███████╗███████╗███████╗╚██████╗   ██║   ██║  ██║██║██║        ██║          ██║   ╚██████╔╝╚██████╔╝██║  ██║    ██████╔╝██║  ██║███████╗██║  ██║██║ ╚═╝ ██║███████║
-        ╚══════╝╚══════╝╚══════╝ ╚═════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝        ╚═╝          ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝
-                                                                                                                                                                           "
-ascii3="
-        ████████╗██╗  ██╗ █████╗ ███╗   ██╗██╗  ██╗███████╗       ███████╗███████╗███████╗    ██╗   ██╗ ██████╗ ██╗   ██╗    ███████╗ ██████╗  ██████╗ ███╗   ██╗
-        ╚══██╔══╝██║  ██║██╔══██╗████╗  ██║██║ ██╔╝██╔════╝       ██╔════╝██╔════╝██╔════╝    ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██╔════╝██╔═══██╗██╔═══██╗████╗  ██║
-           ██║   ███████║███████║██╔██╗ ██║█████╔╝ ███████╗       ███████╗█████╗  █████╗       ╚████╔╝ ██║   ██║██║   ██║    ███████╗██║   ██║██║   ██║██╔██╗ ██║
-           ██║   ██╔══██║██╔══██║██║╚██╗██║██╔═██╗ ╚════██║       ╚════██║██╔══╝  ██╔══╝        ╚██╔╝  ██║   ██║██║   ██║    ╚════██║██║   ██║██║   ██║██║╚██╗██║
-           ██║   ██║  ██║██║  ██║██║ ╚████║██║  ██╗███████║▄█╗    ███████║███████╗███████╗       ██║   ╚██████╔╝╚██████╔╝    ███████║╚██████╔╝╚██████╔╝██║ ╚████║
-           ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═╝    ╚══════╝╚══════╝╚══════╝       ╚═╝    ╚═════╝  ╚═════╝     ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝
-                                                                                                                                                                 "
+asciiEDF="Input/asciiCYEDF.txt"
+asciiEYD="Input/asciiEYD.txt"
+asciiTSYS="Input/asciiTSYS.txt"
 
 # Get all the file path in variable
 exe_name="exe"
@@ -102,8 +73,8 @@ dir_graph="graph"
 dir_result="results"
 
 #Display the two first ASCII
-echo "$ascii1"
-echo "$ascii2"
+cat $asciiEDF
+cat $asciiEYD
 
 
 
@@ -221,56 +192,39 @@ case $2 in
   ;;
 esac
 
-
+cd $dir_makefile || exit 0
 if [ -d $exe_name  ]; then # If the exe already exist launch it
   ./$exe_name
+  echo "1"
+  make clean
 else  # Else launch the compilation with the Makefile
-  cd $dir_makefile || exit 0
   make clean
   if [ -z $4 ]; then
       make all ARGS="../tmp/data.txt $2 $3" # Give the argument needed by the code in c
     else
       make all ARGS="../tmp/data.txt $2 $3 $4" # Give the argument needed by the code in c
   fi
-
   make clean
   cd $dir_origine || exit 0
 fi
 
-# Lire le fichier, calculer la différence (production - consommation), trier, et afficher les résultats
-#!/bin/bash
-
-input_file="results/lv_all_minmax2.csv"
+if [ $2 == 'lv' ] && [ $3 == 'all' ]; then # If Argument 2 == "lv" and Argument 3 == "all" we create add the graph in the grah directory
+input_file_lv_all="tmp/lv_all_minmax_temp.csv"
 if [ -z $4 ]; then
     output_file="results/lv_all_minmax.csv"
   else
     output_file="results/lv_all_minmax_$4.csv"
 fi
-
-
-# Vérifier si le fichier existe
-if [[ ! -f "$input_file" ]]; then
-    echo -e "\033[31mError: the file '$input_file' doesn't exist\033[0m"
-    exit 50
-fi
-
-
-
 # Extraire l'en-tête
-head -n 1 "$input_file" > "$output_file"
+head -n 1 "$input_file_lv_all" > "$output_file"
 
-# Traiter les données et les trier par la différence (colonne 4)
-tail -n +2 "$input_file" | \
-awk -F: '{diff = $2 - $3; print $1 ":" $2 ":" $3 ":" diff}' | \
+# Sort the file by difference between the 2 and the 3 column
+tail -n +2 "$input_file_lv_all" | \
+awk -F: '{print $1 ":" $2 ":" $3 ":" $2 - $3}' | \
 sort -t: -k4,4g | \
 awk -F: '{print $1 ":" $2 ":" $3}' >> "$output_file"
 
-# Supprimer le fichier d'entrée uniquement si nécessaire
-if [[ -f "$input_file" ]]; then
-    rm "$input_file"
-fi
-
-if [ $2 == 'lv' ] && [ $3 == 'all' ]; then # If Argument 2 == "lv" and Argument 3 == "all" we create add the graph in the grah directory
+# Make the graphic
 gnuplot -persist << EOF
   set terminal png size 1600,900
   set output 'graph/lv_all_load_graph.png'
@@ -290,13 +244,16 @@ gnuplot -persist << EOF
   set datafile separator ":"
   plot '$output_file' using 2:xtic(1) lc rgb "navy" title 'Capacity','' using 3 lc rgb "gold" title 'Consumption'
 EOF
+# Delete the temporary file
+if [[ -f "$input_file_lv_all" ]]; then
+    rm "$input_file_lv_all"
 fi
-
+fi
 
 END_TIME=$(date +%s) # Get the actual time and stock it in the END_TIME variable
 PROCESSUS_TIME=$((END_TIME - START_TIME)) # Calculs the processus time
 
 echo "The program last : $PROCESSUS_TIME seconds" # Display the processus time
-echo "$ascii3" # Display the third ASCII
+cat $asciiTSYS # Display the third ASCII
 
 rm tmp/* # Empty the tmp file

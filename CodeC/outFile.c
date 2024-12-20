@@ -4,7 +4,7 @@
  * @param head
  * @param h
  * @param fichier
- * Write in a file 10 data
+ * This function write in a file the 10 data which are the most on the right of the AVL
  */
 void write10sup(tree* head, int* h, FILE* fichier){
     if (head != NULL && h != NULL && fichier != NULL && *h < 10) {
@@ -22,7 +22,7 @@ void write10sup(tree* head, int* h, FILE* fichier){
  * @param head
  * @param h
  * @param fichier
- * Write in a file 10 data
+ * This function write in a file the 10 data which are the most on the left of the AVL
  */
 void write10less(tree* head, int* h, FILE* fichier){
     long long int i = 0;
@@ -42,7 +42,7 @@ void write10less(tree* head, int* h, FILE* fichier){
  * @param fichier
  * @param arg1
  * @param arg2
- * Put documentation on the top of the file
+ * This function put documentation on the top of the file
  */
 void addHighDocumentation(FILE* fichier, char* arg1, char* arg2){
     if (fichier == NULL || arg1 == NULL || arg2 == NULL){
@@ -55,7 +55,7 @@ void addHighDocumentation(FILE* fichier, char* arg1, char* arg2){
  * @param head
  * @param arg1
  * @param arg2
- * Write in a file 20 data and create the file to write that
+ * This function create a file for the 20 data
  */
 void centerWrite10(tree* head, char* arg1, char* arg2) {
     if (head == NULL && arg1 == NULL && arg2 == NULL) {
@@ -65,7 +65,7 @@ void centerWrite10(tree* head, char* arg1, char* arg2) {
     int h_inf = 0;
     long long int i = 0;
     nbNodes(&i, head);
-    FILE *fichier = fopen("../results/lv_all_minmax2.csv", "w");
+    FILE *fichier = fopen("../tmp/lv_all_minmax_temp.csv", "w");
     if (fichier == NULL) {
         exit(70);
     }
@@ -89,7 +89,7 @@ void centerWrite10(tree* head, char* arg1, char* arg2) {
  * @param h
  * @param arg1
  * @param arg2
- * Write all the nodes of an avl in a file
+ * This function write all the nodes of an avl in a file
  */
 void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
     if (head != NULL && fichier != NULL && h != NULL && arg1 != NULL && arg2 != NULL){
@@ -104,20 +104,32 @@ void writeAllData(tree* head, FILE* fichier, int* h, char* arg1, char* arg2){
     }
 }
 
+
 /**
  * @param head
  * @param arg2
  * @param arg3
- * Create the file to write all the nodes of an avl
+ * @param arg4
+ * This function create the file to write all the nodes of the stationTree
  */
 void centerWrite(tree* head, char* arg2, char* arg3, char* arg4){
     if (head == NULL || arg2 == NULL || arg3 == NULL){
         exit(50);
     }
     int h = 0;
-    char* destination = addCharToChar("../results/", arg2);
+    char* destination = NULL;
+    destination = addCharToChar("../results/", arg2);
+    if (destination == NULL){
+        exit(30);
+    }
     destination = addCharToChar(destination, "_");
+    if (destination == NULL){
+        exit(30);
+    }
     destination = addCharToChar(destination, arg3);
+    if (destination == NULL){
+        exit(30);
+    }
     if (arg4 != NULL){
         destination = addCharToChar(destination, "_");
         destination = addCharToChar(destination, arg4);
